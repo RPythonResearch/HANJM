@@ -1,0 +1,221 @@
+---
+title: Role of Targeted Therapy after Surgical Resection of Colorectal Liver Metastases
+author:
+  - name: JM HAN
+    corresponding: false
+    roles:
+      - manuscript writing
+    affiliations:
+      - name: KIRAMS
+        department: Department of General Surgery
+  - name: Ui Sep Shin
+    orcid: 0000-0002-1714-7469
+    corresponding: true
+    roles: 
+      - Formal Analysis
+      - Supervision
+    affiliations:
+      - name: KIRAMS
+        department: Department of General Surgery
+    email: uisupshin@kirams.re.kr
+keywords:
+  - colorectal cancer
+  - liver metastases
+  - preoperative chemotherapy
+  - survival
+abstract: |
+
+bibliography: references.bib
+number-sections: true
+---
+
+## Introduction
+
+Resectability가 있는 대장암의 간 전이에 대한 가장 효과적인 치료법은 전이부위를 포함하는 절제 수술과 perioperative chemotherapy으로 제시되고 있습니다. 하지만, 수술 후 재발률이 18개월 이내 75%까지 보고될 만큼 매우 높습니다 [@RN671].
+
+이에 항암화학요법에 표적 치료제를 추가하는 것에 대해 몇 몇 study가 보고되었으나 대규모의 높은 등급의 study는 아직 부족한 상태입니다. 이러한 study 에 따르면, 수술 후 표적치료제의 추가는 생존 이득이 없거나 오히려 유해한 결과로 나타났다고 보고되었습니다.
+
+그러나 아직까지 국내 보험체계는 전이 부위를 포함하는 절제술 후 항암요법에 표적치료제를 추가하는 것에 제한이 없는 상황입니다.
+
+따라서 대장암의 간 전이에서 근치적 절제술 후 항암화학요법을 진행한 환자에 대한 분석을 진행하여 표적치료제의 영향력을 평가하고자 하였습니다
+
+## Methods
+
+### Patients
+
+본 연구는 후향적 연구로 2009년 1월부터 2022년 7월까지 원자력병원에서 시행한 대장암 간 전이에 대한 근치적 목적의 절제 수술 케이스를 대상으로 하였습니다.
+
+이 중 FOLFOX FOLFIRI 등 Doublet chemotherapy를 시행한 케이스를 포함 하였으며, 타 장기 전이가 있거나, R1/2 절제의 경우, 항암치료를 받지 않거나 단일제제 항암치료 케이스는 제외하였습니다.
+
+최종적으로 138개의 케이스에 대해 분석이 진행되었으며, Primary end point 는 간 전이 절제술로부터 progression free survival 로 설정하였습니다.
+
+### Statistical analyses
+
+후향적 연구의 한계를 보정하기 위한 통계적 기법으로서 IPTW 를 적용하였습니다. 대상이 되는 138개의 original cohort 에 대해 다변량 로지스틱 회귀 분석을 통해 propensity score와 가중치 를 계산하여 가중치를 적용하여 보정한 데이터셋을 얻었습니다. 이렇게 보정된 weighted cohort 에 대해서 Absolute SMD 값을 통해 치료군과 대조군의 balance 를 확인하였습니다.
+
+최종적으로 original cohort 와 weighted cohort 에서 콕스 회귀 분석을 시행하였으며 다변량 회귀분석에서는 후향 제거법을 사용하여 수술 후 표적치료제가 갖는 예후에의 영향력을 평가하였습니다.
+
+Propensity score 를 구하기 위해 활용된 로지스틱 회귀분석에 적용된 변수는 다음과 같습니다. 환자 factor 로서 성별, 연령, ASA score 등 Primary tumor factor 로서 tumor location, lymph node ratio 등 Metastatic factor 로서 간엽 침범 정도, 전이 병변의 개수 등을 설정하였습니다. 이에 따라 Propensity score 에 따른 allocation probability 의 AUC 는 0.811, p-value 는 0.4906 로 나타났습니다 (Figure 1).
+
+![Figure 1. Propensity score 에 따른 allocation probability 의 AUC](images/clipboard-580080678.png){width="489"}
+
+All analyses were performed using R version 4.4.1 (R Core Team (2021). (R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria).
+
+## Results
+
+```{r}
+#| label: source
+#| include: FALSE
+
+source_filename<-"my_functions.R"
+project_folder <<- getwd()
+source_folder <<- file.path(project_folder, "source")
+source_path <- file.path(source_folder, source_filename)
+source(source_path)
+```
+
+
+```{r}
+#| label: library
+#| include: FALSE
+
+library(readxl)
+library(survival)
+library(maxstat)
+library(moonBook)
+library(knitr)
+```
+
+```{r}
+#| label: read_excel
+
+raw_data_filename<-"deidentified_han20230213.xlsx"
+raw_data_folder <<- file.path(project_folder, "raw_data")
+raw_data_path <- file.path(raw_data_folder, raw_data_filename)
+HAN_raw <- read_excel(raw_data_path)
+
+HAN <- subset(HAN_raw, Adjuvant_Doublet==1)
+```
+
+```{r}
+#| label: Variable Set up
+
+HAN$LNR<-HAN$pN/HAN$tN
+HAN$PD<-ifelse(HAN$Diff=="PD",1,0)
+HAN$Pni1<-ifelse(HAN$N=="Y",1,0)
+HAN$Vi1<-ifelse(HAN$V=="Y",1,0)
+HAN$Lvi1<-ifelse(HAN$L=="Y",1,0)
+HAN$Male<-ifelse(HAN$SEX==1,1,0)
+HAN$RTCOL<-ifelse(HAN$SIDENESS=="Rt",1,0)
+HAN$CCI7<-ifelse(HAN$CCI>7,1,0)
+HAN$AGE60<-ifelse(HAN$AGE>60,1,0)
+HAN$CEA73<-ifelse(HAN$preHR_CEA>73,1,0)
+HAN$ASA3<-ifelse(HAN$ASA>2,1,0)
+HAN$Adju_target<-ifelse(HAN$Post_HR_target_all=="None",0,ifelse(HAN$Post_HR_target_all=="Avastin",1,2))
+HAN$Adju_target <-as.factor(HAN$Adju_target)
+
+# Time object, DFS
+HAN$TS_DFS=Surv(HAN$FU_DFS, HAN$RECUR=="1") #time object
+# fit_DFS <-survfit(HAN$TS_DFS~., data=HAN)
+```
+
+```{r}
+#| label: maxstat_test
+
+maxstat.test(TS_DFS~ preHR_CEA, data=HAN,smethod="LogRank",pmethod="condMC",B=999)
+maxstat.test(TS_DFS~ CCI, data=HAN,smethod="LogRank",pmethod="condMC",B=999)
+maxstat.test(TS_DFS~ ASA, data=HAN,smethod="LogRank",pmethod="condMC",B=999)
+maxstat.test(TS_DFS~ NUM_HM, data=HAN,smethod="LogRank",pmethod="condMC",B=999)
+maxstat.test(TS_DFS~ HM_SIZE, data=HAN,smethod="LogRank",pmethod="condMC",B=999)
+maxstat.test(TS_DFS~ LNR, data=HAN,smethod="LogRank",pmethod="condMC",B=999)
+
+HAN$CCI7<-ifelse(HAN$CCI>7,"CCI>7","CCI<7")
+DFS<-survfit(Surv(FU_DFS, RECUR=="1")~Adju_TA, data=HAN)
+summary(DFS)
+DFS
+```
+
+```{r}
+#| label: number_of_patients_included
+#| include: false
+
+number_of_patients_included <- nrow(HAN)
+number_of_Adju_TA_no<-nrow(subset(HAN, Adju_TA==0))
+number_of_Adju_TA_yes<-nrow(subset(HAN, Adju_TA==1))
+
+```
+
+Table 1은 연구에 포함된 환자 특성입니다. `r number_of_patients_included` 개의 케이스에서 대조군의 크기는 `r number_of_Adju_TA_no`, 치료군의 크기는 `r number_of_Adju_TA_yes` 명 이었습니다. 이 중, 표적치료제가 사용된 61명 중 베바시주맙이 42, 세툭시맙이 19명 이었습니다. 조사된 변수는 patient factor와 primary tumor factor, 그리고 metastases factor 로 구분하였습니다.
+
+연령은 치료군과 대조군 모두 59세 전후로 나타났으며 연령 및 성별에 있어 두 군 간의 통계적인 차이는 없었습니다. 진단 당시 간 전이를 동반하였거나 원발 부위 종양 절제술 후 12개월 이내에 간전이가 발견된 경우는 대조군에서 빈도가 유의하게 높았습니다. 또한 간 절제술 전 항암화학요법 혹은 표적치료제를 사용한 경우는 치료군에서 빈도가 유의하게 높았습니다.
+
+```{r}
+#| label: Table 1. Baseline characteristics for patients 
+#| include: false
+#| caption: Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis
+#| 
+table1<-mytable(Adju_TA~AGE+Male+Synch_M1+M1_12m+ASA3+CCI7+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+preHR_CEA+CEA73+PreHR_chemo+PreHR_TA+Post_HR_target_all,
+                show.total=TRUE, exact=TRUE, data=HAN, method = 3)
+table1
+```
+
+![Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis](images/clipboard-3145534320.png){width="700"}
+
+Primary tumor factor 에서는 pathology 소견 상 lymphatic invasion 을 보인 경우 대조군의 빈도가 유의하게 높았습니다. Metastases factor 에서는 병변의 양엽 침범 여부와 개수, 최대 직경에 대해 조사하였고 두 군 간의 유의한 차이는 없었습니다. 따라서 raw data에서는 치료군과 대조군 간의 불균형이 관찰됩니다.
+
+따라서 propensity score를 사용해 가중치를 적용하여 데이터셋을 보정하는 IPTW 기법을 적용하였습니다.
+
+Figure 2은, original cohort 와 weighted cohort 의 absolute SMD 를 나타낸 것으로 빨간색 범례가 보정 전 특성을 나타내고, 파란색 범례가 보정 후 특성을 나타냅니다. 가중치 적용 후 absolute SMD 값이 0.2 이하로 조정되어 보정 후 치료군과 대조군이 적절한 balance 를 이루고 있는 것을 확인할 수 있습니다.
+
+![Figure 2. Absolute SMD, Balance at original cohort & weighted cohort](images/clipboard-2590844408.png)
+
+Figure 3은 연구에 포함된 환자 에 대한 Kaplan Meier 생존곡선입니다. 왼쪽은 metastases 에 대한 progression survival 을 나타내고 오른쪽은 overall survival 을 나타냅니다. f/u 기간의 중앙값은 45.5개월 이었으며, 관찰기간 중의 PFS event 는 85건, OS event 는 67건 이었습니다.
+
+```{r}
+#| label: fig-PFS
+
+plot(DFS, main="Progression free survival, Target agent, yes/no", xlab="Time", ylab="Survival Probability", col=c("blue", "red"), lty=c(1,2))
+legend("topright", legend=c("TA no","TA yes"), col=c("blue", "red"), lty=c(1,2), cex=0.8)
+
+```
+
+```{r}
+#| label: Time object, DFS
+
+HAN$TS_DFS=Surv(HAN$FU_DFS, HAN$RECUR=="1") #time object
+fit_DFS <-survfit(HAN$TS_DFS~Adju_TA, data=HAN)
+
+```
+
+![Figure 3. Kaplan Meier Analysis, original cohort](images/clipboard-3783060595.png)
+
+테이블 2는 단변량 콕스 회귀 분석 결과입니다. 먼저 가중치를 적용하지 않은 original cohort 에서는 수술 전 CEA level 이 높은 경우, 수술 전 표적치료제 적용한 경우, vascular invasion 이 진행된 경우, 전이 병변이 간 양엽을 모두 침범한 경우, 간 전이 병변의 개수가 4개 이상일 경우에서 통계적으로 유의한 Poor prognostic factor 로 조사되었습니다.수술 후 표적치료제의 사용여부는 불량한 예후를 시사하는 경향을 보였으나 통계적으로 유의하지는 않았습니다.
+
+Weighted cohort 에서는 보정 전 그룹과 비교하여 vascular invasion 이 있는 경우에서 Hazard ratio 1.70 으로 통계적으로 유의한 Poor prognostic factor 로 조사되었습니다. 보정 후에도 수술 후 표적치료제의 사용에 대한 경우는 불량한 예후를 시사하는 경향을 보였으나 통계적으로 유의하지는 않았습니다.
+
+```{r}
+#| label: UNIVARIATE
+#| include: true
+
+out_u=mycph(TS_DFS~Adju_TA+Any_TA+Adju_target+Male+AGE60+CCI7+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+CEA73+M1_12m+PreHR_chemo+PreHR_TA, data=HAN) # Univariate
+out_u
+
+```
+
+![Table 2. Uni-variated Cox regression associated to PFS](images/clipboard-3985066224.png)
+
+Table 3 는 다변량 콕스 회귀 분석 결과입니다. original cohort 에서는 간 전이 절제술 전 표적치료제를 사용한 경우, Vascular invasion 이 있는 경우, 전이 병변이 간 양엽을 모두 침범한 경우에서 통계적으로 유의한 Poor prognostic factor 로 조사되었습니다. 반면 Weighted cohort 에서는 Perineural invasion 여부와 더불어 수술 후 표적치료제의 사용이 유의한 poor prognostic factor 로 조사되었습니다.
+
+![Table 3. multi-variated Cox regression associated to PFS](images/clipboard-1312926093.png)
+
+## Conclusion
+
+결론적으로 대장암 환자의 간절제술 후 항암치료에 표적 치료제를 추가하는 것은 생존 이점이 없으며, 오히려, 전이절제술 후 표적 치료제 사용이 progression 에 있어 해로운 영향력이 있을 수 있음을 확인하였습니다.
+
+## Discussion
+
+이러한 표적치료제의 사용이 해로울 수 있는 가능성은, 2014년 LANCET oncology 에 게재된 New EPOC study에서 언급된 내용으로, 이 분석 결과를 통해 해당 내용을 데이터로 확인할 수 있었습니다 [@RN672].
+
+다만, 분석에 포함된 대상군의 크기가 제한적이었고, 실시된 표적치료제 별 분석이 이루어지지 않았습니다. 또한, 후향적 연구의 한계로서 unmeasured confounder 가 존재하여 분석의 한계가 있을 수 있겠습니다.
+
+따라서 절제 가능한 대장암 환자에 대해 수술 후 최적의 표적 치료제 적용에 대한 대규모 전향적 연구가 필요할 것으로 사료됩니다.
