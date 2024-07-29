@@ -8,8 +8,8 @@ format:
   html:
     comments:
       hypothesis: true
-  docx: default
-  jats: default
+  # docx: false
+  # jats: false
 
   # (other formats)
   # pdf: default

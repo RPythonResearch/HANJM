@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.55">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -118,7 +118,7 @@ div.csl-indent {
               </div>
       </div>
       <div class="quarto-title-meta-column-end quarto-other-formats-target">
-      <div class="quarto-alternate-formats"><div class="quarto-title-meta-heading">Other Formats</div><div class="quarto-title-meta-contents"><p><a href="index.docx"><i class="bi bi-file-word"></i>MS Word</a></p></div><div class="quarto-title-meta-contents"><p><a href="index-meca.zip" data-meca-link="true"><i class="bi bi-archive"></i>MECA Bundle</a></p></div></div></div>
+      </div>
     </div>
 
 
@@ -149,7 +149,7 @@ div.csl-indent {
   </ul>
 <div class="quarto-alternate-notebooks"><h2>Notebooks</h2><ul><li><a href="index-preview.html"><i class="bi bi-journal-code"></i>Article Notebook</a></li></ul></div></nav>
 </div>
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
 </div>
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
@@ -180,7 +180,7 @@ div.csl-indent {
 <p>Propensity score 를 구하기 위해 활용된 로지스틱 회귀분석에 적용된 변수는 다음과 같습니다. 환자 factor 로서 성별, 연령, ASA score 등 Primary tumor factor 로서 tumor location, lymph node ratio 등 Metastatic factor 로서 간엽 침범 정도, 전이 병변의 개수 등을 설정하였습니다. 이에 따라 Propensity score 에 따른 allocation probability 의 AUC 는 0.811, p-value 는 0.4906 로 나타났습니다 (Figure 1).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/clipboard-580080678.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1" title="Figure 1. Propensity score 에 따른 allocation probability 의 AUC"><img src="images/clipboard-580080678.png" class="img-fluid figure-img" width="489" alt="Figure 1. Propensity score 에 따른 allocation probability 의 AUC"></a></p>
+<p><a href="images/clipboard-580080678.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure 1. Propensity score 에 따른 allocation probability 의 AUC"><img src="images/clipboard-580080678.png" class="img-fluid figure-img" width="489" alt="Figure 1. Propensity score 에 따른 allocation probability 의 AUC"></a></p>
 <figcaption>Figure 1. Propensity score 에 따른 allocation probability 의 AUC</figcaption>
 </figure>
 </div>
@@ -189,132 +189,83 @@ div.csl-indent {
 </section>
 <section id="results" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="results"><span class="header-section-number">3</span> Results</h2>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Maximally selected LogRank statistics using condMC
-
-data:  TS_DFS by preHR_CEA
-M = 2.6206, p-value = 0.1171
-sample estimates:
-estimated cutpoint 
-             73.97 </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Maximally selected LogRank statistics using condMC
-
-data:  TS_DFS by CCI
-M = 0.92138, p-value = 0.7087
-sample estimates:
-estimated cutpoint 
-                 7 </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Maximally selected LogRank statistics using condMC
-
-data:  TS_DFS by ASA
-M = 0.25305, p-value = 0.8068
-sample estimates:
-estimated cutpoint 
-                 2 </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Maximally selected LogRank statistics using condMC
-
-data:  TS_DFS by NUM_HM
-M = 2.9713, p-value = 0.01101
-sample estimates:
-estimated cutpoint 
-                 4 </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Maximally selected LogRank statistics using condMC
-
-data:  TS_DFS by HM_SIZE
-M = 1.2944, p-value = 0.7928
-sample estimates:
-estimated cutpoint 
-                 4 </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Maximally selected LogRank statistics using condMC
-
-data:  TS_DFS by LNR
-M = 1.3978, p-value = 0.6597
-sample estimates:
-estimated cutpoint 
-         0.1818182 </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Call: survfit(formula = Surv(FU_DFS, RECUR == "1") ~ Adju_TA, data = HAN)
-
-                Adju_TA=0 
- time n.risk n.event survival std.err lower 95% CI upper 95% CI
-    1     76       1    0.987  0.0131        0.962        1.000
-    2     74       1    0.974  0.0185        0.938        1.000
-    3     72       3    0.933  0.0290        0.878        0.991
-    4     69       3    0.892  0.0360        0.825        0.966
-    5     65       2    0.865  0.0397        0.790        0.946
-    6     63       1    0.851  0.0414        0.774        0.936
-    7     62       1    0.837  0.0430        0.757        0.926
-    8     61       3    0.796  0.0470        0.709        0.894
-    9     57       2    0.768  0.0493        0.678        0.871
-   10     54       4    0.711  0.0532        0.614        0.824
-   11     50       1    0.697  0.0540        0.599        0.812
-   12     48       2    0.668  0.0556        0.568        0.786
-   13     46       2    0.639  0.0568        0.537        0.761
-   14     44       4    0.581  0.0586        0.477        0.708
-   15     40       1    0.566  0.0589        0.462        0.695
-   17     39       1    0.552  0.0592        0.447        0.681
-   18     38       1    0.537  0.0594        0.433        0.667
-   19     36       2    0.508  0.0597        0.403        0.639
-   20     34       1    0.493  0.0598        0.388        0.625
-   23     33       1    0.478  0.0598        0.374        0.611
-   24     32       2    0.448  0.0597        0.345        0.582
-   28     30       2    0.418  0.0593        0.317        0.552
-   36     28       1    0.403  0.0590        0.302        0.537
-   69     18       1    0.381  0.0599        0.280        0.518
-
-                Adju_TA=1 
- time n.risk n.event survival std.err lower 95% CI upper 95% CI
-    1     61       2    0.967  0.0228        0.924        1.000
-    3     59       4    0.902  0.0381        0.830        0.980
-    6     54       2    0.868  0.0434        0.787        0.958
-    7     52       2    0.835  0.0477        0.746        0.934
-    8     49       1    0.818  0.0497        0.726        0.921
-    9     48       4    0.750  0.0560        0.647        0.868
-   11     42       4    0.678  0.0610        0.569        0.809
-   12     38       6    0.571  0.0652        0.457        0.714
-   13     31       2    0.534  0.0660        0.419        0.681
-   14     29       2    0.497  0.0664        0.383        0.646
-   15     25       2    0.458  0.0668        0.344        0.609
-   17     23       2    0.418  0.0666        0.306        0.571
-   20     19       3    0.352  0.0661        0.243        0.509
-   21     16       1    0.330  0.0655        0.224        0.487
-   24     14       1    0.306  0.0650        0.202        0.464
-   26     12       1    0.281  0.0644        0.179        0.440
-   27     11       1    0.255  0.0634        0.157        0.415
-   28     10       1    0.230  0.0620        0.135        0.390
-   43      9       1    0.204  0.0601        0.115        0.364</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Call: survfit(formula = Surv(FU_DFS, RECUR == "1") ~ Adju_TA, data = HAN)
-
-           n events median 0.95LCL 0.95UCL
-Adju_TA=0 77     43     20      14      NA
-Adju_TA=1 61     42     14      12      21</code></pre>
-</div>
-<a class="quarto-notebook-link" id="nblink-1" href="index-preview.html">Source: Article Notebook</a></div>
 <p>Table 1은 연구에 포함된 환자 특성입니다. 138 개의 케이스에서 대조군의 크기는 77, 치료군의 크기는 61 명 이었습니다. 이 중, 표적치료제가 사용된 61명 중 베바시주맙이 42, 세툭시맙이 19명 이었습니다. 조사된 변수는 patient factor와 primary tumor factor, 그리고 metastases factor 로 구분하였습니다.</p>
 <p>연령은 치료군과 대조군 모두 59세 전후로 나타났으며 연령 및 성별에 있어 두 군 간의 통계적인 차이는 없었습니다. 진단 당시 간 전이를 동반하였거나 원발 부위 종양 절제술 후 12개월 이내에 간전이가 발견된 경우는 대조군에서 빈도가 유의하게 높았습니다. 또한 간 절제술 전 항암화학요법 혹은 표적치료제를 사용한 경우는 치료군에서 빈도가 유의하게 높았습니다.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Error in data.frame(y = data[[y]], x = data[[x]]) : 
+  arguments imply differing number of rows: 138, 0</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+                    Descriptive Statistics by 'Adju_TA'                    
+———————————————————————————————————————————————————————————————————————————— 
+                           0                1              Total         p  
+                         (N=77)           (N=61)          (N=138)     
+———————————————————————————————————————————————————————————————————————————— 
+ SEX                                                                   0.888
+   - 0                 22 (28.6%)       19 (31.1%)       41 (29.7%)         
+   - 1                 55 (71.4%)       42 (68.9%)       97 (70.3%)         
+ Synch_M1                                                              0.121
+   - M0                12 (15.6%)       17 (27.9%)       29 (21.0%)         
+   - M1                65 (84.4%)       44 (72.1%)      109 (79.0%)         
+ M1_12m                                                                0.025
+   - M0                7 ( 9.1%)        15 (24.6%)       22 (15.9%)         
+   - M1                70 (90.9%)       46 (75.4%)      116 (84.1%)         
+ ASA3                                                                  0.382
+   - 0                 60 (77.9%)       52 (85.2%)      112 (81.2%)         
+   - 1                 17 (22.1%)       9 (14.8%)        26 (18.8%)         
+ CCI7                                                                  1.000
+   - 0                 37 (48.1%)       29 (47.5%)       66 (47.8%)         
+   - 1                 40 (51.9%)       32 (52.5%)       72 (52.2%)         
+ RTCOL                                                                 0.961
+   - 0                 63 (81.8%)       51 (83.6%)      114 (82.6%)         
+   - 1                 14 (18.2%)       10 (16.4%)       24 (17.4%)         
+ LNR                 0.1 [ 0.0; 0.2]  0.1 [ 0.0; 0.3]  0.1 [ 0.0; 0.3] 0.476
+ pT4                                                                   0.211
+   - 0                 64 (83.1%)       56 (91.8%)      120 (87.0%)         
+   - 1                 13 (16.9%)       5 ( 8.2%)        18 (13.0%)         
+ Pni1                                                                  0.599
+   - 0                 46 (59.7%)       40 (65.6%)       86 (62.3%)         
+   - 1                 31 (40.3%)       21 (34.4%)       52 (37.7%)         
+ Lvi1                                                                  0.032
+   - 0                 42 (54.5%)       45 (73.8%)       87 (63.0%)         
+   - 1                 35 (45.5%)       16 (26.2%)       51 (37.0%)         
+ Vi1                                                                   0.619
+   - 0                 54 (70.1%)       46 (75.4%)      100 (72.5%)         
+   - 1                 23 (29.9%)       15 (24.6%)       38 (27.5%)         
+ PD                                                                    1.000
+   - 0                 74 (96.1%)       58 (95.1%)      132 (95.7%)         
+   - 1                 3 ( 3.9%)        3 ( 4.9%)        6 ( 4.3%)          
+ BILOBE                                                                0.468
+   - 0                 46 (59.7%)       41 (67.2%)       87 (63.0%)         
+   - 1                 31 (40.3%)       20 (32.8%)       51 (37.0%)         
+ MULTI4                                                                0.183
+   - 0                 65 (84.4%)       45 (73.8%)      110 (79.7%)         
+   - 1                 12 (15.6%)       16 (26.2%)       28 (20.3%)         
+ SIZE4                                                                 0.392
+   - 0                 66 (85.7%)       48 (78.7%)      114 (82.6%)         
+   - 1                 11 (14.3%)       13 (21.3%)       24 (17.4%)         
+ preHR_CEA           9.2 [ 3.2;25.1]  7.3 [ 4.8;44.4]  8.3 [ 3.7;28.0] 0.394
+ CEA73                                                                 0.445
+   - 0                 70 (90.9%)       52 (85.2%)      122 (88.4%)         
+   - 1                 7 ( 9.1%)        9 (14.8%)        16 (11.6%)         
+ PreHR_chemo                                                           0.028
+   - 0                 61 (79.2%)       37 (60.7%)       98 (71.0%)         
+   - 1                 16 (20.8%)       24 (39.3%)       40 (29.0%)         
+ PreHR_TA                                                              0.000
+   - 0                 75 (97.4%)       40 (65.6%)      115 (83.3%)         
+   - 1                 2 ( 2.6%)        21 (34.4%)       23 (16.7%)         
+ Post_HR_target_all                                                    0.000
+   - Avastin            0 ( 0.0%)       42 (68.9%)       42 (30.4%)         
+   - Erbitux            0 ( 0.0%)       19 (31.1%)       19 (13.8%)         
+   - None             77 (100.0%)        0 ( 0.0%)       77 (55.8%)         
+———————————————————————————————————————————————————————————————————————————— </code></pre>
+</div>
+<a class="quarto-notebook-link" id="nblink-1" href="index-preview.html">Source: Article Notebook</a></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/clipboard-3145534320.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2" title="Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis"><img src="images/clipboard-3145534320.png" class="img-fluid figure-img" width="700" alt="Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis"></a></p>
+<p><a href="images/clipboard-3145534320.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis"><img src="images/clipboard-3145534320.png" class="img-fluid figure-img" width="700" alt="Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis"></a></p>
 <figcaption>Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis</figcaption>
 </figure>
 </div>
@@ -323,28 +274,27 @@ Adju_TA=1 61     42     14      12      21</code></pre>
 <p>Figure 2은, original cohort 와 weighted cohort 의 absolute SMD 를 나타낸 것으로 빨간색 범례가 보정 전 특성을 나타내고, 파란색 범례가 보정 후 특성을 나타냅니다. 가중치 적용 후 absolute SMD 값이 0.2 이하로 조정되어 보정 후 치료군과 대조군이 적절한 balance 를 이루고 있는 것을 확인할 수 있습니다.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/clipboard-2590844408.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3" title="Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort"><img src="images/clipboard-2590844408.png" class="img-fluid figure-img" alt="Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort"></a></p>
+<p><a href="images/clipboard-2590844408.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort"><img src="images/clipboard-2590844408.png" class="img-fluid figure-img" alt="Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort"></a></p>
 <figcaption>Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort</figcaption>
 </figure>
 </div>
 <p>Figure 3은 연구에 포함된 환자 에 대한 Kaplan Meier 생존곡선입니다. 왼쪽은 metastases 에 대한 progression survival 을 나타내고 오른쪽은 overall survival 을 나타냅니다. f/u 기간의 중앙값은 45.5개월 이었으며, 관찰기간 중의 PFS event 는 85건, OS event 는 67건 이었습니다.</p>
 <div id="cell-fig-PFS" class="cell">
 <div class="cell-output-display">
-<div id="fig-PFS" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
+<div id="fig-PFS" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-PFS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/fig-PFS-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="index_files/figure-html/fig-PFS-1.png" id="fig-PFS" class="img-fluid figure-img" width="672"></a>
+<a href="index_files/figure-html/fig-PFS-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;1: "><img src="index_files/figure-html/fig-PFS-1.png" id="fig-PFS" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-PFS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1
 </figcaption>
 </figure>
 </div>
 </div>
-<a class="quarto-notebook-link" id="nblink-2" href="index-preview.html#cell-fig-PFS">Source: Article Notebook</a></div>
+</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/clipboard-3783060595.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5" title="Figure 3. Kaplan Meier Analysis, original cohort"><img src="images/clipboard-3783060595.png" class="img-fluid figure-img" alt="Figure 3. Kaplan Meier Analysis, original cohort"></a></p>
+<p><a href="images/clipboard-3783060595.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure 3. Kaplan Meier Analysis, original cohort"><img src="images/clipboard-3783060595.png" class="img-fluid figure-img" alt="Figure 3. Kaplan Meier Analysis, original cohort"></a></p>
 <figcaption>Figure 3. Kaplan Meier Analysis, original cohort</figcaption>
 </figure>
 </div>
@@ -355,7 +305,7 @@ Figure&nbsp;1
 <pre><code>
  mycph : perform coxph of individual expecting variables
 
- Call: TS_DFS ~ Adju_TA + Any_TA + Adju_target + Male + AGE60 + CCI7 +     RTCOL + LNR + pT4 + Pni1 + Lvi1 + Vi1 + PD + BILOBE + MULTI4 +     SIZE4 + CEA73 + M1_12m + PreHR_chemo + PreHR_TA, data= HAN </code></pre>
+ Call: TS_DFS ~ Adju_TA + Any_TA + Adju_target + SEX + AGE60 + CCI7 +     RTCOL + LNR + pT4 + Pni1 + Lvi1 + Vi1 + PD + BILOBE + MULTI4 +     SIZE4 + CEA73 + M1_12m + PreHR_chemo + PreHR_TA, data= HAN </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               HR  lcl  ucl     p
@@ -363,9 +313,9 @@ Adju_TA      1.48 0.96 2.28 0.074
 Any_TA       1.48 0.96 2.27 0.075
 Adju_target1 1.36 0.84 2.18 0.208
 Adju_target2 1.89 1.00 3.56 0.049
-Male         0.89 0.57 1.40 0.620
+SEX          0.89 0.57 1.40 0.620
 AGE60        0.92 0.60 1.41 0.704
-CCI7CCI&gt;7    0.82 0.53 1.25 0.352
+CCI7         0.82 0.53 1.25 0.352
 RTCOL        1.08 0.63 1.87 0.773
 LNR          1.62 0.56 4.67 0.375
 pT4          1.19 0.63 2.25 0.582
@@ -381,17 +331,17 @@ M1_12mM1     1.43 0.76 2.69 0.270
 PreHR_chemo  1.44 0.91 2.27 0.123
 PreHR_TA     1.87 1.10 3.21 0.022</code></pre>
 </div>
-<a class="quarto-notebook-link" id="nblink-3" href="index-preview.html">Source: Article Notebook</a></div>
+</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/clipboard-3985066224.png" class="lightbox" data-glightbox="description: .lightbox-desc-6" data-gallery="quarto-lightbox-gallery-6" title="Table 2. Uni-variated Cox regression associated to PFS"><img src="images/clipboard-3985066224.png" class="img-fluid figure-img" alt="Table 2. Uni-variated Cox regression associated to PFS"></a></p>
+<p><a href="images/clipboard-3985066224.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Table 2. Uni-variated Cox regression associated to PFS"><img src="images/clipboard-3985066224.png" class="img-fluid figure-img" alt="Table 2. Uni-variated Cox regression associated to PFS"></a></p>
 <figcaption>Table 2. Uni-variated Cox regression associated to PFS</figcaption>
 </figure>
 </div>
 <p>Table 3 는 다변량 콕스 회귀 분석 결과입니다. original cohort 에서는 간 전이 절제술 전 표적치료제를 사용한 경우, Vascular invasion 이 있는 경우, 전이 병변이 간 양엽을 모두 침범한 경우에서 통계적으로 유의한 Poor prognostic factor 로 조사되었습니다. 반면 Weighted cohort 에서는 Perineural invasion 여부와 더불어 수술 후 표적치료제의 사용이 유의한 poor prognostic factor 로 조사되었습니다.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/clipboard-1312926093.png" class="lightbox" data-glightbox="description: .lightbox-desc-7" data-gallery="quarto-lightbox-gallery-7" title="Table 3. multi-variated Cox regression associated to PFS"><img src="images/clipboard-1312926093.png" class="img-fluid figure-img" alt="Table 3. multi-variated Cox regression associated to PFS"></a></p>
+<p><a href="images/clipboard-1312926093.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Table 3. multi-variated Cox regression associated to PFS"><img src="images/clipboard-1312926093.png" class="img-fluid figure-img" alt="Table 3. multi-variated Cox regression associated to PFS"></a></p>
 <figcaption>Table 3. multi-variated Cox regression associated to PFS</figcaption>
 </figure>
 </div>
@@ -405,15 +355,6 @@ PreHR_TA     1.87 1.10 3.21 0.022</code></pre>
 <p>이러한 표적치료제의 사용이 해로울 수 있는 가능성은, 2014년 LANCET oncology 에 게재된 New EPOC study에서 언급된 내용으로, 이 분석 결과를 통해 해당 내용을 데이터로 확인할 수 있었습니다 <span class="citation" data-cites="RN672">(<a href="#ref-RN672" role="doc-biblioref">Primrose et al. 2014</a>)</span>.</p>
 <p>다만, 분석에 포함된 대상군의 크기가 제한적이었고, 실시된 표적치료제 별 분석이 이루어지지 않았습니다. 또한, 후향적 연구의 한계로서 unmeasured confounder 가 존재하여 분석의 한계가 있을 수 있겠습니다.</p>
 <p>따라서 절제 가능한 대장암 환자에 대해 수술 후 최적의 표적 치료제 적용에 대한 대규모 전향적 연구가 필요할 것으로 사료됩니다.</p>
-<div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-1">Figure 1. Propensity score 에 따른 allocation probability 의 AUC</span>
-<span class="glightbox-desc lightbox-desc-2">Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis</span>
-<span class="glightbox-desc lightbox-desc-3">Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort</span>
-<span class="glightbox-desc lightbox-desc-4">Figure&nbsp;1: </span>
-<span class="glightbox-desc lightbox-desc-5">Figure 3. Kaplan Meier Analysis, original cohort</span>
-<span class="glightbox-desc lightbox-desc-6">Table 2. Uni-variated Cox regression associated to PFS</span>
-<span class="glightbox-desc lightbox-desc-7">Table 3. multi-variated Cox regression associated to PFS</span>
-</div>
 
 </section>
 
@@ -461,18 +402,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -504,7 +434,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -512,7 +464,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -836,30 +788,37 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","loop":false,"descPosition":"bottom","closeEffect":"zoom"});
-window.onload = () => {
-  lightboxQuarto.on('slide_before_load', (data) => {
-    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-    const href = trigger.getAttribute('href');
-    if (href !== null) {
-      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-      if (imgEl !== null) {
-        const srcAttr = imgEl.getAttribute("src");
-        if (srcAttr && srcAttr.startsWith("data:")) {
-          slideConfig.href = srcAttr;
-        }
-      }
-    } 
-  });
-
-  lightboxQuarto.on('slide_after_load', (data) => {
-    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-    if (window.Quarto?.typesetMath) {
-      window.Quarto.typesetMath(slideNode);
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","loop":false,"closeEffect":"zoom","descPosition":"bottom"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
     }
-  });
-
-};
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
           </script>
 
 

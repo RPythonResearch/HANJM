@@ -24,9 +24,10 @@ keywords:
   - preoperative chemotherapy
   - survival
 abstract: |
-
 bibliography: references.bib
 number-sections: true
+editor_options: 
+  chunk_output_type: inline
 ---
 
 ## Introduction
@@ -40,6 +41,98 @@ Resectability가 있는 대장암의 간 전이에 대한 가장 효과적인 �
 따라서 대장암의 간 전이에서 근치적 절제술 후 항암화학요법을 진행한 환자에 대한 분석을 진행하여 표적치료제의 영향력을 평가하고자 하였습니다
 
 ## Methods
+
+
+```{r sourcing_external_R_scripts}
+
+source_directory<-"source"
+source_filename<-"my_functions.R"
+
+project_path <<- getwd()
+source_path <<- file.path(project_path, source_directory)
+source_path_filename <- file.path(source_path, source_filename)
+source(source_path_filename)
+rm(source_directory, source_filename, project_path, source_path, source_path_filename)
+```
+
+
+```{r loading_raw_data}
+
+library(readxl)
+
+raw_data_directory<-"raw_data"
+raw_data_filename<-"deidentified_han20230213.xlsx"
+
+project_path <<- getwd()
+raw_data_path <<- file.path(project_path, raw_data_directory)
+raw_data_path_filename <- file.path(raw_data_path, raw_data_filename)
+raw_data <- read_excel(raw_data_path_filename)
+rm(raw_data_directory, raw_data_filename, project_path, raw_data_path, raw_data_path_filename)
+```
+
+
+```{r Managing_NA_rich_variablaes, results='hide'}
+# results='hide'옵션은 코드와 그 실행결과가 문서에서는 표시되지 않도록 숨깁니다.
+
+# raw_data의 컬럼(=variable)들 중에서 결측치(=NA)가 cut-off 값 (아래에서는 5%) 이상이면 컬럼을 삭제함
+# 이떄 문서에는 포함되지 않지만 이 chunk를 실향하면 어떤 컬럼이 NA가 기준치 이상이라서 삭제되었는지 알 수 있음.
+NA_deleted_data <- my_deleting_NA_rich_variable(raw_data, 5)
+```
+
+```{r mutating_Variables}
+
+raw_data$LNR<-raw_data$pN/raw_data$tN
+```
+
+```{r maxstat_test, echo=FALSE, results='hide'}
+
+library(survival)
+library(maxstat)
+
+raw_data$TS_DFS=Surv(raw_data$FU_DFS, raw_data$RECUR=="1") #time object
+
+maxstat.test(TS_DFS~ preHR_CEA, data=raw_data,smethod="LogRank",pmethod="condMC",B=999)
+maxstat.test(TS_DFS~ CCI, data=raw_data,smethod="LogRank",pmethod="condMC",B=999)
+maxstat.test(TS_DFS~ ASA, data=raw_data,smethod="LogRank",pmethod="condMC",B=999)
+maxstat.test(TS_DFS~ NUM_HM, data=raw_data,smethod="LogRank",pmethod="condMC",B=999)
+maxstat.test(TS_DFS~ HM_SIZE, data=raw_data,smethod="LogRank",pmethod="condMC",B=999)
+maxstat.test(TS_DFS~ LNR, data=raw_data,smethod="LogRank",pmethod="condMC",B=999)
+
+raw_data$CCI7<-ifelse(raw_data$CCI>7,"CCI>7","CCI<7")
+
+DFS<-survfit(Surv(FU_DFS, RECUR=="1")~Adju_TA, data=raw_data)
+summary(DFS)
+DFS
+```
+
+```{r dichotomizing_continuous_Variables}
+
+raw_data$PD<-ifelse(raw_data$Diff=="PD",1,0)
+raw_data$Pni1<-ifelse(raw_data$N=="Y",1,0)
+raw_data$Vi1<-ifelse(raw_data$V=="Y",1,0)
+raw_data$Lvi1<-ifelse(raw_data$L=="Y",1,0)
+raw_data$SEX<-ifelse(raw_data$SEX==1,1,0)
+raw_data$RTCOL<-ifelse(raw_data$SIDENESS=="Rt",1,0)
+raw_data$CCI7<-ifelse(raw_data$CCI>7,1,0)
+raw_data$AGE60<-ifelse(raw_data$AGE>60,1,0)
+raw_data$CEA73<-ifelse(raw_data$preHR_CEA>73,1,0)
+raw_data$ASA3<-ifelse(raw_data$ASA>2,1,0)
+raw_data$Adju_target<-ifelse(raw_data$Post_HR_target_all=="None",0,ifelse(raw_data$Post_HR_target_all=="Avastin",1,2))
+raw_data$Adju_target <-as.factor(raw_data$Adju_target)
+```
+
+```{r selecting_variables}
+
+library(dplyr)
+
+selected_data <- raw_data %>% select(Adju_TA, AGE60, SEX, Synch_M1, M1_12m, ASA3, CCI7, RTCOL, LNR, pT4, Pni1, Lvi1, Vi1, PD, BILOBE, MULTI4, SIZE4, preHR_CEA, CEA73, PreHR_chemo, PreHR_TA, Post_HR_target_all, Adjuvant_Doublet, FU_DFS, , FU_OS, RECUR, Any_TA, Adju_target)
+```
+
+```{r selecting_raw_data_by_criteria}
+
+selected_data <- subset(selected_data, Adjuvant_Doublet==1)
+HAN<-selected_data
+```
 
 ### Patients
 
@@ -63,98 +156,22 @@ All analyses were performed using R version 4.4.1 (R Core Team (2021). (R: A lan
 
 ## Results
 
-```{r}
-#| label: source
-#| include: FALSE
-
-source_filename<-"my_functions.R"
-project_folder <<- getwd()
-source_folder <<- file.path(project_folder, "source")
-source_path <- file.path(source_folder, source_filename)
-source(source_path)
-```
-
-
-```{r}
-#| label: library
-#| include: FALSE
-
-library(readxl)
-library(survival)
-library(maxstat)
-library(moonBook)
-library(knitr)
-```
-
-```{r}
-#| label: read_excel
-
-raw_data_filename<-"deidentified_han20230213.xlsx"
-raw_data_folder <<- file.path(project_folder, "raw_data")
-raw_data_path <- file.path(raw_data_folder, raw_data_filename)
-HAN_raw <- read_excel(raw_data_path)
-
-HAN <- subset(HAN_raw, Adjuvant_Doublet==1)
-```
-
-```{r}
-#| label: Variable Set up
-
-HAN$LNR<-HAN$pN/HAN$tN
-HAN$PD<-ifelse(HAN$Diff=="PD",1,0)
-HAN$Pni1<-ifelse(HAN$N=="Y",1,0)
-HAN$Vi1<-ifelse(HAN$V=="Y",1,0)
-HAN$Lvi1<-ifelse(HAN$L=="Y",1,0)
-HAN$Male<-ifelse(HAN$SEX==1,1,0)
-HAN$RTCOL<-ifelse(HAN$SIDENESS=="Rt",1,0)
-HAN$CCI7<-ifelse(HAN$CCI>7,1,0)
-HAN$AGE60<-ifelse(HAN$AGE>60,1,0)
-HAN$CEA73<-ifelse(HAN$preHR_CEA>73,1,0)
-HAN$ASA3<-ifelse(HAN$ASA>2,1,0)
-HAN$Adju_target<-ifelse(HAN$Post_HR_target_all=="None",0,ifelse(HAN$Post_HR_target_all=="Avastin",1,2))
-HAN$Adju_target <-as.factor(HAN$Adju_target)
-
-# Time object, DFS
-HAN$TS_DFS=Surv(HAN$FU_DFS, HAN$RECUR=="1") #time object
-# fit_DFS <-survfit(HAN$TS_DFS~., data=HAN)
-```
-
-```{r}
-#| label: maxstat_test
-
-maxstat.test(TS_DFS~ preHR_CEA, data=HAN,smethod="LogRank",pmethod="condMC",B=999)
-maxstat.test(TS_DFS~ CCI, data=HAN,smethod="LogRank",pmethod="condMC",B=999)
-maxstat.test(TS_DFS~ ASA, data=HAN,smethod="LogRank",pmethod="condMC",B=999)
-maxstat.test(TS_DFS~ NUM_HM, data=HAN,smethod="LogRank",pmethod="condMC",B=999)
-maxstat.test(TS_DFS~ HM_SIZE, data=HAN,smethod="LogRank",pmethod="condMC",B=999)
-maxstat.test(TS_DFS~ LNR, data=HAN,smethod="LogRank",pmethod="condMC",B=999)
-
-HAN$CCI7<-ifelse(HAN$CCI>7,"CCI>7","CCI<7")
-DFS<-survfit(Surv(FU_DFS, RECUR=="1")~Adju_TA, data=HAN)
-summary(DFS)
-DFS
-```
-
-```{r}
-#| label: number_of_patients_included
-#| include: false
+```{r number_of_patients_included}
 
 number_of_patients_included <- nrow(HAN)
 number_of_Adju_TA_no<-nrow(subset(HAN, Adju_TA==0))
 number_of_Adju_TA_yes<-nrow(subset(HAN, Adju_TA==1))
-
 ```
 
 Table 1은 연구에 포함된 환자 특성입니다. `r number_of_patients_included` 개의 케이스에서 대조군의 크기는 `r number_of_Adju_TA_no`, 치료군의 크기는 `r number_of_Adju_TA_yes` 명 이었습니다. 이 중, 표적치료제가 사용된 61명 중 베바시주맙이 42, 세툭시맙이 19명 이었습니다. 조사된 변수는 patient factor와 primary tumor factor, 그리고 metastases factor 로 구분하였습니다.
 
 연령은 치료군과 대조군 모두 59세 전후로 나타났으며 연령 및 성별에 있어 두 군 간의 통계적인 차이는 없었습니다. 진단 당시 간 전이를 동반하였거나 원발 부위 종양 절제술 후 12개월 이내에 간전이가 발견된 경우는 대조군에서 빈도가 유의하게 높았습니다. 또한 간 절제술 전 항암화학요법 혹은 표적치료제를 사용한 경우는 치료군에서 빈도가 유의하게 높았습니다.
 
-```{r}
-#| label: Table 1. Baseline characteristics for patients 
-#| include: false
-#| caption: Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis
-#| 
-table1<-mytable(Adju_TA~AGE+Male+Synch_M1+M1_12m+ASA3+CCI7+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+preHR_CEA+CEA73+PreHR_chemo+PreHR_TA+Post_HR_target_all,
+```{r Baseline_characteristics_patients}
+
+library(moonBook)
+
+table1<-mytable(Adju_TA~AGE+SEX+Synch_M1+M1_12m+ASA3+CCI7+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+preHR_CEA+CEA73+PreHR_chemo+PreHR_TA+Post_HR_target_all,
                 show.total=TRUE, exact=TRUE, data=HAN, method = 3)
 table1
 ```
@@ -180,7 +197,7 @@ legend("topright", legend=c("TA no","TA yes"), col=c("blue", "red"), lty=c(1,2),
 ```
 
 ```{r}
-#| label: Time object, DFS
+#| label: Time object, DFS 2
 
 HAN$TS_DFS=Surv(HAN$FU_DFS, HAN$RECUR=="1") #time object
 fit_DFS <-survfit(HAN$TS_DFS~Adju_TA, data=HAN)
@@ -197,7 +214,7 @@ Weighted cohort 에서는 보정 전 그룹과 비교하여 vascular invasion �
 #| label: UNIVARIATE
 #| include: true
 
-out_u=mycph(TS_DFS~Adju_TA+Any_TA+Adju_target+Male+AGE60+CCI7+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+CEA73+M1_12m+PreHR_chemo+PreHR_TA, data=HAN) # Univariate
+out_u=mycph(TS_DFS~Adju_TA+Any_TA+Adju_target+SEX+AGE60+CCI7+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+CEA73+M1_12m+PreHR_chemo+PreHR_TA, data=HAN) # Univariate
 out_u
 
 ```
@@ -219,3 +236,6 @@ Table 3 는 다변량 콕스 회귀 분석 결과입니다. original cohort 에�
 다만, 분석에 포함된 대상군의 크기가 제한적이었고, 실시된 표적치료제 별 분석이 이루어지지 않았습니다. 또한, 후향적 연구의 한계로서 unmeasured confounder 가 존재하여 분석의 한계가 있을 수 있겠습니다.
 
 따라서 절제 가능한 대장암 환자에 대해 수술 후 최적의 표적 치료제 적용에 대한 대규모 전향적 연구가 필요할 것으로 사료됩니다.
+
+```{r the_end}
+```
