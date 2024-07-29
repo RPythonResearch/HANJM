@@ -1,22 +1,21 @@
 ################################################################################
-## 함수명: my_deleting_NA_rich_variable
-## 제작일: 2024-07-27
-## 인  자: 데이터프레임, cut_off
+## 제작일: 2024-07-29
+## 인  자: dataframe, cut_off
 ## 반환값: NA 비율 기준에 따라 NA가 많은 열을 제거한 데이터프레임
-## 참  고: 제거되는 열의 이름과 NA 개수를 출력
+## 참  고: 제거되는 열이름과 NA수를 출력
 ################################################################################
-my_deleting_NA_rich_variable <- function(data, cut_off) {
+my_eliminate_NA_columns <- function(df, cut_off) {
   
   # Calculate the threshold for the number of NAs
-  NA_threshold <- nrow(data) * (cut_off / 100)
+  NA_threshold <- nrow(df) * (cut_off / 100)
   # Initialize vectors to store column names and NA counts
   columns_with_na <- c()
   na_counts <- c()
   
   # Determine which columns to retain
-  columns_to_retain <- sapply(names(data), function(column_name) {
+  columns_to_retain <- sapply(names(df), function(column_name) {
     # Count the number of NAs in the column
-    na_count <- sum(is.na(data[[column_name]]))
+    na_count <- sum(is.na(df[[column_name]]))
     
     # Store the column name and NA count if the number of NAs is greater than the threshold
     if (na_count > NA_threshold) {
@@ -29,7 +28,7 @@ my_deleting_NA_rich_variable <- function(data, cut_off) {
   })
   
   # Subset the data to keep only the desired columns
-  cleaned_data <- data[, columns_to_retain, drop = FALSE]
+  cleaned_df <- df[, columns_to_retain, drop = FALSE]
   
   # Print columns with NAs and their counts that are above the threshold
   if (length(columns_with_na) > 0) {
@@ -42,7 +41,7 @@ my_deleting_NA_rich_variable <- function(data, cut_off) {
   }
   
   # Return the cleaned data
-  return(cleaned_data)
+  return(cleaned_df)
 }
 
 
@@ -52,7 +51,7 @@ my_deleting_NA_rich_variable <- function(data, cut_off) {
 ## 인  자: 데이터프레임
 ## 반환값: NA가 포함된 열을 제거한 데이터프레임
 ################################################################################
-my_NA_row_clean <- function(data) {
+my_eliminate_NA_rows <- function(data) {
   # Identify columns with NAs and count the number of NAs in each column
   na_info <- sapply(data, function(column) {
     sum(is.na(column))
@@ -76,3 +75,26 @@ my_NA_row_clean <- function(data) {
   
   return(cleaned_data)
 }
+
+################################################################################
+## 제작일: 2024-07-29
+## 인  자: 데이터프레임
+## 출  력: 연속적변수에 대한 히스토그램수
+################################################################################
+my_histograms <- function(dataframe) {
+
+  numeric_cols <- sapply(dataframe, is.numeric)
+
+  for (col_name in names(dataframe)[numeric_cols]) {
+    print(col_name)
+    p<-ggplot(dataframe, aes_string(x = col_name)) +
+      geom_histogram() +
+      labs(title = paste("Histogram of", col_name),
+           x = col_name,
+           y = "Frequency") +
+      theme_minimal()
+    print(p)
+      }
+}
+
+
