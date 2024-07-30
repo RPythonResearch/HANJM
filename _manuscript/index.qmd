@@ -30,8 +30,9 @@ editor_options:
   chunk_output_type: inline
 ---
 
-```{r Source_scripts}
-
+```{r}
+#| label: Source-scripts
+ 
 source_directory<-"source"
 source_filename<-"my_functions.R"
 
@@ -47,8 +48,8 @@ source(source_path_filename)
 rm(source_directory, source_filename, project_path, source_path, source_path_filename)
 ```
 
-```{r Load_raw_data}
-
+```{r}
+#| label: Load-raw-data
 library(readxl)
 
 raw_data_directory<-"raw_data"
@@ -65,38 +66,46 @@ rm(raw_data_directory, raw_data_filename, project_path, raw_data_path, raw_data_
 initial_raw_data<-raw_data
 ```
 
-```{r Clean_NA_columns, results='hide'}
-# results='hide'옵션은 코드와 그 실행결과가 문서에서는 표시되지 않도록 숨깁니다.
+```{r}
+#| label: Clean-NA-columns
+#| output: false # rendering 문서에 text output이 포함되지 않습니다.
+#| eval: true
 
-# raw_data의 컬럼(=variable)들 중에서 결측치(=NA)가 cut-off 값 (아래에서는 5%) 이상이면 컬럼을 삭제함
-# 문서에는 포함되지 않지만 아래의 라인을 실행하면 어떤 컬럼이 NA가 기준치 이상이라서 삭제되었는지 실행결과를 출력함.
+# raw_data의 컬럼중에서 결측치가 cut-off 값 (아래에서는 5%) 이상이면 컬럼 삭제
+# 어떤 컬럼이 삭제되는지 NA수와 함께 출력함.
+# 실행을 원치 않으면 옵션 eval: false로 변경하면 됨
 
 cleaned_data<-my_eliminate_NA_columns(raw_data, 5)
 ```
 
-```{r Clean_NA_rows, eval=FALSE}
+```{r}
+#| label: Clean-NA-rows
+#| output: false
+#| eval: FALSE  # 실행되지 않는 옵션. 이 chunk만 실행시키면 결과 가능
 
-# 예시를 위해 만든 코드입니다. 실제로는 실행되지 않습니다.
 cleaned_data <- my_eliminate_NA_rows(cleaned_data)
 raw_data <- cleaned_data
 ```
 
-```{r Select_variables, message=FALSE}
-
+```{r}
+#| label: Select-variables
+#| message: false
 library(dplyr)
 
 raw_data <- raw_data %>% 
   select(MRN, PreHR_chemo,  PreHR_TA, Adjuvant_Doublet, Adju_TA, Any_TA, AGE, SEX, ASA, CCI, SIDENESS, pT4, pT, pN, tN, L, N, V, Diff, Synch_M1, M1_12m, BILOBE, NUM_HM, MULTI4, HM_SIZE, SIZE4, preHR_CEA, Post_HR_target_all, FU_DFS, DEATH, FU_OS, RECUR)
 ```
 
-```{r Select_cases, message=FALSE}
+```{r}
+#| label: Select-cases
 
 selected_data <- subset(raw_data, Adjuvant_Doublet==1)
 HAN<-selected_data
 ```
 
-```{r Mutate_varialbes, results='hide'}
-
+```{r}
+#| label: Mutate-varialbes
+#| output: false
 library(survival)
 library(maxstat)
 
@@ -129,46 +138,41 @@ HAN$Adju_target<-ifelse(HAN$Post_HR_target_all=="None",0,ifelse(HAN$Post_HR_targ
 HAN$Adju_target <-as.factor(HAN$Adju_target)
 ```
 
-```{r Patient_Characteristics}
-
+```{r}
+#| label: Patient-Characteristics
 library(moonBook)
 
 table1<-mytable(Adju_TA~AGE+Male+Synch_M1+M1_12m+ASA3+CCI7+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+preHR_CEA+CEA73+PreHR_chemo+PreHR_TA+Post_HR_target_all,
                 show.total=TRUE, exact=TRUE, data=HAN, method = 3)
-
-number_of_patients_included <- nrow(HAN)
-number_of_Adju_TA_no<-nrow(subset(HAN, Adju_TA==0))
-number_of_Adju_TA_yes<-nrow(subset(HAN, Adju_TA==1))
 ```
-  
-    
-```{r PFS_TA}
-#| fig.show: 'hide'
 
-PFS_TA<-plot(DFS, main="Progression free survival, Target agent, yes/no", xlab="Time", ylab="Survival Probability", col=c("blue", "red"), lty=c(1,2))
+```{r}
+#| label: PFS-TA-yes-no
+#| fig.show: 'hide' # rendering 문서에 graphic output이 포함되지 않습니다.
+#| eval: false
+
+plot(DFS, main="Progression free survival, Target agent, yes/no", xlab="Time", ylab="Survival Probability", col=c("blue", "red"), lty=c(1,2))
  legend("topright", legend=c("No","Yes"), col=c("blue", "red"), lty=c(1,2), cex=0.8)
 ```
 
-
 ```{r}
-#| label: Time object, DFS 2
+#| label: Time-object-DFS-2
 
 HAN$TS_DFS=Surv(HAN$FU_DFS, HAN$RECUR=="1") #time object
 fit_DFS <-survfit(HAN$TS_DFS~Adju_TA, data=HAN)
-
 ```
 
 ```{r}
-#| label: UNIVARIATE
-#| results: 'hide'
+#| label: Univariate-CPH-DFS
+#| output: false
 
 out_u=mycph(TS_DFS~Adju_TA+Any_TA+Adju_target+SEX+AGE60+CCI7+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+CEA73+M1_12m+PreHR_chemo+PreHR_TA, data=HAN) # Univariate
 out_u
 ```
 
 ```{r}
-#| label: MULTI_p_0.25
-#| results: 'hide'
+#| label: Multivariate-CPH-DFS-p-0.25
+#| output: false
 
 out_m<-coxph(TS_DFS~Any_TA+SEX+AGE60+Vi1+BILOBE+MULTI4+CEA73, data=HAN)
 
@@ -179,6 +183,11 @@ Cox_step_dfs
 write.csv(Cox_step_dfs, file="Cox_step_DFS.csv")
 length(HAN$FU_OS)
 length(HAN$DEATH)
+```
+
+```{r}
+#| label: Univariate-CPH-OS
+#| output: false
 
 HAN$TS_OS=Surv(HAN$FU_OS, HAN$DEATH==1) #time object
 fit_OS <-survfit(HAN$TS_OS~Adju_TA, data=HAN)
@@ -188,19 +197,19 @@ out_u_os
 ```
 
 ```{r}
-#| label: MULTI_os
-#| results: 'hide'
+#| label: Multivariate-CPH-OS
+#| output: false
 
 out_m_os<-coxph(TS_OS~Adju_TA+SEX+AGE60+CCI7+RTCOL++LNR+pT4+Pni1+Lvi1+Vi1+PD, data=HAN)
-
 extractHR(out_m_os)
-
 ```
 
-```{r Survival_Curve}
-#| results: 'hide'
-
+```{r}
+#| label: PFS
+#| output: false
+#| fig.show: 'hide'
 library(survminer)
+
 DFS_all<-survfit(Surv(FU_DFS, RECUR=="1")~1, data=HAN)
 
 summary(DFS_all)
@@ -212,6 +221,12 @@ min(HAN$FU_OS)
 max(HAN$FU_OS)
 sum(HAN$RECUR)
 sum(HAN$DEATH)
+```
+
+```{r}
+#| label: PFS-TA
+#| output: false
+#| fig.show: 'hide'
 
 DFS<-survfit(Surv(FU_DFS, RECUR=="1")~Adju_TA, data=HAN)
 summary(DFS)
@@ -254,18 +269,18 @@ ggsurvplot(
   fun = NULL, #Cumulative risk
   xlim = c(0, 72)
 )
-
 ```
 
 ```{r overall_survival}
 #| results: 'hide'
-
+#| fig.show: 'hide'
+#| 
 OS<-survfit(Surv(FU_OS, DEATH=="1")~Adju_TA, data=HAN)
 OS_all<-survfit(Surv(FU_OS, DEATH=="1")~1, data=HAN)
 summary(OS_all)
 OS
 
-ggsurvplot(
+OS_TA<-ggsurvplot(
   OS,                     # survfit object with calculated statistics.
   pval = TRUE,             # show p-value of log-rank test.
   conf.int = FALSE,        # show confidence intervals for 
@@ -353,11 +368,12 @@ require(Epi)
 a1=ROC(form=Adju_TA~pr.score, data=HAN_IPTW, plot = "ROC") ## discrimination of TA NO vs. TA YES group by propensity score ##
 ```
 
-```{r weightit}
-## Weightit packages ###
-#install.packages("WeightIt")
+```{r}
+#| label: weightit
+#| fig.show: 'hide'
 library (WeightIt)
 library(cobalt)
+
 covs <- subset(HAN_IPTW, select = c(Male,AGE60,ASA3,RTCOL,LNR,pT4,Pni1,Lvi1,Vi1,PD,BILOBE,MULTI4,SIZE4,CEA73,M1_12m,PreHR_TA))
 
 #W.out_att <- weightit(Adju_TA~covs, data=HAN_IPTW, method="ps", estimand = "ATT") ##table#
@@ -534,6 +550,10 @@ All analyses were performed using R version 4.4.1 (R Core Team (2021). (R: A lan
 
 ```{r patient_characteristics_table}
 table1
+
+number_of_patients_included <- nrow(HAN)
+number_of_Adju_TA_no<-nrow(subset(HAN, Adju_TA==0))
+number_of_Adju_TA_yes<-nrow(subset(HAN, Adju_TA==1))
 ```
 
 Table 1은 연구에 포함된 환자 특성입니다. `r number_of_patients_included` 개의 케이스에서 대조군의 크기는 `r number_of_Adju_TA_no`, 치료군의 크기는 `r number_of_Adju_TA_yes` 명 이었습니다. 이 중, 표적치료제가 사용된 61명 중 베바시주맙이 42, 세툭시맙이 19명 이었습니다. 조사된 변수는 patient factor와 primary tumor factor, 그리고 metastases factor 로 구분하였습니다.
