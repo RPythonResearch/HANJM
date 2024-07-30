@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
     <meta charset="utf-8">
-    <meta name="generator" content="quarto-1.4.553">
+    <meta name="generator" content="quarto-1.5.55">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -35,7 +35,7 @@
       }
       @media print {
       pre > code.sourceCode { white-space: pre-wrap; }
-      pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+      pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
       }
       pre.numberSource code
         { counter-reset: source-line 0; }
@@ -277,7 +277,7 @@
   </ul>
 </nav>
 </div>
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
 </div>
 <main class="content quarto-banner-title-block" id="quarto-document-content">      
 
@@ -390,21 +390,9 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>number_of_Adju_TA_no<span class="ot">&lt;-</span><span class="fu">nrow</span>(<span class="fu">subset</span>(HAN, Adju_TA<span class="sc">==</span><span class="dv">0</span>))</span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>number_of_Adju_TA_yes<span class="ot">&lt;-</span><span class="fu">nrow</span>(<span class="fu">subset</span>(HAN, Adju_TA<span class="sc">==</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [9]:</pre></div><div id="cell-fig-PFS" class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(DFS, <span class="at">main=</span><span class="st">"Progression free survival, Target agent, yes/no"</span>, <span class="at">xlab=</span><span class="st">"Time"</span>, <span class="at">ylab=</span><span class="st">"Survival Probability"</span>, <span class="at">col=</span><span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"red"</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">"TA no"</span>,<span class="st">"TA yes"</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"red"</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">cex=</span><span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div id="fig-PFS" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-PFS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="index_files/figure-html/fig-PFS-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="index_files/figure-html/fig-PFS-1.png" id="fig-PFS" class="img-fluid figure-img" width="672"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-PFS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1
-</figcaption>
-</figure>
-</div>
-</div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [9]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>PFS_TA<span class="ot">&lt;-</span><span class="fu">plot</span>(DFS, <span class="at">main=</span><span class="st">"Progression free survival, Target agent, yes/no"</span>, <span class="at">xlab=</span><span class="st">"Time"</span>, <span class="at">ylab=</span><span class="st">"Survival Probability"</span>, <span class="at">col=</span><span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"red"</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">"No"</span>,<span class="st">"Yes"</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"red"</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">cex=</span><span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [10]:</pre></div><div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>HAN<span class="sc">$</span>TS_DFS<span class="ot">=</span><span class="fu">Surv</span>(HAN<span class="sc">$</span>FU_DFS, HAN<span class="sc">$</span>RECUR<span class="sc">==</span><span class="st">"1"</span>) <span class="co">#time object</span></span>
@@ -485,14 +473,14 @@ Attaching package: 'survminer'</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="index_files/figure-html/Survival_Curve-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="index_files/figure-html/Survival_Curve-1.png" class="img-fluid figure-img" width="672"></a></p>
+<p><a href="index_files/figure-html/Survival_Curve-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="index_files/figure-html/Survival_Curve-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="index_files/figure-html/Survival_Curve-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="index_files/figure-html/Survival_Curve-2.png" class="img-fluid figure-img" width="672"></a></p>
+<p><a href="index_files/figure-html/Survival_Curve-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="index_files/figure-html/Survival_Curve-2.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -521,7 +509,7 @@ Attaching package: 'survminer'</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="index_files/figure-html/Survival_Curve-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="index_files/figure-html/Survival_Curve-3.png" class="img-fluid figure-img" width="672"></a></p>
+<p><a href="index_files/figure-html/Survival_Curve-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="index_files/figure-html/Survival_Curve-3.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -557,7 +545,7 @@ Attaching package: 'survminer'</code></pre>
 <div class="cell-output-display">
 <div class="">
 <figure class="figure">
-<p class=""><a href="index_files/figure-html/overall_survival-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="index_files/figure-html/overall_survival-1.png" class="img-fluid figure-img" width="672"></a></p>
+<p class=""><a href="index_files/figure-html/overall_survival-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="index_files/figure-html/overall_survival-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -593,30 +581,95 @@ Attaching package: 'survminer'</code></pre>
 <span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>table1_iptw <span class="ot">&lt;-</span> <span class="fu">mytable</span>(Adju_TA<span class="sc">~</span>Adju_target<span class="sc">+</span>Male<span class="sc">+</span>AGE60<span class="sc">+</span>CCI7<span class="sc">+</span>ASA3<span class="sc">+</span>RTCOL<span class="sc">+</span>LNR<span class="sc">+</span>pT4<span class="sc">+</span>Pni1<span class="sc">+</span>Lvi1<span class="sc">+</span>Vi1<span class="sc">+</span>PD<span class="sc">+</span>BILOBE<span class="sc">+</span>MULTI4<span class="sc">+</span>SIZE4<span class="sc">+</span>CEA73<span class="sc">+</span>M1_12m<span class="sc">+</span>PreHR_TA,</span>
 <span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>                       <span class="at">show.total=</span><span class="cn">TRUE</span>, <span class="at">exact=</span><span class="cn">TRUE</span>, <span class="at">data=</span>HAN_IPTW, <span class="at">method =</span> <span class="dv">3</span>)</span>
 <span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>table1_iptw</span>
-<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a><span class="do">## Calculating propensity score </span><span class="al">###</span></span>
-<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>fit_IPTW<span class="ot">&lt;-</span><span class="fu">glm</span>(Adju_TA<span class="sc">~</span>Male<span class="sc">+</span>AGE60<span class="sc">+</span>ASA3<span class="sc">+</span>RTCOL<span class="sc">+</span>LNR<span class="sc">+</span>pT4<span class="sc">+</span>Pni1<span class="sc">+</span>Lvi1<span class="sc">+</span>Vi1<span class="sc">+</span>PD<span class="sc">+</span>BILOBE<span class="sc">+</span>MULTI4<span class="sc">+</span>SIZE4<span class="sc">+</span>CEA73<span class="sc">+</span>M1_12m<span class="sc">+</span>PreHR_TA, <span class="at">family=</span>binomial, <span class="at">data=</span>HAN_IPTW)</span>
-<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>factor<span class="ot">&lt;-</span><span class="fu">extractOR</span>(fit_IPTW, <span class="at">digits=</span><span class="dv">3</span>)</span>
-<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>factor</span>
-<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_IPTW)</span>
-<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(factor, <span class="at">file=</span><span class="st">"fit_PTR.csv"</span>)</span>
-<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a>HAN_IPTW<span class="sc">$</span>pr.score <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit_IPTW, <span class="at">type =</span> <span class="st">"response"</span>) <span class="do">##attach propensity score##</span></span>
-<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a><span class="co">#HAN_IPTW$att.weights &lt;- with(HAN_IPTW, Adju_TA + (1-Adju_TA)*pr.score/(1-pr.score))</span></span>
-<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a>HAN_IPTW<span class="sc">$</span>ate.weights <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(HAN_IPTW<span class="sc">$</span>Adju_TA<span class="sc">==</span><span class="st">"1"</span>, <span class="dv">1</span><span class="sc">/</span>HAN_IPTW<span class="sc">$</span>pr.score, <span class="dv">1</span><span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>HAN_IPTW<span class="sc">$</span>pr.score))</span>
-<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-46"><a href="#cb26-46" aria-hidden="true" tabindex="-1"></a><span class="do">## Goodness of Fit test, Hosmer Lemeshow test ####</span></span>
-<span id="cb26-47"><a href="#cb26-47" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("ResourceSelection")</span></span>
-<span id="cb26-48"><a href="#cb26-48" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ResourceSelection)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>table1_iptw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [17]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Calculating propensity score </span><span class="al">###</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>fit_IPTW<span class="ot">&lt;-</span><span class="fu">glm</span>(Adju_TA<span class="sc">~</span>Male<span class="sc">+</span>AGE60<span class="sc">+</span>ASA3<span class="sc">+</span>RTCOL<span class="sc">+</span>LNR<span class="sc">+</span>pT4<span class="sc">+</span>Pni1<span class="sc">+</span>Lvi1<span class="sc">+</span>Vi1<span class="sc">+</span>PD<span class="sc">+</span>BILOBE<span class="sc">+</span>MULTI4<span class="sc">+</span>SIZE4<span class="sc">+</span>CEA73<span class="sc">+</span>M1_12m<span class="sc">+</span>PreHR_TA, <span class="at">family=</span>binomial, <span class="at">data=</span>HAN_IPTW)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>factor<span class="ot">&lt;-</span><span class="fu">extractOR</span>(fit_IPTW, <span class="at">digits=</span><span class="dv">3</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>factor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                OR   lcl     ucl      p
+(Intercept)  1.797 0.379   8.513 0.4602
+Male1        0.892 0.347   2.288 0.8114
+AGE601       0.796 0.105   6.061 0.8259
+ASA31        1.176 0.149   9.296 0.8779
+RTCOL1       1.777 0.590   5.350 0.3064
+LNR          3.406 0.308  37.646 0.3174
+pT41         0.470 0.129   1.713 0.2524
+Pni11        1.324 0.515   3.399 0.5601
+Lvi11        0.525 0.194   1.424 0.2059
+Vi11         1.712 0.641   4.569 0.2832
+PD1          0.932 0.119   7.292 0.9462
+BILOBE1      0.346 0.112   1.073 0.0661
+MULTI41      4.075 1.089  15.249 0.0370
+SIZE41       1.388 0.450   4.281 0.5682
+CEA731       1.443 0.365   5.707 0.6014
+M1_12mM1     0.188 0.053   0.659 0.0091
+PreHR_TA1   24.975 4.641 134.397 0.0002</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_IPTW)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = Adju_TA ~ Male + AGE60 + ASA3 + RTCOL + LNR + pT4 + 
+    Pni1 + Lvi1 + Vi1 + PD + BILOBE + MULTI4 + SIZE4 + CEA73 + 
+    M1_12m + PreHR_TA, family = binomial, data = HAN_IPTW)
+
+Coefficients:
+            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)  0.58611    0.79363   0.739 0.460198    
+Male1       -0.11478    0.48094  -0.239 0.811373    
+AGE601      -0.22772    1.03555  -0.220 0.825948    
+ASA31        0.16211    1.05487   0.154 0.877865    
+RTCOL1       0.57511    0.56224   1.023 0.306364    
+LNR          1.22567    1.22582   1.000 0.317372    
+pT41        -0.75539    0.66004  -1.144 0.252427    
+Pni11        0.28041    0.48122   0.583 0.560094    
+Lvi11       -0.64350    0.50872  -1.265 0.205893    
+Vi11         0.53757    0.50090   1.073 0.283185    
+PD1         -0.07083    1.04981  -0.067 0.946208    
+BILOBE1     -1.06017    0.57683  -1.838 0.066075 .  
+MULTI41      1.40478    0.67336   2.086 0.036958 *  
+SIZE41       0.32797    0.57464   0.571 0.568178    
+CEA731       0.36650    0.70162   0.522 0.601412    
+M1_12mM1    -1.67374    0.64154  -2.609 0.009082 ** 
+PreHR_TA1    3.21786    0.85866   3.748 0.000179 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 189.45  on 137  degrees of freedom
+Residual deviance: 142.96  on 121  degrees of freedom
+AIC: 176.96
+
+Number of Fisher Scoring iterations: 5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(factor, <span class="at">file=</span><span class="st">"fit_PTR.csv"</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>HAN_IPTW<span class="sc">$</span>pr.score <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit_IPTW, <span class="at">type =</span> <span class="st">"response"</span>) <span class="do">##attach propensity score##</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co">#HAN_IPTW$att.weights &lt;- with(HAN_IPTW, Adju_TA + (1-Adju_TA)*pr.score/(1-pr.score))</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>HAN_IPTW<span class="sc">$</span>ate.weights <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(HAN_IPTW<span class="sc">$</span>Adju_TA<span class="sc">==</span><span class="st">"1"</span>, <span class="dv">1</span><span class="sc">/</span>HAN_IPTW<span class="sc">$</span>pr.score, <span class="dv">1</span><span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>HAN_IPTW<span class="sc">$</span>pr.score))</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Goodness of Fit test, Hosmer Lemeshow test ####</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("ResourceSelection")</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ResourceSelection)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>ResourceSelection 0.3-6      2023-06-27</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hoslem.test</span>(HAN_IPTW<span class="sc">$</span>Adju_TA, <span class="fu">fitted</span>(fit_IPTW))</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pROC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hoslem.test</span>(HAN_IPTW<span class="sc">$</span>Adju_TA, <span class="fu">fitted</span>(fit_IPTW))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Hosmer and Lemeshow goodness of fit (GOF) test
+
+data:  HAN_IPTW$Adju_TA, fitted(fit_IPTW)
+X-squared = 7.4342, df = 8, p-value = 0.4906</code></pre>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [18]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pROC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Type 'citation("pROC")' for a citation.</code></pre>
 </div>
@@ -629,24 +682,26 @@ Attaching package: 'pROC'</code></pre>
 
     cov, smooth, var</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("Epi")</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(Epi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("Epi")</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(Epi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: Epi</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("pROC")</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>a1<span class="ot">=</span><span class="fu">ROC</span>(<span class="at">form=</span>Adju_TA<span class="sc">~</span>pr.score, <span class="at">data=</span>HAN_IPTW, <span class="at">plot=</span><span class="st">"ROC"</span>) <span class="do">## discrimination of TA NO vs. TA YES group by propensity score ##</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("pROC")</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>a1<span class="ot">=</span><span class="fu">ROC</span>(<span class="at">form=</span>Adju_TA<span class="sc">~</span>pr.score, <span class="at">data=</span>HAN_IPTW, <span class="at">plot =</span> <span class="st">"ROC"</span>) <span class="do">## discrimination of TA NO vs. TA YES group by propensity score ##</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="">
 <figure class="figure">
-<p class=""><a href="index_files/figure-html/IPTW-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="index_files/figure-html/IPTW-1.png" class="img-fluid figure-img" width="672"></a></p>
+<p class=""><a href="index_files/figure-html/ROC_curve-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="index_files/figure-html/ROC_curve-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Weightit packages </span><span class="al">###</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("WeightIt")</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (WeightIt)</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cobalt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [19]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Weightit packages </span><span class="al">###</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("WeightIt")</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (WeightIt)</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cobalt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code> cobalt (Version 4.5.5, Build Date: 2024-04-02)</code></pre>
 </div>
@@ -659,16 +714,51 @@ Attaching package: 'cobalt'</code></pre>
 
     lalonde</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>covs <span class="ot">&lt;-</span> <span class="fu">subset</span>(HAN_IPTW, <span class="at">select =</span> <span class="fu">c</span>(Male,AGE60,ASA3,RTCOL,LNR,pT4,Pni1,Lvi1,Vi1,PD,BILOBE,MULTI4,SIZE4,CEA73,M1_12m,PreHR_TA))</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co">#W.out_att &lt;- weightit(Adju_TA~covs, data=HAN_IPTW, method="ps", estimand = "ATT") ##table#</span></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co">#bal.tab(W.out_att, un=TRUE, binary="std", thresholds=0.2)</span></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>W.out_ate <span class="ot">&lt;-</span> <span class="fu">weightit</span>(Adju_TA<span class="sc">~</span>covs, <span class="at">data=</span>HAN_IPTW, <span class="at">method=</span><span class="st">"ps"</span>, <span class="at">estimand =</span> <span class="st">"ATE"</span>) <span class="do">##table#</span></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="fu">bal.tab</span>(W.out_ate, <span class="at">un=</span><span class="cn">TRUE</span>, <span class="at">binary=</span><span class="st">"std"</span>, <span class="at">thresholds=</span><span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>covs <span class="ot">&lt;-</span> <span class="fu">subset</span>(HAN_IPTW, <span class="at">select =</span> <span class="fu">c</span>(Male,AGE60,ASA3,RTCOL,LNR,pT4,Pni1,Lvi1,Vi1,PD,BILOBE,MULTI4,SIZE4,CEA73,M1_12m,PreHR_TA))</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="co">#W.out_att &lt;- weightit(Adju_TA~covs, data=HAN_IPTW, method="ps", estimand = "ATT") ##table#</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co">#bal.tab(W.out_att, un=TRUE, binary="std", thresholds=0.2)</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>W.out_ate <span class="ot">&lt;-</span> <span class="fu">weightit</span>(Adju_TA<span class="sc">~</span>covs, <span class="at">data=</span>HAN_IPTW, <span class="at">method=</span><span class="st">"ps"</span>, <span class="at">estimand =</span> <span class="st">"ATE"</span>) <span class="do">##table#</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="fu">bal.tab</span>(W.out_ate, <span class="at">un=</span><span class="cn">TRUE</span>, <span class="at">binary=</span><span class="st">"std"</span>, <span class="at">thresholds=</span><span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Balance Measures
+               Type Diff.Un Diff.Adj    M.Threshold
+prop.score Distance  1.3000  -0.0544 Balanced, &lt;0.2
+Male         Binary -0.0563  -0.0099 Balanced, &lt;0.2
+AGE60        Binary  0.0226   0.0634 Balanced, &lt;0.2
+ASA3         Binary  0.0102   0.0667 Balanced, &lt;0.2
+RTCOL        Binary -0.0473   0.0213 Balanced, &lt;0.2
+LNR         Contin. -0.0224   0.0065 Balanced, &lt;0.2
+pT4          Binary -0.2646   0.0494 Balanced, &lt;0.2
+Pni1         Binary -0.1208  -0.0207 Balanced, &lt;0.2
+Lvi1         Binary -0.4092   0.0271 Balanced, &lt;0.2
+Vi1          Binary -0.1188   0.0829 Balanced, &lt;0.2
+PD           Binary  0.0498  -0.0142 Balanced, &lt;0.2
+BILOBE       Binary -0.1557   0.1381 Balanced, &lt;0.2
+MULTI4       Binary  0.2641   0.1087 Balanced, &lt;0.2
+SIZE4        Binary  0.1845  -0.0309 Balanced, &lt;0.2
+CEA73        Binary  0.1754   0.0711 Balanced, &lt;0.2
+M1_12m_M1    Binary -0.4233  -0.1027 Balanced, &lt;0.2
+PreHR_TA     Binary  0.8984  -0.1044 Balanced, &lt;0.2
+
+Balance tally for mean differences
+                   count
+Balanced, &lt;0.2        17
+Not Balanced, &gt;0.2     0
+
+Variable with the greatest mean difference
+ Variable Diff.Adj    M.Threshold
+   BILOBE   0.1381 Balanced, &lt;0.2
+
+Effective sample sizes
+           Control Treated
+Unadjusted   77.     61.  
+Adjusted     32.89   40.16</code></pre>
+</div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [17]:</pre></div><div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">love.plot</span>(W.out_ate, <span class="at">thresholds =</span> <span class="fu">c</span>(<span class="at">m =</span> .<span class="dv">1</span>), <span class="at">var.order =</span> <span class="st">"unadjusted"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [20]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">love.plot</span>(W.out_ate, <span class="at">thresholds =</span> <span class="fu">c</span>(<span class="at">m =</span> .<span class="dv">1</span>), <span class="at">var.order =</span> <span class="st">"unadjusted"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Standardized mean differences and raw mean differences are present in the same plot. 
 Use the `stars` argument to distinguish between them and appropriately label the x-axis.</code></pre>
@@ -676,34 +766,34 @@ Use the `stars` argument to distinguish between them and appropriately label the
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="index_files/figure-html/Love_plots-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="index_files/figure-html/Love_plots-1.png" class="img-fluid figure-img" width="672"></a></p>
+<p><a href="index_files/figure-html/Love_plots-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="index_files/figure-html/Love_plots-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Love plot 2, # balance plot#, Figure 1##</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>v<span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">old=</span><span class="fu">c</span>(<span class="st">"Male"</span>,<span class="st">"AGE60"</span>,<span class="st">"ASA3"</span>,<span class="st">"RTCOL"</span>,<span class="st">"LNR"</span>,<span class="st">"pT4"</span>,<span class="st">"Pni1"</span>,<span class="st">"Lvi1"</span>,<span class="st">"Vi1"</span>,<span class="st">"PD"</span>,<span class="st">"BILOBE"</span>,<span class="st">"MULTI4"</span>,<span class="st">"SIZE4"</span>,<span class="st">"CEA73"</span>,<span class="st">"M1_12m"</span>,<span class="st">"PreHR_TA"</span>,<span class="st">"ps"</span>),</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">new=</span><span class="fu">c</span>(<span class="st">"Male"</span>,<span class="st">"Age&gt;60"</span>,<span class="st">"ASA &gt;3"</span>,<span class="st">"Primary tumor at Rt colon"</span>,<span class="st">"Regional LN ratio"</span>,<span class="st">"pT4"</span>, <span class="st">"Perineural invasion of PT"</span>,</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Lymphatic invasion of PT"</span>,<span class="st">"Vascular invasion of PT"</span>, <span class="st">"Poor differentiated"</span>, <span class="st">"Bilobar involvement of CRLM"</span>, </span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Number of CRLM&gt;4"</span>, <span class="st">"Max size of CRLM&gt;4cm"</span>, <span class="st">"Pre-hepatectomy CEA&gt;73"</span>, <span class="st">"Synch or LM within 12mon"</span>,<span class="st">"Neoaduvant target agent"</span>, <span class="st">"propensity score"</span>))</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="fu">love.plot</span>(W.out_ate, <span class="at">stats =</span> <span class="fu">c</span>(<span class="st">"mean.diffs"</span>), </span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">threshold =</span> <span class="fu">c</span>(<span class="at">m =</span> .<span class="dv">2</span>), </span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">binary =</span> <span class="st">"std"</span>, <span class="at">abs =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">var.order =</span> <span class="st">"unadjusted"</span>,</span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">var.names =</span> v,</span>
-<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">grid =</span> <span class="cn">TRUE</span>, <span class="at">wrap =</span> <span class="dv">20</span>,</span>
-<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">sample.names =</span> <span class="fu">c</span>(<span class="st">"Original"</span>, <span class="st">"Weighted"</span>),</span>
-<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">position =</span> <span class="st">"top"</span>,</span>
-<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">line=</span> <span class="cn">TRUE</span>,</span>
-<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">shapes =</span> <span class="fu">c</span>(<span class="st">"circle"</span>, <span class="st">"triangle"</span>),</span>
-<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>))<span class="sc">+</span></span>
-<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Absolute standadized mean difference"</span>)<span class="sc">+</span></span>
-<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">75</span>, .<span class="dv">3</span>),</span>
-<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.box.background =</span> <span class="fu">element_rect</span>(), </span>
-<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.box.margin =</span> <span class="fu">margin</span>(<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>),</span>
-<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size=</span><span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Love plot 2, # balance plot#, Figure 1##</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>v<span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">old=</span><span class="fu">c</span>(<span class="st">"Male"</span>,<span class="st">"AGE60"</span>,<span class="st">"ASA3"</span>,<span class="st">"RTCOL"</span>,<span class="st">"LNR"</span>,<span class="st">"pT4"</span>,<span class="st">"Pni1"</span>,<span class="st">"Lvi1"</span>,<span class="st">"Vi1"</span>,<span class="st">"PD"</span>,<span class="st">"BILOBE"</span>,<span class="st">"MULTI4"</span>,<span class="st">"SIZE4"</span>,<span class="st">"CEA73"</span>,<span class="st">"M1_12m"</span>,<span class="st">"PreHR_TA"</span>,<span class="st">"ps"</span>),</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">new=</span><span class="fu">c</span>(<span class="st">"Male"</span>,<span class="st">"Age&gt;60"</span>,<span class="st">"ASA &gt;3"</span>,<span class="st">"Primary tumor at Rt colon"</span>,<span class="st">"Regional LN ratio"</span>,<span class="st">"pT4"</span>, <span class="st">"Perineural invasion of PT"</span>,</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Lymphatic invasion of PT"</span>,<span class="st">"Vascular invasion of PT"</span>, <span class="st">"Poor differentiated"</span>, <span class="st">"Bilobar involvement of CRLM"</span>, </span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Number of CRLM&gt;4"</span>, <span class="st">"Max size of CRLM&gt;4cm"</span>, <span class="st">"Pre-hepatectomy CEA&gt;73"</span>, <span class="st">"Synch or LM within 12mon"</span>,<span class="st">"Neoaduvant target agent"</span>, <span class="st">"propensity score"</span>))</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="fu">love.plot</span>(W.out_ate, <span class="at">stats =</span> <span class="fu">c</span>(<span class="st">"mean.diffs"</span>), </span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">threshold =</span> <span class="fu">c</span>(<span class="at">m =</span> .<span class="dv">2</span>), </span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">binary =</span> <span class="st">"std"</span>, <span class="at">abs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">var.order =</span> <span class="st">"unadjusted"</span>,</span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">var.names =</span> v,</span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">grid =</span> <span class="cn">TRUE</span>, <span class="at">wrap =</span> <span class="dv">20</span>,</span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">sample.names =</span> <span class="fu">c</span>(<span class="st">"Original"</span>, <span class="st">"Weighted"</span>),</span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">position =</span> <span class="st">"top"</span>,</span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">line=</span> <span class="cn">TRUE</span>,</span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">shapes =</span> <span class="fu">c</span>(<span class="st">"circle"</span>, <span class="st">"triangle"</span>),</span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>))<span class="sc">+</span></span>
+<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Absolute standadized mean difference"</span>)<span class="sc">+</span></span>
+<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">75</span>, .<span class="dv">3</span>),</span>
+<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.box.background =</span> <span class="fu">element_rect</span>(), </span>
+<span id="cb50-21"><a href="#cb50-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.box.margin =</span> <span class="fu">margin</span>(<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>),</span>
+<span id="cb50-22"><a href="#cb50-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb50-23"><a href="#cb50-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb50-24"><a href="#cb50-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size=</span><span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2
 3.5.0.
@@ -712,15 +802,15 @@ Use the `stars` argument to distinguish between them and appropriately label the
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="index_files/figure-html/Love_plots-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="index_files/figure-html/Love_plots-2.png" class="img-fluid figure-img" width="672"></a></p>
+<p><a href="index_files/figure-html/Love_plots-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="index_files/figure-html/Love_plots-2.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [18]:</pre></div><div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tableone)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("survey")</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survey)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [21]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tableone)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("survey")</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survey)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: grid</code></pre>
 </div>
@@ -741,32 +831,32 @@ Attaching package: 'survey'</code></pre>
 
     dotchart</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Male"</span>,<span class="st">"AGE60"</span>,<span class="st">"ASA3"</span>,<span class="st">"RTCOL"</span>,<span class="st">"LNR"</span>,<span class="st">"pT4"</span>,<span class="st">"Pni1"</span>,<span class="st">"Lvi1"</span>,<span class="st">"Vi1"</span>,<span class="st">"PD"</span>,<span class="st">"BILOBE"</span>,<span class="st">"MULTI4"</span>,<span class="st">"SIZE4"</span>,<span class="st">"CEA73"</span>,<span class="st">"M1_12m"</span>,<span class="st">"PreHR_TA"</span>)</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>tab.unwt <span class="ot">&lt;-</span> <span class="fu">CreateTableOne</span>(<span class="at">vars=</span>vars, <span class="at">strata=</span><span class="st">"Adju_TA"</span>, <span class="at">data=</span>HAN_IPTW, <span class="at">test =</span><span class="cn">FALSE</span>)</span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tab.unwt, <span class="at">smd=</span><span class="cn">TRUE</span>)</span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>Svy <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> HAN_IPTW, <span class="at">weights =</span> <span class="sc">~</span> ate.weights)</span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Svy)</span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>Svy</span>
-<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>tab.wt <span class="ot">&lt;-</span> <span class="fu">svyCreateTableOne</span>(<span class="at">vars=</span>vars, <span class="at">strata=</span><span class="st">"Adju_TA"</span>, <span class="at">data=</span>Svy, <span class="at">test =</span><span class="cn">FALSE</span>)</span>
-<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tab.wt, <span class="at">smd=</span><span class="cn">TRUE</span>)</span>
-<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jskm)   </span>
-<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>unadjusteDFS<span class="ot">&lt;-</span><span class="fu">survfit</span>(<span class="fu">Surv</span>(HAN_IPTW<span class="sc">$</span>FU_DFS, <span class="fu">as.numeric</span>(HAN_IPTW<span class="sc">$</span>RECUR)) <span class="sc">~</span> HAN_IPTW<span class="sc">$</span>Adju_TA, <span class="at">data=</span>HAN_IPTW)</span>
-<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(unadjusteDFS)</span>
-<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a>iptwsvyDFS <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> HAN_IPTW, <span class="at">weights =</span> <span class="sc">~</span> ate.weights)</span>
-<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a>iptwDFS<span class="ot">&lt;-</span><span class="fu">svykm</span>(<span class="fu">Surv</span>(FU_DFS,RECUR)<span class="sc">~</span>Adju_TA, <span class="at">design=</span>iptwsvyDFS, <span class="at">data=</span>HAN_IPTW)</span>
-<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-21"><a href="#cb50-21" aria-hidden="true" tabindex="-1"></a>iptwDFS</span>
-<span id="cb50-22"><a href="#cb50-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-23"><a href="#cb50-23" aria-hidden="true" tabindex="-1"></a>a<span class="ot">&lt;-</span><span class="fu">jskm</span>(unadjusteDFS, <span class="at">timeby =</span> <span class="dv">12</span>, <span class="at">ystratalabs=</span><span class="fu">c</span>(<span class="st">'No'</span>,<span class="st">"Yes"</span>),</span>
-<span id="cb50-24"><a href="#cb50-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">ystrataname =</span> <span class="st">"Adjuvant Target therapy"</span>, <span class="at">table =</span> <span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">FALSE</span>, <span class="at">pval=</span><span class="cn">FALSE</span>,</span>
-<span id="cb50-25"><a href="#cb50-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlabs=</span><span class="st">"Months after Surgery"</span>, <span class="at">main =</span><span class="st">"Unadjusted"</span>,</span>
-<span id="cb50-26"><a href="#cb50-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">dashed=</span><span class="cn">FALSE</span>,<span class="at">marks=</span><span class="cn">FALSE</span>,<span class="at">xlims=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">60</span>),<span class="at">legendposition=</span><span class="fu">c</span>(<span class="fl">0.85</span>,<span class="fl">0.85</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Male"</span>,<span class="st">"AGE60"</span>,<span class="st">"ASA3"</span>,<span class="st">"RTCOL"</span>,<span class="st">"LNR"</span>,<span class="st">"pT4"</span>,<span class="st">"Pni1"</span>,<span class="st">"Lvi1"</span>,<span class="st">"Vi1"</span>,<span class="st">"PD"</span>,<span class="st">"BILOBE"</span>,<span class="st">"MULTI4"</span>,<span class="st">"SIZE4"</span>,<span class="st">"CEA73"</span>,<span class="st">"M1_12m"</span>,<span class="st">"PreHR_TA"</span>)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>tab.unwt <span class="ot">&lt;-</span> <span class="fu">CreateTableOne</span>(<span class="at">vars=</span>vars, <span class="at">strata=</span><span class="st">"Adju_TA"</span>, <span class="at">data=</span>HAN_IPTW, <span class="at">test =</span><span class="cn">FALSE</span>)</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tab.unwt, <span class="at">smd=</span><span class="cn">TRUE</span>)</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>Svy <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> HAN_IPTW, <span class="at">weights =</span> <span class="sc">~</span> ate.weights)</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Svy)</span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>Svy</span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>tab.wt <span class="ot">&lt;-</span> <span class="fu">svyCreateTableOne</span>(<span class="at">vars=</span>vars, <span class="at">strata=</span><span class="st">"Adju_TA"</span>, <span class="at">data=</span>Svy, <span class="at">test =</span><span class="cn">FALSE</span>)</span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tab.wt, <span class="at">smd=</span><span class="cn">TRUE</span>)</span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jskm)   </span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a>unadjusteDFS<span class="ot">&lt;-</span><span class="fu">survfit</span>(<span class="fu">Surv</span>(HAN_IPTW<span class="sc">$</span>FU_DFS, <span class="fu">as.numeric</span>(HAN_IPTW<span class="sc">$</span>RECUR)) <span class="sc">~</span> HAN_IPTW<span class="sc">$</span>Adju_TA, <span class="at">data=</span>HAN_IPTW)</span>
+<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(unadjusteDFS)</span>
+<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a>iptwsvyDFS <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> HAN_IPTW, <span class="at">weights =</span> <span class="sc">~</span> ate.weights)</span>
+<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a>iptwDFS<span class="ot">&lt;-</span><span class="fu">svykm</span>(<span class="fu">Surv</span>(FU_DFS,RECUR)<span class="sc">~</span>Adju_TA, <span class="at">design=</span>iptwsvyDFS, <span class="at">data=</span>HAN_IPTW)</span>
+<span id="cb58-20"><a href="#cb58-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-21"><a href="#cb58-21" aria-hidden="true" tabindex="-1"></a>iptwDFS</span>
+<span id="cb58-22"><a href="#cb58-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-23"><a href="#cb58-23" aria-hidden="true" tabindex="-1"></a>a<span class="ot">&lt;-</span><span class="fu">jskm</span>(unadjusteDFS, <span class="at">timeby =</span> <span class="dv">12</span>, <span class="at">ystratalabs=</span><span class="fu">c</span>(<span class="st">'No'</span>,<span class="st">"Yes"</span>),</span>
+<span id="cb58-24"><a href="#cb58-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">ystrataname =</span> <span class="st">"Adjuvant Target therapy"</span>, <span class="at">table =</span> <span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">FALSE</span>, <span class="at">pval=</span><span class="cn">FALSE</span>,</span>
+<span id="cb58-25"><a href="#cb58-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlabs=</span><span class="st">"Months after Surgery"</span>, <span class="at">main =</span><span class="st">"Unadjusted"</span>,</span>
+<span id="cb58-26"><a href="#cb58-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">dashed=</span><span class="cn">FALSE</span>,<span class="at">marks=</span><span class="cn">FALSE</span>,<span class="at">xlims=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">60</span>),<span class="at">legendposition=</span><span class="fu">c</span>(<span class="fl">0.85</span>,<span class="fl">0.85</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 22 rows containing missing values or values outside the scale range
 (`geom_step()`).</code></pre>
@@ -775,77 +865,77 @@ Attaching package: 'survey'</code></pre>
 <pre><code>Warning: Removed 16 rows containing missing values or values outside the scale range
 (`geom_text()`).</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="index_files/figure-html/TableOne_package-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="index_files/figure-html/TableOne_package-1.png" class="img-fluid figure-img" width="672"></a></p>
+<p><a href="index_files/figure-html/TableOne_package-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="index_files/figure-html/TableOne_package-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>b<span class="ot">&lt;-</span><span class="fu">svyjskm</span>(iptwDFS, <span class="at">timeby =</span> <span class="dv">12</span>, <span class="at">ystratalabs=</span><span class="fu">c</span>(<span class="st">'No'</span>,<span class="st">"Yes"</span>),</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">ystrataname =</span> <span class="st">"Adjuvant Target therapy"</span>, <span class="at">table =</span> <span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">FALSE</span>, <span class="at">pval=</span><span class="cn">FALSE</span>,</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlabs=</span><span class="st">"Months after Surgery"</span>, <span class="at">main =</span><span class="st">"Weighted"</span>,</span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">dashed=</span><span class="cn">FALSE</span>,<span class="at">marks=</span><span class="cn">TRUE</span>,<span class="at">xlims=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">60</span>),<span class="at">legendposition=</span><span class="fu">c</span>(<span class="fl">0.85</span>,<span class="fl">0.85</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>b<span class="ot">&lt;-</span><span class="fu">svyjskm</span>(iptwDFS, <span class="at">timeby =</span> <span class="dv">12</span>, <span class="at">ystratalabs=</span><span class="fu">c</span>(<span class="st">'No'</span>,<span class="st">"Yes"</span>),</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">ystrataname =</span> <span class="st">"Adjuvant Target therapy"</span>, <span class="at">table =</span> <span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">FALSE</span>, <span class="at">pval=</span><span class="cn">FALSE</span>,</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlabs=</span><span class="st">"Months after Surgery"</span>, <span class="at">main =</span><span class="st">"Weighted"</span>,</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">dashed=</span><span class="cn">FALSE</span>,<span class="at">marks=</span><span class="cn">TRUE</span>,<span class="at">xlims=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">60</span>),<span class="at">legendposition=</span><span class="fu">c</span>(<span class="fl">0.85</span>,<span class="fl">0.85</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 22 rows containing missing values or values outside the scale range
 (`geom_step()`).
 Removed 16 rows containing missing values or values outside the scale range
 (`geom_text()`).</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="index_files/figure-html/TableOne_package-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="index_files/figure-html/TableOne_package-2.png" class="img-fluid figure-img" width="672"></a></p>
+<p><a href="index_files/figure-html/TableOne_package-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="index_files/figure-html/TableOne_package-2.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [19]:</pre></div><div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Univarate Cox regression, unweighted, weighted ######################</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>HAN_IPTW<span class="sc">$</span>TS_DFS<span class="ot">=</span><span class="fu">Surv</span>(HAN_IPTW<span class="sc">$</span>FU_DFS, HAN_IPTW<span class="sc">$</span>RECUR<span class="sc">==</span><span class="st">"1"</span>) <span class="co">#time object</span></span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Uni, unweighted</span></span>
-<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>out <span class="ot">=</span> <span class="fu">mycph</span>(TS_DFS<span class="sc">~</span>Adju_TA<span class="sc">+</span>Adju_target<span class="sc">+</span>Male<span class="sc">+</span>AGE60<span class="sc">+</span>ASA3<span class="sc">+</span>RTCOL<span class="sc">+</span>LNR<span class="sc">+</span>pT4<span class="sc">+</span>Pni1<span class="sc">+</span>Lvi1<span class="sc">+</span>Vi1<span class="sc">+</span>PD<span class="sc">+</span>BILOBE<span class="sc">+</span>MULTI4<span class="sc">+</span>SIZE4<span class="sc">+</span>CEA73<span class="sc">+</span>M1_12m<span class="sc">+</span>PreHR_TA, <span class="at">digits=</span><span class="dv">2</span>, <span class="at">data=</span>HAN_IPTW)</span>
-<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>out</span>
-<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(out, <span class="at">file=</span><span class="st">"Cox_uni.csv"</span>)</span>
-<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Uni, weighted</span></span>
-<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a><span class="co"># uni_ate = mycphwt(TS_DFS~Adju_TA+Adju_target+Male+AGE60+ASA3+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+CEA73+M1_12m+PreHR_TA, digits=2, data=HAN_IPTW)</span></span>
-<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a>uni_ate <span class="ot">=</span> <span class="fu">mycph</span>(TS_DFS<span class="sc">~</span>Adju_TA<span class="sc">+</span>Adju_target<span class="sc">+</span>Male<span class="sc">+</span>AGE60<span class="sc">+</span>ASA3<span class="sc">+</span>RTCOL<span class="sc">+</span>LNR<span class="sc">+</span>pT4<span class="sc">+</span>Pni1<span class="sc">+</span>Lvi1<span class="sc">+</span>Vi1<span class="sc">+</span>PD<span class="sc">+</span>BILOBE<span class="sc">+</span>MULTI4<span class="sc">+</span>SIZE4<span class="sc">+</span>CEA73<span class="sc">+</span>M1_12m<span class="sc">+</span>PreHR_TA, <span class="at">digits=</span><span class="dv">2</span>, <span class="at">data=</span>HAN_IPTW)</span>
-<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a>uni_ate</span>
-<span id="cb57-15"><a href="#cb57-15" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(uni_ate, <span class="at">file=</span><span class="st">"Cox_uni_ate.csv"</span>)</span>
-<span id="cb57-16"><a href="#cb57-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-17"><a href="#cb57-17" aria-hidden="true" tabindex="-1"></a><span class="do">##### Multivariate Cox regression, unweighted, weighted #################</span></span>
-<span id="cb57-18"><a href="#cb57-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-19"><a href="#cb57-19" aria-hidden="true" tabindex="-1"></a><span class="do">## unweighted multi cox</span></span>
-<span id="cb57-20"><a href="#cb57-20" aria-hidden="true" tabindex="-1"></a>COX<span class="ot">&lt;-</span><span class="fu">coxph</span>(TS_DFS<span class="sc">~</span>Adju_TA<span class="sc">+</span>Vi1<span class="sc">+</span>BILOBE<span class="sc">+</span>MULTI4<span class="sc">+</span>CEA73<span class="sc">+</span>PreHR_TA, <span class="at">data=</span>HAN_IPTW)</span>
-<span id="cb57-21"><a href="#cb57-21" aria-hidden="true" tabindex="-1"></a>COX<span class="ot">&lt;-</span><span class="fu">coxph</span>(TS_DFS<span class="sc">~</span>Adju_target<span class="sc">+</span>Vi1<span class="sc">+</span>BILOBE<span class="sc">+</span>MULTI4<span class="sc">+</span>CEA73<span class="sc">+</span>PreHR_TA, <span class="at">data=</span>HAN_IPTW)</span>
-<span id="cb57-22"><a href="#cb57-22" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(COX)</span>
-<span id="cb57-23"><a href="#cb57-23" aria-hidden="true" tabindex="-1"></a><span class="fu">extractHR</span>(COX)</span>
-<span id="cb57-24"><a href="#cb57-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-25"><a href="#cb57-25" aria-hidden="true" tabindex="-1"></a>COX_step<span class="ot">&lt;-</span><span class="fu">step</span>(COX, <span class="at">direction=</span><span class="st">"backward"</span>)</span>
-<span id="cb57-26"><a href="#cb57-26" aria-hidden="true" tabindex="-1"></a><span class="fu">extractHR</span>(COX_step, <span class="at">digit=</span><span class="dv">2</span>)</span>
-<span id="cb57-27"><a href="#cb57-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-28"><a href="#cb57-28" aria-hidden="true" tabindex="-1"></a><span class="do">## weighted multi cox###</span></span>
-<span id="cb57-29"><a href="#cb57-29" aria-hidden="true" tabindex="-1"></a><span class="do">## ATE </span><span class="al">###</span></span>
-<span id="cb57-30"><a href="#cb57-30" aria-hidden="true" tabindex="-1"></a>multi_ate<span class="ot">&lt;-</span><span class="fu">coxph</span>(TS_DFS<span class="sc">~</span>Adju_TA<span class="sc">+</span>Male<span class="sc">+</span>LNR<span class="sc">+</span>Pni1<span class="sc">+</span>Vi1<span class="sc">+</span>BILOBE<span class="sc">+</span>MULTI4<span class="sc">+</span>CEA73, <span class="at">weights=</span>ate.weights, <span class="at">data=</span>HAN_IPTW)</span>
-<span id="cb57-31"><a href="#cb57-31" aria-hidden="true" tabindex="-1"></a>multi_ate<span class="ot">&lt;-</span><span class="fu">coxph</span>(TS_DFS<span class="sc">~</span>Adju_target<span class="sc">+</span>Male<span class="sc">+</span>LNR<span class="sc">+</span>Pni1<span class="sc">+</span>Vi1<span class="sc">+</span>BILOBE<span class="sc">+</span>MULTI4<span class="sc">+</span>CEA73, <span class="at">weights=</span>ate.weights, <span class="at">data=</span>HAN_IPTW)</span>
-<span id="cb57-32"><a href="#cb57-32" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(multi_ate)</span>
-<span id="cb57-33"><a href="#cb57-33" aria-hidden="true" tabindex="-1"></a><span class="co">#원래코드에서는 extractHRwt 였으나 함수의 source 코드가 없어서 extractHR로 변경함 </span></span>
-<span id="cb57-34"><a href="#cb57-34" aria-hidden="true" tabindex="-1"></a><span class="co">#extractHRwt(multi_ate)</span></span>
-<span id="cb57-35"><a href="#cb57-35" aria-hidden="true" tabindex="-1"></a><span class="fu">extractHR</span>(multi_ate)</span>
-<span id="cb57-36"><a href="#cb57-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-37"><a href="#cb57-37" aria-hidden="true" tabindex="-1"></a>Wt_step<span class="ot">&lt;-</span><span class="fu">step</span>(multi_ate, <span class="at">direction=</span><span class="st">"backward"</span>)</span>
-<span id="cb57-38"><a href="#cb57-38" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Wt_step)</span>
-<span id="cb57-39"><a href="#cb57-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-40"><a href="#cb57-40" aria-hidden="true" tabindex="-1"></a><span class="co">#t.step&lt;-extractHRwt(Wt_step, digit=2)</span></span>
-<span id="cb57-41"><a href="#cb57-41" aria-hidden="true" tabindex="-1"></a>t.step<span class="ot">&lt;-</span><span class="fu">extractHR</span>(Wt_step, <span class="at">digit=</span><span class="dv">2</span>)</span>
-<span id="cb57-42"><a href="#cb57-42" aria-hidden="true" tabindex="-1"></a>t.step</span>
-<span id="cb57-43"><a href="#cb57-43" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(t.step, <span class="at">file=</span><span class="st">"multi_Cox_wt.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [22]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Univarate Cox regression, unweighted, weighted ######################</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>HAN_IPTW<span class="sc">$</span>TS_DFS<span class="ot">=</span><span class="fu">Surv</span>(HAN_IPTW<span class="sc">$</span>FU_DFS, HAN_IPTW<span class="sc">$</span>RECUR<span class="sc">==</span><span class="st">"1"</span>) <span class="co">#time object</span></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Uni, unweighted</span></span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>out <span class="ot">=</span> <span class="fu">mycph</span>(TS_DFS<span class="sc">~</span>Adju_TA<span class="sc">+</span>Adju_target<span class="sc">+</span>Male<span class="sc">+</span>AGE60<span class="sc">+</span>ASA3<span class="sc">+</span>RTCOL<span class="sc">+</span>LNR<span class="sc">+</span>pT4<span class="sc">+</span>Pni1<span class="sc">+</span>Lvi1<span class="sc">+</span>Vi1<span class="sc">+</span>PD<span class="sc">+</span>BILOBE<span class="sc">+</span>MULTI4<span class="sc">+</span>SIZE4<span class="sc">+</span>CEA73<span class="sc">+</span>M1_12m<span class="sc">+</span>PreHR_TA, <span class="at">digits=</span><span class="dv">2</span>, <span class="at">data=</span>HAN_IPTW)</span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>out</span>
+<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(out, <span class="at">file=</span><span class="st">"Cox_uni.csv"</span>)</span>
+<span id="cb65-9"><a href="#cb65-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-10"><a href="#cb65-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-11"><a href="#cb65-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Uni, weighted</span></span>
+<span id="cb65-12"><a href="#cb65-12" aria-hidden="true" tabindex="-1"></a><span class="co"># uni_ate = mycphwt(TS_DFS~Adju_TA+Adju_target+Male+AGE60+ASA3+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+CEA73+M1_12m+PreHR_TA, digits=2, data=HAN_IPTW)</span></span>
+<span id="cb65-13"><a href="#cb65-13" aria-hidden="true" tabindex="-1"></a>uni_ate <span class="ot">=</span> <span class="fu">mycph</span>(TS_DFS<span class="sc">~</span>Adju_TA<span class="sc">+</span>Adju_target<span class="sc">+</span>Male<span class="sc">+</span>AGE60<span class="sc">+</span>ASA3<span class="sc">+</span>RTCOL<span class="sc">+</span>LNR<span class="sc">+</span>pT4<span class="sc">+</span>Pni1<span class="sc">+</span>Lvi1<span class="sc">+</span>Vi1<span class="sc">+</span>PD<span class="sc">+</span>BILOBE<span class="sc">+</span>MULTI4<span class="sc">+</span>SIZE4<span class="sc">+</span>CEA73<span class="sc">+</span>M1_12m<span class="sc">+</span>PreHR_TA, <span class="at">digits=</span><span class="dv">2</span>, <span class="at">data=</span>HAN_IPTW)</span>
+<span id="cb65-14"><a href="#cb65-14" aria-hidden="true" tabindex="-1"></a>uni_ate</span>
+<span id="cb65-15"><a href="#cb65-15" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(uni_ate, <span class="at">file=</span><span class="st">"Cox_uni_ate.csv"</span>)</span>
+<span id="cb65-16"><a href="#cb65-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-17"><a href="#cb65-17" aria-hidden="true" tabindex="-1"></a><span class="do">##### Multivariate Cox regression, unweighted, weighted #################</span></span>
+<span id="cb65-18"><a href="#cb65-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-19"><a href="#cb65-19" aria-hidden="true" tabindex="-1"></a><span class="do">## unweighted multi cox</span></span>
+<span id="cb65-20"><a href="#cb65-20" aria-hidden="true" tabindex="-1"></a>COX<span class="ot">&lt;-</span><span class="fu">coxph</span>(TS_DFS<span class="sc">~</span>Adju_TA<span class="sc">+</span>Vi1<span class="sc">+</span>BILOBE<span class="sc">+</span>MULTI4<span class="sc">+</span>CEA73<span class="sc">+</span>PreHR_TA, <span class="at">data=</span>HAN_IPTW)</span>
+<span id="cb65-21"><a href="#cb65-21" aria-hidden="true" tabindex="-1"></a>COX<span class="ot">&lt;-</span><span class="fu">coxph</span>(TS_DFS<span class="sc">~</span>Adju_target<span class="sc">+</span>Vi1<span class="sc">+</span>BILOBE<span class="sc">+</span>MULTI4<span class="sc">+</span>CEA73<span class="sc">+</span>PreHR_TA, <span class="at">data=</span>HAN_IPTW)</span>
+<span id="cb65-22"><a href="#cb65-22" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(COX)</span>
+<span id="cb65-23"><a href="#cb65-23" aria-hidden="true" tabindex="-1"></a><span class="fu">extractHR</span>(COX)</span>
+<span id="cb65-24"><a href="#cb65-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-25"><a href="#cb65-25" aria-hidden="true" tabindex="-1"></a>COX_step<span class="ot">&lt;-</span><span class="fu">step</span>(COX, <span class="at">direction=</span><span class="st">"backward"</span>)</span>
+<span id="cb65-26"><a href="#cb65-26" aria-hidden="true" tabindex="-1"></a><span class="fu">extractHR</span>(COX_step, <span class="at">digit=</span><span class="dv">2</span>)</span>
+<span id="cb65-27"><a href="#cb65-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-28"><a href="#cb65-28" aria-hidden="true" tabindex="-1"></a><span class="do">## weighted multi cox###</span></span>
+<span id="cb65-29"><a href="#cb65-29" aria-hidden="true" tabindex="-1"></a><span class="do">## ATE </span><span class="al">###</span></span>
+<span id="cb65-30"><a href="#cb65-30" aria-hidden="true" tabindex="-1"></a>multi_ate<span class="ot">&lt;-</span><span class="fu">coxph</span>(TS_DFS<span class="sc">~</span>Adju_TA<span class="sc">+</span>Male<span class="sc">+</span>LNR<span class="sc">+</span>Pni1<span class="sc">+</span>Vi1<span class="sc">+</span>BILOBE<span class="sc">+</span>MULTI4<span class="sc">+</span>CEA73, <span class="at">weights=</span>ate.weights, <span class="at">data=</span>HAN_IPTW)</span>
+<span id="cb65-31"><a href="#cb65-31" aria-hidden="true" tabindex="-1"></a>multi_ate<span class="ot">&lt;-</span><span class="fu">coxph</span>(TS_DFS<span class="sc">~</span>Adju_target<span class="sc">+</span>Male<span class="sc">+</span>LNR<span class="sc">+</span>Pni1<span class="sc">+</span>Vi1<span class="sc">+</span>BILOBE<span class="sc">+</span>MULTI4<span class="sc">+</span>CEA73, <span class="at">weights=</span>ate.weights, <span class="at">data=</span>HAN_IPTW)</span>
+<span id="cb65-32"><a href="#cb65-32" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(multi_ate)</span>
+<span id="cb65-33"><a href="#cb65-33" aria-hidden="true" tabindex="-1"></a><span class="co">#원래코드에서는 extractHRwt 였으나 함수의 source 코드가 없어서 extractHR로 변경함 </span></span>
+<span id="cb65-34"><a href="#cb65-34" aria-hidden="true" tabindex="-1"></a><span class="co">#extractHRwt(multi_ate)</span></span>
+<span id="cb65-35"><a href="#cb65-35" aria-hidden="true" tabindex="-1"></a><span class="fu">extractHR</span>(multi_ate)</span>
+<span id="cb65-36"><a href="#cb65-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-37"><a href="#cb65-37" aria-hidden="true" tabindex="-1"></a>Wt_step<span class="ot">&lt;-</span><span class="fu">step</span>(multi_ate, <span class="at">direction=</span><span class="st">"backward"</span>)</span>
+<span id="cb65-38"><a href="#cb65-38" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Wt_step)</span>
+<span id="cb65-39"><a href="#cb65-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-40"><a href="#cb65-40" aria-hidden="true" tabindex="-1"></a><span class="co">#t.step&lt;-extractHRwt(Wt_step, digit=2)</span></span>
+<span id="cb65-41"><a href="#cb65-41" aria-hidden="true" tabindex="-1"></a>t.step<span class="ot">&lt;-</span><span class="fu">extractHR</span>(Wt_step, <span class="at">digit=</span><span class="dv">2</span>)</span>
+<span id="cb65-42"><a href="#cb65-42" aria-hidden="true" tabindex="-1"></a>t.step</span>
+<span id="cb65-43"><a href="#cb65-43" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(t.step, <span class="at">file=</span><span class="st">"multi_Cox_wt.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 <section id="introduction" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
@@ -858,8 +948,37 @@ Removed 16 rows containing missing values or values outside the scale range
 <h2 data-number="2" class="anchored" data-anchor-id="methods"><span class="header-section-number">2</span> Methods</h2>
 <section id="patients" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="patients"><span class="header-section-number">2.1</span> Patients</h3>
-<div class="cell-container"><div class="cell-decorator"><pre>In [20]:</pre></div><div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>table1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>본 연구는 후향적 연구로 2009년 1월부터 2022년 7월까지 원자력병원에서 시행한 대장암 간 전이에 대한 근치적 목적의 절제 수술 케이스를 대상으로 하였습니다.</p>
+<p>이 중 FOLFOX FOLFIRI 등 Doublet chemotherapy를 시행한 케이스를 포함 하였으며, 타 장기 전이가 있거나, R1/2 절제의 경우, 항암치료를 받지 않거나 단일제제 항암치료 케이스는 제외하였습니다.</p>
+<p>최종적으로 138개의 케이스에 대해 분석이 진행되었으며, Primary end point 는 간 전이 절제술로부터 progression free survival 로 설정하였습니다.</p>
+</section>
+<section id="statistical-analyses" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="statistical-analyses"><span class="header-section-number">2.2</span> Statistical analyses</h3>
+<p>후향적 연구의 한계를 보정하기 위한 통계적 기법으로서 IPTW 를 적용하였습니다. 대상이 되는 138개의 original cohort 에 대해 다변량 로지스틱 회귀 분석을 통해 propensity score와 가중치 를 계산하여 가중치를 적용하여 보정한 데이터셋을 얻었습니다. 이렇게 보정된 weighted cohort 에 대해서 Absolute SMD 값을 통해 치료군과 대조군의 balance 를 확인하였습니다.</p>
+<p>최종적으로 original cohort 와 weighted cohort 에서 콕스 회귀 분석을 시행하였으며 다변량 회귀분석에서는 후향 제거법을 사용하여 수술 후 표적치료제가 갖는 예후에의 영향력을 평가하였습니다.</p>
+<p>Propensity score 를 구하기 위해 활용된 로지스틱 회귀분석에 적용된 변수는 다음과 같습니다. 환자 factor 로서 성별, 연령, ASA score 등 Primary tumor factor 로서 tumor location, lymph node ratio 등 Metastatic factor 로서 간엽 침범 정도, 전이 병변의 개수 등을 설정하였습니다. 이에 따라 Propensity score 에 따른 allocation probability 의 AUC 는 0.811, p-value 는 0.4906 로 나타났습니다 (<a href="#fig-ROC" class="quarto-xref">Figure&nbsp;1</a>).</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [23]:</pre></div><div id="cell-fig-ROC" class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ROC</span>(<span class="at">form=</span>Adju_TA<span class="sc">~</span>pr.score, <span class="at">data=</span>HAN_IPTW, <span class="at">plot =</span> <span class="st">"ROC"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-ROC" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ROC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="index_files/figure-html/fig-ROC-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Figure&nbsp;1: Propensity score 에 따른 allocation probability 의 AUC"><img src="index_files/figure-html/fig-ROC-1.png" class="img-fluid figure-img" width="576"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ROC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Propensity score 에 따른 allocation probability 의 AUC
+</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+<p>All analyses were performed using R version 4.4.1 (R Core Team (2021). (R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria).</p>
+</section>
+</section>
+<section id="results" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="results"><span class="header-section-number">3</span> Results</h2>
+<div class="cell-container"><div class="cell-decorator"><pre>In [24]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>table1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
                     Descriptive Statistics by 'Adju_TA'                    
@@ -928,31 +1047,11 @@ Removed 16 rows containing missing values or values outside the scale range
 ———————————————————————————————————————————————————————————————————————————— </code></pre>
 </div>
 </div></div>
-<p>본 연구는 후향적 연구로 2009년 1월부터 2022년 7월까지 원자력병원에서 시행한 대장암 간 전이에 대한 근치적 목적의 절제 수술 케이스를 대상으로 하였습니다.</p>
-<p>이 중 FOLFOX FOLFIRI 등 Doublet chemotherapy를 시행한 케이스를 포함 하였으며, 타 장기 전이가 있거나, R1/2 절제의 경우, 항암치료를 받지 않거나 단일제제 항암치료 케이스는 제외하였습니다.</p>
-<p>최종적으로 138개의 케이스에 대해 분석이 진행되었으며, Primary end point 는 간 전이 절제술로부터 progression free survival 로 설정하였습니다.</p>
-</section>
-<section id="statistical-analyses" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="statistical-analyses"><span class="header-section-number">2.2</span> Statistical analyses</h3>
-<p>후향적 연구의 한계를 보정하기 위한 통계적 기법으로서 IPTW 를 적용하였습니다. 대상이 되는 138개의 original cohort 에 대해 다변량 로지스틱 회귀 분석을 통해 propensity score와 가중치 를 계산하여 가중치를 적용하여 보정한 데이터셋을 얻었습니다. 이렇게 보정된 weighted cohort 에 대해서 Absolute SMD 값을 통해 치료군과 대조군의 balance 를 확인하였습니다.</p>
-<p>최종적으로 original cohort 와 weighted cohort 에서 콕스 회귀 분석을 시행하였으며 다변량 회귀분석에서는 후향 제거법을 사용하여 수술 후 표적치료제가 갖는 예후에의 영향력을 평가하였습니다.</p>
-<p>Propensity score 를 구하기 위해 활용된 로지스틱 회귀분석에 적용된 변수는 다음과 같습니다. 환자 factor 로서 성별, 연령, ASA score 등 Primary tumor factor 로서 tumor location, lymph node ratio 등 Metastatic factor 로서 간엽 침범 정도, 전이 병변의 개수 등을 설정하였습니다. 이에 따라 Propensity score 에 따른 allocation probability 의 AUC 는 0.811, p-value 는 0.4906 로 나타났습니다 (Figure 1).</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/clipboard-580080678.png" class="lightbox" data-glightbox="description: .lightbox-desc-11" data-gallery="quarto-lightbox-gallery-11" title="Figure 1. Propensity score 에 따른 allocation probability 의 AUC"><img src="images/clipboard-580080678.png" class="img-fluid figure-img" width="489" alt="Figure 1. Propensity score 에 따른 allocation probability 의 AUC"></a></p>
-<figcaption>Figure 1. Propensity score 에 따른 allocation probability 의 AUC</figcaption>
-</figure>
-</div>
-<p>All analyses were performed using R version 4.4.1 (R Core Team (2021). (R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria).</p>
-</section>
-</section>
-<section id="results" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="results"><span class="header-section-number">3</span> Results</h2>
 <p>Table 1은 연구에 포함된 환자 특성입니다. 138 개의 케이스에서 대조군의 크기는 77, 치료군의 크기는 61 명 이었습니다. 이 중, 표적치료제가 사용된 61명 중 베바시주맙이 42, 세툭시맙이 19명 이었습니다. 조사된 변수는 patient factor와 primary tumor factor, 그리고 metastases factor 로 구분하였습니다.</p>
 <p>연령은 치료군과 대조군 모두 59세 전후로 나타났으며 연령 및 성별에 있어 두 군 간의 통계적인 차이는 없었습니다. 진단 당시 간 전이를 동반하였거나 원발 부위 종양 절제술 후 12개월 이내에 간전이가 발견된 경우는 대조군에서 빈도가 유의하게 높았습니다. 또한 간 절제술 전 항암화학요법 혹은 표적치료제를 사용한 경우는 치료군에서 빈도가 유의하게 높았습니다.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/clipboard-3145534320.png" class="lightbox" data-glightbox="description: .lightbox-desc-12" data-gallery="quarto-lightbox-gallery-12" title="Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis"><img src="images/clipboard-3145534320.png" class="img-fluid figure-img" width="700" alt="Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis"></a></p>
+<p><a href="images/clipboard-3145534320.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis"><img src="images/clipboard-3145534320.png" class="img-fluid figure-img" width="700" alt="Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis"></a></p>
 <figcaption>Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis</figcaption>
 </figure>
 </div>
@@ -961,14 +1060,14 @@ Removed 16 rows containing missing values or values outside the scale range
 <p>Figure 2은, original cohort 와 weighted cohort 의 absolute SMD 를 나타낸 것으로 빨간색 범례가 보정 전 특성을 나타내고, 파란색 범례가 보정 후 특성을 나타냅니다. 가중치 적용 후 absolute SMD 값이 0.2 이하로 조정되어 보정 후 치료군과 대조군이 적절한 balance 를 이루고 있는 것을 확인할 수 있습니다.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/clipboard-2590844408.png" class="lightbox" data-glightbox="description: .lightbox-desc-13" data-gallery="quarto-lightbox-gallery-13" title="Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort"><img src="images/clipboard-2590844408.png" class="img-fluid figure-img" alt="Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort"></a></p>
+<p><a href="images/clipboard-2590844408.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort"><img src="images/clipboard-2590844408.png" class="img-fluid figure-img" alt="Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort"></a></p>
 <figcaption>Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort</figcaption>
 </figure>
 </div>
 <p>Figure 3은 연구에 포함된 환자 에 대한 Kaplan Meier 생존곡선입니다. 왼쪽은 metastases 에 대한 progression survival 을 나타내고 오른쪽은 overall survival 을 나타냅니다. f/u 기간의 중앙값은 45.5개월 이었으며, 관찰기간 중의 PFS event 는 85건, OS event 는 67건 이었습니다.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/clipboard-3783060595.png" class="lightbox" data-glightbox="description: .lightbox-desc-14" data-gallery="quarto-lightbox-gallery-14" title="Figure 3. Kaplan Meier Analysis, original cohort"><img src="images/clipboard-3783060595.png" class="img-fluid figure-img" alt="Figure 3. Kaplan Meier Analysis, original cohort"></a></p>
+<p><a href="images/clipboard-3783060595.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Figure 3. Kaplan Meier Analysis, original cohort"><img src="images/clipboard-3783060595.png" class="img-fluid figure-img" alt="Figure 3. Kaplan Meier Analysis, original cohort"></a></p>
 <figcaption>Figure 3. Kaplan Meier Analysis, original cohort</figcaption>
 </figure>
 </div>
@@ -976,14 +1075,14 @@ Removed 16 rows containing missing values or values outside the scale range
 <p>Weighted cohort 에서는 보정 전 그룹과 비교하여 vascular invasion 이 있는 경우에서 Hazard ratio 1.70 으로 통계적으로 유의한 Poor prognostic factor 로 조사되었습니다. 보정 후에도 수술 후 표적치료제의 사용에 대한 경우는 불량한 예후를 시사하는 경향을 보였으나 통계적으로 유의하지는 않았습니다.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/clipboard-3985066224.png" class="lightbox" data-glightbox="description: .lightbox-desc-15" data-gallery="quarto-lightbox-gallery-15" title="Table 2. Uni-variated Cox regression associated to PFS"><img src="images/clipboard-3985066224.png" class="img-fluid figure-img" alt="Table 2. Uni-variated Cox regression associated to PFS"></a></p>
+<p><a href="images/clipboard-3985066224.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Table 2. Uni-variated Cox regression associated to PFS"><img src="images/clipboard-3985066224.png" class="img-fluid figure-img" alt="Table 2. Uni-variated Cox regression associated to PFS"></a></p>
 <figcaption>Table 2. Uni-variated Cox regression associated to PFS</figcaption>
 </figure>
 </div>
 <p>Table 3 는 다변량 콕스 회귀 분석 결과입니다. original cohort 에서는 간 전이 절제술 전 표적치료제를 사용한 경우, Vascular invasion 이 있는 경우, 전이 병변이 간 양엽을 모두 침범한 경우에서 통계적으로 유의한 Poor prognostic factor 로 조사되었습니다. 반면 Weighted cohort 에서는 Perineural invasion 여부와 더불어 수술 후 표적치료제의 사용이 유의한 poor prognostic factor 로 조사되었습니다.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/clipboard-1312926093.png" class="lightbox" data-glightbox="description: .lightbox-desc-16" data-gallery="quarto-lightbox-gallery-16" title="Table 3. multi-variated Cox regression associated to PFS"><img src="images/clipboard-1312926093.png" class="img-fluid figure-img" alt="Table 3. multi-variated Cox regression associated to PFS"></a></p>
+<p><a href="images/clipboard-1312926093.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Table 3. multi-variated Cox regression associated to PFS"><img src="images/clipboard-1312926093.png" class="img-fluid figure-img" alt="Table 3. multi-variated Cox regression associated to PFS"></a></p>
 <figcaption>Table 3. multi-variated Cox regression associated to PFS</figcaption>
 </figure>
 </div>
@@ -997,15 +1096,6 @@ Removed 16 rows containing missing values or values outside the scale range
 <p>이러한 표적치료제의 사용이 해로울 수 있는 가능성은, 2014년 LANCET oncology 에 게재된 New EPOC study에서 언급된 내용으로, 이 분석 결과를 통해 해당 내용을 데이터로 확인할 수 있었습니다 <span class="citation" data-cites="RN672">(<a href="#ref-RN672" role="doc-biblioref">Primrose et al. 2014</a>)</span>.</p>
 <p>다만, 분석에 포함된 대상군의 크기가 제한적이었고, 실시된 표적치료제 별 분석이 이루어지지 않았습니다. 또한, 후향적 연구의 한계로서 unmeasured confounder 가 존재하여 분석의 한계가 있을 수 있겠습니다.</p>
 <p>따라서 절제 가능한 대장암 환자에 대해 수술 후 최적의 표적 치료제 적용에 대한 대규모 전향적 연구가 필요할 것으로 사료됩니다.</p>
-<div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;1: </span>
-<span class="glightbox-desc lightbox-desc-11">Figure 1. Propensity score 에 따른 allocation probability 의 AUC</span>
-<span class="glightbox-desc lightbox-desc-12">Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis</span>
-<span class="glightbox-desc lightbox-desc-13">Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort</span>
-<span class="glightbox-desc lightbox-desc-14">Figure 3. Kaplan Meier Analysis, original cohort</span>
-<span class="glightbox-desc lightbox-desc-15">Table 2. Uni-variated Cox regression associated to PFS</span>
-<span class="glightbox-desc lightbox-desc-16">Table 3. multi-variated Cox regression associated to PFS</span>
-</div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-RN671" class="csl-entry" role="listitem">
 Penna, C., and B. Nordlinger. 2002. <span>“Colorectal Metastasis (Liver and Lung).”</span> Journal Article. <em>Surg Clin North Am</em> 82 (5): 1075–90, x–xi. <a href="https://doi.org/10.1016/s0039-6109(02)00051-8">https://doi.org/10.1016/s0039-6109(02)00051-8</a>.
@@ -1051,18 +1141,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1094,7 +1173,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1102,7 +1203,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -1424,30 +1525,37 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>  </div> <!-- /content -->  <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom"});
-window.onload = () => {
-  lightboxQuarto.on('slide_before_load', (data) => {
-    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-    const href = trigger.getAttribute('href');
-    if (href !== null) {
-      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-      if (imgEl !== null) {
-        const srcAttr = imgEl.getAttribute("src");
-        if (srcAttr && srcAttr.startsWith("data:")) {
-          slideConfig.href = srcAttr;
-        }
-      }
-    } 
-  });
-
-  lightboxQuarto.on('slide_after_load', (data) => {
-    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-    if (window.Quarto?.typesetMath) {
-      window.Quarto.typesetMath(slideNode);
+</script>  </div> <!-- /content -->  <script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","loop":false,"descPosition":"bottom"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
     }
-  });
-
-};
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
           </script> 
   
 </body></html>
