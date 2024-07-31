@@ -26,12 +26,13 @@ keywords:
 abstract: |
 bibliography: references.bib
 number-sections: true
-editor_options: 
-  chunk_output_type: inline
+# editor_options: 
+#   chunk_output_type: inline
 ---
 
 ```{r}
 #| label: Source-scripts
+#| echo: true
  
 source_directory<-"source"
 source_filename<-"my_functions.R"
@@ -50,6 +51,7 @@ rm(source_directory, source_filename, project_path, source_path, source_path_fil
 
 ```{r}
 #| label: Load-raw-data
+#| echo: false
 library(readxl)
 
 raw_data_directory<-"raw_data"
@@ -109,8 +111,13 @@ HAN<-selected_data
 library(survival)
 library(maxstat)
 
+# maxstat.test를 위한 time object 생성
 HAN$TS_DFS=Surv(HAN$FU_DFS, HAN$RECUR=="1") #time object
+
+# 변수파생
 HAN$LNR<-HAN$pN/HAN$tN
+
+# optimal cut-off를 찾기 위한 maxstat.test
 maxstat.test(TS_DFS~ preHR_CEA, data=HAN,smethod="LogRank",pmethod="condMC",B=999)
 maxstat.test(TS_DFS~ CCI, data=HAN,smethod="LogRank",pmethod="condMC",B=999)
 maxstat.test(TS_DFS~ ASA, data=HAN,smethod="LogRank",pmethod="condMC",B=999)
@@ -118,60 +125,48 @@ maxstat.test(TS_DFS~ NUM_HM, data=HAN,smethod="LogRank",pmethod="condMC",B=999)
 maxstat.test(TS_DFS~ HM_SIZE, data=HAN,smethod="LogRank",pmethod="condMC",B=999)
 maxstat.test(TS_DFS~ LNR, data=HAN,smethod="LogRank",pmethod="condMC",B=999)
 
+# maxstat. optimal cut-off에 따른 이분화
+HAN$CEA73<-ifelse(HAN$preHR_CEA>73,1,0)
+HAN$CCI7<-ifelse(HAN$CCI>7,1,0)
 HAN$CCI7<-ifelse(HAN$CCI>7,"CCI>7","CCI<7")
+HAN$ASA3<-ifelse(HAN$ASA>2,1,0)
 
-DFS<-survfit(Surv(FU_DFS, RECUR=="1")~Adju_TA, data=HAN)
-summary(DFS)
-DFS
+# 저자의 직관에 의한 이분화
+HAN$AGE60<-ifelse(HAN$AGE>60,1,0)
 
+# categorical 변수의 숫자화 ?
 HAN$PD<-ifelse(HAN$Diff=="PD",1,0)
 HAN$Pni1<-ifelse(HAN$N=="Y",1,0)
 HAN$Vi1<-ifelse(HAN$V=="Y",1,0)
 HAN$Lvi1<-ifelse(HAN$L=="Y",1,0)
 HAN$Male<-ifelse(HAN$SEX==1,1,0)
 HAN$RTCOL<-ifelse(HAN$SIDENESS=="Rt",1,0)
-HAN$CCI7<-ifelse(HAN$CCI>7,1,0)
-HAN$AGE60<-ifelse(HAN$AGE>60,1,0)
-HAN$CEA73<-ifelse(HAN$preHR_CEA>73,1,0)
-HAN$ASA3<-ifelse(HAN$ASA>2,1,0)
+
+# 요인화
 HAN$Adju_target<-ifelse(HAN$Post_HR_target_all=="None",0,ifelse(HAN$Post_HR_target_all=="Avastin",1,2))
 HAN$Adju_target <-as.factor(HAN$Adju_target)
 ```
 
 ```{r}
 #| label: Patient-Characteristics
+#| output: false
 library(moonBook)
 
 table1<-mytable(Adju_TA~AGE+Male+Synch_M1+M1_12m+ASA3+CCI7+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+preHR_CEA+CEA73+PreHR_chemo+PreHR_TA+Post_HR_target_all,
                 show.total=TRUE, exact=TRUE, data=HAN, method = 3)
+table1
 ```
 
 ```{r}
-#| label: PFS-TA-yes-no
-#| fig.show: 'hide' # rendering 문서에 graphic output이 포함되지 않습니다.
-#| eval: false
-
-plot(DFS, main="Progression free survival, Target agent, yes/no", xlab="Time", ylab="Survival Probability", col=c("blue", "red"), lty=c(1,2))
- legend("topright", legend=c("No","Yes"), col=c("blue", "red"), lty=c(1,2), cex=0.8)
-```
-
-```{r}
-#| label: Time-object-DFS-2
-
-HAN$TS_DFS=Surv(HAN$FU_DFS, HAN$RECUR=="1") #time object
-fit_DFS <-survfit(HAN$TS_DFS~Adju_TA, data=HAN)
-```
-
-```{r}
-#| label: Univariate-CPH-DFS
+#| label: Univariate-PFS
 #| output: false
 
-out_u=mycph(TS_DFS~Adju_TA+Any_TA+Adju_target+SEX+AGE60+CCI7+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+CEA73+M1_12m+PreHR_chemo+PreHR_TA, data=HAN) # Univariate
+out_u=mycph(TS_DFS~Adju_TA+Any_TA+Adju_target+SEX+AGE60+CCI7+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+CEA73+M1_12m+PreHR_chemo+PreHR_TA, data=HAN)
 out_u
 ```
 
 ```{r}
-#| label: Multivariate-CPH-DFS-p-0.25
+#| label: Multivariate-PFS
 #| output: false
 
 out_m<-coxph(TS_DFS~Any_TA+SEX+AGE60+Vi1+BILOBE+MULTI4+CEA73, data=HAN)
@@ -181,12 +176,10 @@ DFS_step<-step(out_m, direction="backward")
 Cox_step_dfs<-extractHR(DFS_step)
 Cox_step_dfs
 write.csv(Cox_step_dfs, file="Cox_step_DFS.csv")
-length(HAN$FU_OS)
-length(HAN$DEATH)
 ```
 
 ```{r}
-#| label: Univariate-CPH-OS
+#| label: Univariate-OS
 #| output: false
 
 HAN$TS_OS=Surv(HAN$FU_OS, HAN$DEATH==1) #time object
@@ -197,7 +190,7 @@ out_u_os
 ```
 
 ```{r}
-#| label: Multivariate-CPH-OS
+#| label: Multivariate-OS
 #| output: false
 
 out_m_os<-coxph(TS_OS~Adju_TA+SEX+AGE60+CCI7+RTCOL++LNR+pT4+Pni1+Lvi1+Vi1+PD, data=HAN)
@@ -231,9 +224,20 @@ sum(HAN$DEATH)
 DFS<-survfit(Surv(FU_DFS, RECUR=="1")~Adju_TA, data=HAN)
 summary(DFS)
 DFS
+```
 
+```{r}
+#| label: PFS-target-kind
+#| output: false
+ 
 DFS_target_kind<-survfit(Surv(FU_DFS, RECUR=="1")~Adju_target, data=HAN)
 summary(DFS_target_kind)
+```
+
+```{r}
+#| label: PFS-curve
+#| output: false
+#| fig.show: 'hide'
 
 plot(DFS_target_kind, main="Progression free survival, Kind of target agent", xlab="Time", ylab="Survival Probability", col=c("blue", "red","green"), lty=c(1,2))
 legend("topright", legend=c("None","Bevacizumab","Cetuximab"), col=c("blue", "red","green"), lty=c(1,2), cex=0.8)
@@ -247,7 +251,7 @@ ggsurvplot(DFS_target_kind,
              c("None", "Bevacizumab","Cetuximab"))
 
 
-ggsurvplot(
+PFS<-ggsurvplot(
   DFS,                     # survfit object with calculated statistics.
   pval = TRUE,             # show p-value of log-rank test.
   conf.int = FALSE,        # show confidence intervals for 
@@ -269,6 +273,7 @@ ggsurvplot(
   fun = NULL, #Cumulative risk
   xlim = c(0, 72)
 )
+PFS
 ```
 
 ```{r overall_survival}

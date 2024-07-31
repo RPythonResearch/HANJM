@@ -26,8 +26,8 @@ keywords:
 abstract: |
 bibliography: references.bib
 number-sections: true
-editor_options: 
-  chunk_output_type: inline
+# editor_options: 
+#   chunk_output_type: inline
 ---
 
 ```{r}
@@ -69,8 +69,7 @@ initial_raw_data<-raw_data
 ```{r}
 #| label: Clean-NA-columns
 #| output: false # rendering 문서에 text output이 포함되지 않습니다.
-#| eval: true
-
+ 
 # raw_data의 컬럼중에서 결측치가 cut-off 값 (아래에서는 5%) 이상이면 컬럼 삭제
 # 어떤 컬럼이 삭제되는지 NA수와 함께 출력함.
 # 실행을 원치 않으면 옵션 eval: false로 변경하면 됨
@@ -145,7 +144,6 @@ HAN$Adju_target<-ifelse(HAN$Post_HR_target_all=="None",0,ifelse(HAN$Post_HR_targ
 HAN$Adju_target <-as.factor(HAN$Adju_target)
 ```
 
-
 ```{r}
 #| label: Patient-Characteristics
 #| output: false
@@ -155,7 +153,6 @@ table1<-mytable(Adju_TA~AGE+Male+Synch_M1+M1_12m+ASA3+CCI7+RTCOL+LNR+pT4+Pni1+Lv
                 show.total=TRUE, exact=TRUE, data=HAN, method = 3)
 table1
 ```
-
 
 ```{r}
 #| label: Univariate-PFS
@@ -171,7 +168,7 @@ out_u
 
 out_m<-coxph(TS_DFS~Any_TA+SEX+AGE60+Vi1+BILOBE+MULTI4+CEA73, data=HAN)
 
-extractHR(out_m)
+# extractHR(out_m)
 DFS_step<-step(out_m, direction="backward")
 Cox_step_dfs<-extractHR(DFS_step)
 Cox_step_dfs
@@ -199,6 +196,7 @@ extractHR(out_m_os)
 
 ```{r}
 #| label: PFS
+#| message: false
 #| output: false
 #| fig.show: 'hide'
 library(survminer)
@@ -242,14 +240,14 @@ summary(DFS_target_kind)
 plot(DFS_target_kind, main="Progression free survival, Kind of target agent", xlab="Time", ylab="Survival Probability", col=c("blue", "red","green"), lty=c(1,2))
 legend("topright", legend=c("None","Bevacizumab","Cetuximab"), col=c("blue", "red","green"), lty=c(1,2), cex=0.8)
 
-ggsurvplot(DFS_target_kind, 
+PFS_target_kind<-ggsurvplot(DFS_target_kind, 
            legend=c(0.8,0.8),
            pval=TRUE, 
            xlim=c(0,60),
            break.time.by = 12,
            legend.labs = 
              c("None", "Bevacizumab","Cetuximab"))
-
+PFS_target_kind
 
 PFS<-ggsurvplot(
   DFS,                     # survfit object with calculated statistics.
@@ -276,14 +274,15 @@ PFS<-ggsurvplot(
 PFS
 ```
 
-```{r overall_survival}
-#| results: 'hide'
+```{r}
+#| label: OS-curve
+#| output: false
 #| fig.show: 'hide'
-#| 
+
 OS<-survfit(Surv(FU_OS, DEATH=="1")~Adju_TA, data=HAN)
 OS_all<-survfit(Surv(FU_OS, DEATH=="1")~1, data=HAN)
 summary(OS_all)
-OS
+# OS
 
 OS_TA<-ggsurvplot(
   OS,                     # survfit object with calculated statistics.
@@ -307,23 +306,24 @@ OS_TA<-ggsurvplot(
   fun = NULL, #Cumulative risk
   xlim = c(0, 72)
 )
+OS_TA
 ```
 
-```{r IPTW}
-#| results: 'hide'
-
+```{r}
+#| label: IPTW
+#| output: false
 library(dplyr)
 library(MatchIt)
 
-HAN_IPTW<-as.data.frame(HAN[,c("MRN","Adju_TA","Adju_target","Male","AGE60","CCI7","ASA3","RTCOL","LNR","pT4","Pni1","Lvi1","Vi1","PD","BILOBE","MULTI4","SIZE4"
-                               ,"CEA73","M1_12m","PreHR_chemo","PreHR_TA","FU_DFS","RECUR")])
+HAN_IPTW<-as.data.frame(HAN[,c("MRN","Adju_TA","Adju_target","Male","AGE60","CCI7","ASA3","RTCOL","LNR","pT4","Pni1","Lvi1","Vi1","PD","BILOBE","MULTI4","SIZE4","CEA73","M1_12m","PreHR_chemo","PreHR_TA","FU_DFS","RECUR")])
 
 
 ## DATA character change ###
 HAN_IPTW$Male <-as.factor(HAN_IPTW$Male)
 HAN_IPTW$AGE60 <-as.factor(HAN_IPTW$AGE60)
 HAN_IPTW$CCI7 <-as.factor(HAN_IPTW$CCI7)
-HAN_IPTW$ASA3 <-as.factor(HAN_IPTW$CCI7)
+#  HAN_IPTW$ASA3 <-as.factor(HAN_IPTW$CCI7) # 오타를 수정하여 아래와 같이 변경함 '24.07.31
+HAN_IPTW$ASA3 <-as.factor(HAN_IPTW$ASA3)
 HAN_IPTW$RTCOL <-as.factor(HAN_IPTW$RTCOL)
 HAN_IPTW$pT4 <-as.factor(HAN_IPTW$pT4)
 HAN_IPTW$Pni1 <-as.factor(HAN_IPTW$Pni1)
@@ -345,7 +345,10 @@ table1_iptw <- mytable(Adju_TA~Adju_target+Male+AGE60+CCI7+ASA3+RTCOL+LNR+pT4+Pn
 table1_iptw
 ```
 
-```{r IPTW_analysis}
+```{r}
+#| label: IPTW-analysis
+#| output: false
+#| 
 ## Calculating propensity score ###
 
 fit_IPTW<-glm(Adju_TA~Male+AGE60+ASA3+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+CEA73+M1_12m+PreHR_TA, family=binomial, data=HAN_IPTW)
