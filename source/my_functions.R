@@ -81,20 +81,22 @@ my_eliminate_NA_rows <- function(data) {
 ## 인  자: 데이터프레임
 ## 출  력: 연속적변수에 대한 히스토그램수
 ################################################################################
-my_histograms <- function(dataframe) {
-
-  numeric_cols <- sapply(dataframe, is.numeric)
-
-  for (col_name in names(dataframe)[numeric_cols]) {
-    print(col_name)
-    p<-ggplot(dataframe, aes_string(x = col_name)) +
-      geom_histogram() +
-      labs(title = paste("Histogram of", col_name),
-           x = col_name,
-           y = "Frequency") +
-      theme_minimal()
-    print(p)
-      }
+my_MarkdownTable <- function(myTable) {
+  
+  library(knitr)
+  # library(kableExtra)
+  
+  df<-as.data.frame(myTable$res)
+  df<-df[,1:4]
+  
+  return (kable(df, format = "markdown"))
 }
 
-
+my_MarkdownTable2 <- function(myTable) {
+  
+  library(knitr)
+  # library(kableExtra)
+  
+  df<-as.data.frame(myTable$ContTable)
+  return (kable(df, format = "markdown"))
+}

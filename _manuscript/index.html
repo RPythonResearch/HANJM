@@ -23,45 +23,10 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -109,6 +74,8 @@ div.csl-indent {
 <meta name="citation_reference" content="citation_title=Colorectal metastasis (liver and lung);,citation_abstract=Distant metastases are the major cause of death for colorectal carcinoma patients. Depending on the primary tumor’s stage, liver metastases occur in 20;,citation_author=C. Penna;,citation_author=B. Nordlinger;,citation_publication_date=2002;,citation_cover_date=2002;,citation_year=2002;,citation_issue=5;,citation_doi=10.1016/s0039-6109(02)00051-8;,citation_issn=0039-6109 (Print)
 0039-6109;,citation_volume=82;,citation_journal_title=Surg Clin North Am;">
 <meta name="citation_reference" content="citation_title=Systemic chemotherapy with or without cetuximab in patients with resectable colorectal liver metastasis: The new EPOC randomised controlled trial;,citation_abstract=BACKGROUND: Surgery for colorectal liver metastases results in an overall survival of about 40;,citation_author=J. Primrose;,citation_author=S. Falk;,citation_author=M. Finch-Jones;,citation_author=J. Valle;,citation_author=D. O’Reilly;,citation_author=A. Siriwardena;,citation_author=J. Hornbuckle;,citation_author=M. Peterson;,citation_author=M. Rees;,citation_author=T. Iveson;,citation_author=T. Hickish;,citation_author=R. Butler;,citation_author=L. Stanton;,citation_author=E. Dixon;,citation_author=L. Little;,citation_author=M. Bowers;,citation_author=S. Pugh;,citation_author=O. J. Garden;,citation_author=D. Cunningham;,citation_author=T. Maughan;,citation_author=J. Bridgewater;,citation_publication_date=2014;,citation_cover_date=2014;,citation_year=2014;,citation_issue=6;,citation_doi=10.1016/s1470-2045(14)70105-6;,citation_issn=1470-2045;,citation_volume=15;,citation_journal_title=Lancet Oncol;">
+<meta name="citation_reference" content="citation_title=Colorectal metastasis (liver and lung) - PubMed;,citation_fulltext_html_url=https://pubmed.ncbi.nlm.nih.gov/12507210/;">
+<meta name="citation_reference" content="citation_title=Colorectal metastasis (liver and lung) - PubMed;,citation_fulltext_html_url=https://pubmed.ncbi.nlm.nih.gov/12507210/;">
 </head>
 
 <body>
@@ -192,168 +159,9 @@ div.csl-indent {
   
 
 
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>source_directory<span class="ot">&lt;-</span><span class="st">"source"</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>source_filename<span class="ot">&lt;-</span><span class="st">"my_functions.R"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>project_path <span class="ot">&lt;&lt;-</span> <span class="fu">getwd</span>()</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>source_path <span class="ot">&lt;&lt;-</span> <span class="fu">file.path</span>(project_path, source_directory)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>source_path_filename <span class="ot">&lt;-</span> <span class="fu">file.path</span>(source_path, source_filename)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(source_path_filename)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># source_filename&lt;-"mycphwt.R"</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># source_path_filename &lt;- file.path(source_path, source_filename)</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># source(source_path_filename)</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(source_directory, source_filename, project_path, source_path, source_path_filename)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<a class="quarto-notebook-link" id="nblink-1" href="index-preview.html">Source: Article Notebook</a></div>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>                OR   lcl     ucl      p
-(Intercept)  1.797 0.379   8.513 0.4602
-Male1        0.892 0.347   2.288 0.8114
-AGE601       0.796 0.105   6.061 0.8259
-ASA3CCI&gt;7    1.176 0.149   9.296 0.8779
-RTCOL1       1.777 0.590   5.350 0.3064
-LNR          3.406 0.308  37.646 0.3174
-pT41         0.470 0.129   1.713 0.2524
-Pni11        1.324 0.515   3.399 0.5601
-Lvi11        0.525 0.194   1.424 0.2059
-Vi11         1.712 0.641   4.569 0.2832
-PD1          0.932 0.119   7.292 0.9462
-BILOBE1      0.346 0.112   1.073 0.0661
-MULTI41      4.075 1.089  15.249 0.0370
-SIZE41       1.388 0.450   4.281 0.5682
-CEA731       1.443 0.365   5.707 0.6014
-M1_12mM1     0.188 0.053   0.659 0.0091
-PreHR_TA1   24.975 4.641 134.397 0.0002</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-glm(formula = Adju_TA ~ Male + AGE60 + ASA3 + RTCOL + LNR + pT4 + 
-    Pni1 + Lvi1 + Vi1 + PD + BILOBE + MULTI4 + SIZE4 + CEA73 + 
-    M1_12m + PreHR_TA, family = binomial, data = HAN_IPTW)
-
-Coefficients:
-            Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)  0.58611    0.79363   0.739 0.460198    
-Male1       -0.11478    0.48094  -0.239 0.811373    
-AGE601      -0.22772    1.03555  -0.220 0.825948    
-ASA3CCI&gt;7    0.16211    1.05487   0.154 0.877865    
-RTCOL1       0.57511    0.56224   1.023 0.306364    
-LNR          1.22567    1.22582   1.000 0.317372    
-pT41        -0.75539    0.66004  -1.144 0.252427    
-Pni11        0.28041    0.48122   0.583 0.560094    
-Lvi11       -0.64350    0.50872  -1.265 0.205893    
-Vi11         0.53757    0.50090   1.073 0.283185    
-PD1         -0.07083    1.04981  -0.067 0.946208    
-BILOBE1     -1.06017    0.57683  -1.838 0.066075 .  
-MULTI41      1.40478    0.67336   2.086 0.036958 *  
-SIZE41       0.32797    0.57464   0.571 0.568178    
-CEA731       0.36650    0.70162   0.522 0.601412    
-M1_12mM1    -1.67374    0.64154  -2.609 0.009082 ** 
-PreHR_TA1    3.21786    0.85866   3.748 0.000179 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 189.45  on 137  degrees of freedom
-Residual deviance: 142.96  on 121  degrees of freedom
-AIC: 176.96
-
-Number of Fisher Scoring iterations: 5</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Hosmer and Lemeshow goodness of fit (GOF) test
-
-data:  HAN_IPTW$Adju_TA, fitted(fit_IPTW)
-X-squared = 7.4342, df = 8, p-value = 0.4906</code></pre>
-</div>
-<a class="quarto-notebook-link" id="nblink-2" href="index-preview.html">Source: Article Notebook</a></div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><a href="index_files/figure-html/ROC_curve-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="index_files/figure-html/ROC_curve-1.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
-</div>
-</div>
-<a class="quarto-notebook-link" id="nblink-3" href="index-preview.html">Source: Article Notebook</a></div>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>Balance Measures
-               Type Diff.Un Diff.Adj    M.Threshold
-prop.score Distance  1.3000  -0.0544 Balanced, &lt;0.2
-Male         Binary -0.0563  -0.0099 Balanced, &lt;0.2
-AGE60        Binary  0.0226   0.0634 Balanced, &lt;0.2
-ASA3_CCI&gt;7   Binary  0.0102   0.0667 Balanced, &lt;0.2
-RTCOL        Binary -0.0473   0.0213 Balanced, &lt;0.2
-LNR         Contin. -0.0224   0.0065 Balanced, &lt;0.2
-pT4          Binary -0.2646   0.0494 Balanced, &lt;0.2
-Pni1         Binary -0.1208  -0.0207 Balanced, &lt;0.2
-Lvi1         Binary -0.4092   0.0271 Balanced, &lt;0.2
-Vi1          Binary -0.1188   0.0829 Balanced, &lt;0.2
-PD           Binary  0.0498  -0.0142 Balanced, &lt;0.2
-BILOBE       Binary -0.1557   0.1381 Balanced, &lt;0.2
-MULTI4       Binary  0.2641   0.1087 Balanced, &lt;0.2
-SIZE4        Binary  0.1845  -0.0309 Balanced, &lt;0.2
-CEA73        Binary  0.1754   0.0711 Balanced, &lt;0.2
-M1_12m_M1    Binary -0.4233  -0.1027 Balanced, &lt;0.2
-PreHR_TA     Binary  0.8984  -0.1044 Balanced, &lt;0.2
-
-Balance tally for mean differences
-                   count
-Balanced, &lt;0.2        17
-Not Balanced, &gt;0.2     0
-
-Variable with the greatest mean difference
- Variable Diff.Adj    M.Threshold
-   BILOBE   0.1381 Balanced, &lt;0.2
-
-Effective sample sizes
-           Control Treated
-Unadjusted   77.     61.  
-Adjusted     32.89   40.16</code></pre>
-</div>
-<a class="quarto-notebook-link" id="nblink-4" href="index-preview.html">Source: Article Notebook</a></div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><a href="index_files/figure-html/Love_plots-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="index_files/figure-html/Love_plots-1.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><a href="index_files/figure-html/Love_plots-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="index_files/figure-html/Love_plots-2.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
-</div>
-</div>
-<a class="quarto-notebook-link" id="nblink-5" href="index-preview.html">Source: Article Notebook</a></div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><a href="index_files/figure-html/TableOne_package-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="index_files/figure-html/TableOne_package-1.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><a href="index_files/figure-html/TableOne_package-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="index_files/figure-html/TableOne_package-2.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
-</div>
-</div>
-<a class="quarto-notebook-link" id="nblink-6" href="index-preview.html">Source: Article Notebook</a></div>
 <section id="introduction" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
-<p>Resectability가 있는 대장암의 간 전이에 대한 가장 효과적인 치료법은 전이부위를 포함하는 절제 수술과 perioperative chemotherapy으로 제시되고 있습니다. 하지만, 수술 후 재발률이 18개월 이내 75%까지 보고될 만큼 매우 높습니다 <span class="citation" data-cites="RN671">(<a href="#ref-RN671" role="doc-biblioref">Penna and Nordlinger 2002</a>)</span>.</p>
+<p>Resectability가 있는 대장암의 간 전이에 대한 가장 효과적인 치료법은 전이부위를 포함하는 절제 수술과 perioperative chemotherapy으로 제시되고 있습니다. 하지만, 수술 후 재발률이 18개월 이내 75%까지 보고될 만큼 매우 높습니다<span class="citation" data-cites="RN671"><sup><a href="#ref-RN671" role="doc-biblioref">1</a></sup></span>.</p>
 <p>이에 항암화학요법에 표적 치료제를 추가하는 것에 대해 몇 몇 study가 보고되었으나 대규모의 높은 등급의 study는 아직 부족한 상태입니다. 이러한 study 에 따르면, 수술 후 표적치료제의 추가는 생존 이득이 없거나 오히려 유해한 결과로 나타났다고 보고되었습니다.</p>
 <p>그러나 아직까지 국내 보험체계는 전이 부위를 포함하는 절제술 후 항암요법에 표적치료제를 추가하는 것에 제한이 없는 상황입니다.</p>
 <p>따라서 대장암의 간 전이에서 근치적 절제술 후 항암화학요법을 진행한 환자에 대한 분석을 진행하여 표적치료제의 영향력을 평가하고자 하였습니다</p>
@@ -370,131 +178,711 @@ Adjusted     32.89   40.16</code></pre>
 <h3 data-number="2.2" class="anchored" data-anchor-id="statistical-analyses"><span class="header-section-number">2.2</span> Statistical analyses</h3>
 <p>후향적 연구의 한계를 보정하기 위한 통계적 기법으로서 IPTW 를 적용하였습니다. 대상이 되는 138개의 original cohort 에 대해 다변량 로지스틱 회귀 분석을 통해 propensity score와 가중치 를 계산하여 가중치를 적용하여 보정한 데이터셋을 얻었습니다. 이렇게 보정된 weighted cohort 에 대해서 Absolute SMD 값을 통해 치료군과 대조군의 balance 를 확인하였습니다.</p>
 <p>최종적으로 original cohort 와 weighted cohort 에서 콕스 회귀 분석을 시행하였으며 다변량 회귀분석에서는 후향 제거법을 사용하여 수술 후 표적치료제가 갖는 예후에의 영향력을 평가하였습니다.</p>
-<p>Propensity score 를 구하기 위해 활용된 로지스틱 회귀분석에 적용된 변수는 다음과 같습니다. 환자 factor 로서 성별, 연령, ASA score 등 Primary tumor factor 로서 tumor location, lymph node ratio 등 Metastatic factor 로서 간엽 침범 정도, 전이 병변의 개수 등을 설정하였습니다. 이에 따라 Propensity score 에 따른 allocation probability 의 AUC 는 0.811, p-value 는 0.4906 로 나타났습니다 (<a href="#fig-ROC" class="quarto-xref">Figure&nbsp;1</a>).</p>
-<div id="cell-fig-ROC" class="cell">
+<p>Propensity score 를 구하기 위해 활용된 로지스틱 회귀분석에 적용된 변수는 다음과 같습니다. 환자 factor 로서 성별, 연령, ASA score 등 Primary tumor factor 로서 tumor location, lymph node ratio 등 Metastatic factor 로서 간엽 침범 정도, 전이 병변의 개수 등을 설정하였습니다. 이에 따라 Propensity score 에 따른 allocation probability 의 AUC 는 0.811, p-value 는 0.4906 로 나타났습니다 (<a href="#fig-AUC-allocation-probability-PSM" class="quarto-xref">Figure&nbsp;1</a>).</p>
+<div id="cell-fig-AUC-allocation-probability-PSM" class="cell">
 <div class="cell-output-display">
-<div id="fig-ROC" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-AUC-allocation-probability-PSM" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-ROC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/fig-ROC-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-6" data-gallery="quarto-lightbox-gallery-6"><img src="index_files/figure-html/fig-ROC-1.png" class="img-fluid figure-img" width="576"></a>
+<div aria-describedby="fig-AUC-allocation-probability-PSM-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-AUC-allocation-probability-PSM-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="index_files/figure-html/fig-AUC-allocation-probability-PSM-1.png" class="img-fluid figure-img" width="576"></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ROC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-AUC-allocation-probability-PSM-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Propensity score 에 따른 allocation probability 의 AUC
 </figcaption>
 </figure>
 </div>
 </div>
-<a class="quarto-notebook-link" id="nblink-7" href="index-preview.html#cell-fig-ROC">Source: Article Notebook</a></div>
+<a class="quarto-notebook-link" id="nblink-1" href="index-preview.html#cell-fig-AUC-allocation-probability-PSM">Source: Article Notebook</a></div>
 <p>All analyses were performed using R version 4.4.1 (R Core Team (2021). (R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria).</p>
 </section>
 </section>
 <section id="results" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="results"><span class="header-section-number">3</span> Results</h2>
+<p><a href="#tbl-patient-characteristics-revised" class="quarto-xref">Table&nbsp;1</a> 은 연구에 포함된 환자 특성입니다. 138 개의 케이스에서 대조군의 크기는 77, 치료군의 크기는 61 명 이었습니다. 이 중, 표적치료제가 사용된 61명 중 베바시주맙이 42, 세툭시맙이 19명 이었습니다. 조사된 변수는 patient factor와 primary tumor factor, 그리고 metastases factor 로 구분하였습니다.</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-                    Descriptive Statistics by 'Adju_TA'                    
-———————————————————————————————————————————————————————————————————————————— 
-                           0                1              Total         p  
-                         (N=77)           (N=61)          (N=138)     
-———————————————————————————————————————————————————————————————————————————— 
- AGE                  59.0 ± 10.5      59.1 ±  9.0      59.1 ±  9.8    0.974
- Male                                                                  0.888
-   - 0                 22 (28.6%)       19 (31.1%)       41 (29.7%)         
-   - 1                 55 (71.4%)       42 (68.9%)       97 (70.3%)         
- Synch_M1                                                              0.121
-   - M0                12 (15.6%)       17 (27.9%)       29 (21.0%)         
-   - M1                65 (84.4%)       44 (72.1%)      109 (79.0%)         
- M1_12m                                                                0.025
-   - M0                7 ( 9.1%)        15 (24.6%)       22 (15.9%)         
-   - M1                70 (90.9%)       46 (75.4%)      116 (84.1%)         
- ASA3                                                                  0.382
-   - 0                 60 (77.9%)       52 (85.2%)      112 (81.2%)         
-   - 1                 17 (22.1%)       9 (14.8%)        26 (18.8%)         
- CCI7                                                                  1.000
-   - CCI&lt;7             37 (48.1%)       29 (47.5%)       66 (47.8%)         
-   - CCI&gt;7             40 (51.9%)       32 (52.5%)       72 (52.2%)         
- RTCOL                                                                 0.961
-   - 0                 63 (81.8%)       51 (83.6%)      114 (82.6%)         
-   - 1                 14 (18.2%)       10 (16.4%)       24 (17.4%)         
- LNR                 0.1 [ 0.0; 0.2]  0.1 [ 0.0; 0.3]  0.1 [ 0.0; 0.3] 0.476
- pT4                                                                   0.211
-   - 0                 64 (83.1%)       56 (91.8%)      120 (87.0%)         
-   - 1                 13 (16.9%)       5 ( 8.2%)        18 (13.0%)         
- Pni1                                                                  0.599
-   - 0                 46 (59.7%)       40 (65.6%)       86 (62.3%)         
-   - 1                 31 (40.3%)       21 (34.4%)       52 (37.7%)         
- Lvi1                                                                  0.032
-   - 0                 42 (54.5%)       45 (73.8%)       87 (63.0%)         
-   - 1                 35 (45.5%)       16 (26.2%)       51 (37.0%)         
- Vi1                                                                   0.619
-   - 0                 54 (70.1%)       46 (75.4%)      100 (72.5%)         
-   - 1                 23 (29.9%)       15 (24.6%)       38 (27.5%)         
- PD                                                                    1.000
-   - 0                 74 (96.1%)       58 (95.1%)      132 (95.7%)         
-   - 1                 3 ( 3.9%)        3 ( 4.9%)        6 ( 4.3%)          
- BILOBE                                                                0.468
-   - 0                 46 (59.7%)       41 (67.2%)       87 (63.0%)         
-   - 1                 31 (40.3%)       20 (32.8%)       51 (37.0%)         
- MULTI4                                                                0.183
-   - 0                 65 (84.4%)       45 (73.8%)      110 (79.7%)         
-   - 1                 12 (15.6%)       16 (26.2%)       28 (20.3%)         
- SIZE4                                                                 0.392
-   - 0                 66 (85.7%)       48 (78.7%)      114 (82.6%)         
-   - 1                 11 (14.3%)       13 (21.3%)       24 (17.4%)         
- preHR_CEA           9.2 [ 3.2;25.1]  7.3 [ 4.8;44.4]  8.3 [ 3.7;28.0] 0.394
- CEA73                                                                 0.445
-   - 0                 70 (90.9%)       52 (85.2%)      122 (88.4%)         
-   - 1                 7 ( 9.1%)        9 (14.8%)        16 (11.6%)         
- PreHR_chemo                                                           0.028
-   - 0                 61 (79.2%)       37 (60.7%)       98 (71.0%)         
-   - 1                 16 (20.8%)       24 (39.3%)       40 (29.0%)         
- PreHR_TA                                                              0.000
-   - 0                 75 (97.4%)       40 (65.6%)      115 (83.3%)         
-   - 1                 2 ( 2.6%)        21 (34.4%)       23 (16.7%)         
- Post_HR_target_all                                                    0.000
-   - Avastin            0 ( 0.0%)       42 (68.9%)       42 (30.4%)         
-   - Erbitux            0 ( 0.0%)       19 (31.1%)       19 (13.8%)         
-   - None             77 (100.0%)        0 ( 0.0%)       77 (55.8%)         
-———————————————————————————————————————————————————————————————————————————— </code></pre>
+<div id="tbl-patient-characteristics-revised" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-patient-characteristics-revised-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis
+</figcaption>
+<div aria-describedby="tbl-patient-characteristics-revised-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Adju_TA</th>
+<th style="text-align: left;">0</th>
+<th style="text-align: left;">1</th>
+<th style="text-align: left;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">AGE</td>
+<td style="text-align: left;">59.0 ± 10.5</td>
+<td style="text-align: left;">59.1 ± 9.0</td>
+<td style="text-align: left;">59.1 ± 9.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Male</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">- 0</td>
+<td style="text-align: left;">22 (28.6%)</td>
+<td style="text-align: left;">19 (31.1%)</td>
+<td style="text-align: left;">41 (29.7%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">- 1</td>
+<td style="text-align: left;">55 (71.4%)</td>
+<td style="text-align: left;">42 (68.9%)</td>
+<td style="text-align: left;">97 (70.3%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Synch_M1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">- M0</td>
+<td style="text-align: left;">12 (15.6%)</td>
+<td style="text-align: left;">17 (27.9%)</td>
+<td style="text-align: left;">29 (21.0%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">- M1</td>
+<td style="text-align: left;">65 (84.4%)</td>
+<td style="text-align: left;">44 (72.1%)</td>
+<td style="text-align: left;">109 (79.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M1_12m</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">- M0</td>
+<td style="text-align: left;">7 ( 9.1%)</td>
+<td style="text-align: left;">15 (24.6%)</td>
+<td style="text-align: left;">22 (15.9%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">- M1</td>
+<td style="text-align: left;">70 (90.9%)</td>
+<td style="text-align: left;">46 (75.4%)</td>
+<td style="text-align: left;">116 (84.1%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ASA3</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">- 0</td>
+<td style="text-align: left;">60 (77.9%)</td>
+<td style="text-align: left;">52 (85.2%)</td>
+<td style="text-align: left;">112 (81.2%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">- 1</td>
+<td style="text-align: left;">17 (22.1%)</td>
+<td style="text-align: left;">9 (14.8%)</td>
+<td style="text-align: left;">26 (18.8%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CCI7</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">- CCI&lt;7</td>
+<td style="text-align: left;">37 (48.1%)</td>
+<td style="text-align: left;">29 (47.5%)</td>
+<td style="text-align: left;">66 (47.8%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">- CCI&gt;7</td>
+<td style="text-align: left;">40 (51.9%)</td>
+<td style="text-align: left;">32 (52.5%)</td>
+<td style="text-align: left;">72 (52.2%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RTCOL</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">- 0</td>
+<td style="text-align: left;">63 (81.8%)</td>
+<td style="text-align: left;">51 (83.6%)</td>
+<td style="text-align: left;">114 (82.6%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">- 1</td>
+<td style="text-align: left;">14 (18.2%)</td>
+<td style="text-align: left;">10 (16.4%)</td>
+<td style="text-align: left;">24 (17.4%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LNR</td>
+<td style="text-align: left;">0.1 [ 0.0; 0.2]</td>
+<td style="text-align: left;">0.1 [ 0.0; 0.3]</td>
+<td style="text-align: left;">0.1 [ 0.0; 0.3]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pT4</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">- 0</td>
+<td style="text-align: left;">64 (83.1%)</td>
+<td style="text-align: left;">56 (91.8%)</td>
+<td style="text-align: left;">120 (87.0%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">- 1</td>
+<td style="text-align: left;">13 (16.9%)</td>
+<td style="text-align: left;">5 ( 8.2%)</td>
+<td style="text-align: left;">18 (13.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pni1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">- 0</td>
+<td style="text-align: left;">46 (59.7%)</td>
+<td style="text-align: left;">40 (65.6%)</td>
+<td style="text-align: left;">86 (62.3%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">- 1</td>
+<td style="text-align: left;">31 (40.3%)</td>
+<td style="text-align: left;">21 (34.4%)</td>
+<td style="text-align: left;">52 (37.7%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lvi1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">- 0</td>
+<td style="text-align: left;">42 (54.5%)</td>
+<td style="text-align: left;">45 (73.8%)</td>
+<td style="text-align: left;">87 (63.0%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">- 1</td>
+<td style="text-align: left;">35 (45.5%)</td>
+<td style="text-align: left;">16 (26.2%)</td>
+<td style="text-align: left;">51 (37.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Vi1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">- 0</td>
+<td style="text-align: left;">54 (70.1%)</td>
+<td style="text-align: left;">46 (75.4%)</td>
+<td style="text-align: left;">100 (72.5%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">- 1</td>
+<td style="text-align: left;">23 (29.9%)</td>
+<td style="text-align: left;">15 (24.6%)</td>
+<td style="text-align: left;">38 (27.5%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PD</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">- 0</td>
+<td style="text-align: left;">74 (96.1%)</td>
+<td style="text-align: left;">58 (95.1%)</td>
+<td style="text-align: left;">132 (95.7%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">- 1</td>
+<td style="text-align: left;">3 ( 3.9%)</td>
+<td style="text-align: left;">3 ( 4.9%)</td>
+<td style="text-align: left;">6 ( 4.3%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BILOBE</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">- 0</td>
+<td style="text-align: left;">46 (59.7%)</td>
+<td style="text-align: left;">41 (67.2%)</td>
+<td style="text-align: left;">87 (63.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">- 1</td>
+<td style="text-align: left;">31 (40.3%)</td>
+<td style="text-align: left;">20 (32.8%)</td>
+<td style="text-align: left;">51 (37.0%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MULTI4</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">- 0</td>
+<td style="text-align: left;">65 (84.4%)</td>
+<td style="text-align: left;">45 (73.8%)</td>
+<td style="text-align: left;">110 (79.7%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">- 1</td>
+<td style="text-align: left;">12 (15.6%)</td>
+<td style="text-align: left;">16 (26.2%)</td>
+<td style="text-align: left;">28 (20.3%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SIZE4</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">- 0</td>
+<td style="text-align: left;">66 (85.7%)</td>
+<td style="text-align: left;">48 (78.7%)</td>
+<td style="text-align: left;">114 (82.6%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">- 1</td>
+<td style="text-align: left;">11 (14.3%)</td>
+<td style="text-align: left;">13 (21.3%)</td>
+<td style="text-align: left;">24 (17.4%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">preHR_CEA</td>
+<td style="text-align: left;">9.2 [ 3.2;25.1]</td>
+<td style="text-align: left;">7.3 [ 4.8;44.4]</td>
+<td style="text-align: left;">8.3 [ 3.7;28.0]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CEA73</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">- 0</td>
+<td style="text-align: left;">70 (90.9%)</td>
+<td style="text-align: left;">52 (85.2%)</td>
+<td style="text-align: left;">122 (88.4%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">- 1</td>
+<td style="text-align: left;">7 ( 9.1%)</td>
+<td style="text-align: left;">9 (14.8%)</td>
+<td style="text-align: left;">16 (11.6%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PreHR_chemo</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">- 0</td>
+<td style="text-align: left;">61 (79.2%)</td>
+<td style="text-align: left;">37 (60.7%)</td>
+<td style="text-align: left;">98 (71.0%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">- 1</td>
+<td style="text-align: left;">16 (20.8%)</td>
+<td style="text-align: left;">24 (39.3%)</td>
+<td style="text-align: left;">40 (29.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PreHR_TA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">- 0</td>
+<td style="text-align: left;">75 (97.4%)</td>
+<td style="text-align: left;">40 (65.6%)</td>
+<td style="text-align: left;">115 (83.3%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">- 1</td>
+<td style="text-align: left;">2 ( 2.6%)</td>
+<td style="text-align: left;">21 (34.4%)</td>
+<td style="text-align: left;">23 (16.7%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Post_HR_target_all</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">- Avastin</td>
+<td style="text-align: left;">0 ( 0.0%)</td>
+<td style="text-align: left;">42 (68.9%)</td>
+<td style="text-align: left;">42 (30.4%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">- Erbitux</td>
+<td style="text-align: left;">0 ( 0.0%)</td>
+<td style="text-align: left;">19 (31.1%)</td>
+<td style="text-align: left;">19 (13.8%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">- None</td>
+<td style="text-align: left;">77 (100.0%)</td>
+<td style="text-align: left;">0 ( 0.0%)</td>
+<td style="text-align: left;">77 (55.8%)</td>
+</tr>
+</tbody>
+</table>
 </div>
-<a class="quarto-notebook-link" id="nblink-8" href="index-preview.html">Source: Article Notebook</a></div>
-<p>Table 1은 연구에 포함된 환자 특성입니다. 138 개의 케이스에서 대조군의 크기는 77, 치료군의 크기는 61 명 이었습니다. 이 중, 표적치료제가 사용된 61명 중 베바시주맙이 42, 세툭시맙이 19명 이었습니다. 조사된 변수는 patient factor와 primary tumor factor, 그리고 metastases factor 로 구분하였습니다.</p>
+</div>
+</figure>
+<a class="quarto-notebook-link" id="nblink-3" href="index-preview.html#tbl-patient-characteristics-revised">Source: Article Notebook</a></div>
+<a class="quarto-notebook-link" id="nblink-2" href="index-preview.html">Source: Article Notebook</a></div>
 <p>연령은 치료군과 대조군 모두 59세 전후로 나타났으며 연령 및 성별에 있어 두 군 간의 통계적인 차이는 없었습니다. 진단 당시 간 전이를 동반하였거나 원발 부위 종양 절제술 후 12개월 이내에 간전이가 발견된 경우는 대조군에서 빈도가 유의하게 높았습니다. 또한 간 절제술 전 항암화학요법 혹은 표적치료제를 사용한 경우는 치료군에서 빈도가 유의하게 높았습니다.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/clipboard-3145534320.png" class="lightbox" data-glightbox="description: .lightbox-desc-7" data-gallery="quarto-lightbox-gallery-7" title="Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis"><img src="images/clipboard-3145534320.png" class="img-fluid figure-img" width="700" alt="Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis"></a></p>
-<figcaption>Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis</figcaption>
+<p><a href="images/clipboard-3145534320.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2" title="Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis-저자가 별도로 편집한 table"><img src="images/clipboard-3145534320.png" class="img-fluid figure-img" width="700" alt="Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis-저자가 별도로 편집한 table"></a></p>
+<figcaption>Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis-저자가 별도로 편집한 table</figcaption>
 </figure>
 </div>
 <p>Primary tumor factor 에서는 pathology 소견 상 lymphatic invasion 을 보인 경우 대조군의 빈도가 유의하게 높았습니다. Metastases factor 에서는 병변의 양엽 침범 여부와 개수, 최대 직경에 대해 조사하였고 두 군 간의 유의한 차이는 없었습니다. 따라서 raw data에서는 치료군과 대조군 간의 불균형이 관찰됩니다.</p>
 <p>따라서 propensity score를 사용해 가중치를 적용하여 데이터셋을 보정하는 IPTW 기법을 적용하였습니다.</p>
-<p>Figure 2은, original cohort 와 weighted cohort 의 absolute SMD 를 나타낸 것으로 빨간색 범례가 보정 전 특성을 나타내고, 파란색 범례가 보정 후 특성을 나타냅니다. 가중치 적용 후 absolute SMD 값이 0.2 이하로 조정되어 보정 후 치료군과 대조군이 적절한 balance 를 이루고 있는 것을 확인할 수 있습니다.</p>
+<p><a href="#fig-SMD" class="quarto-xref">Figure&nbsp;2</a> 은 original cohort 와 weighted cohort 의 absolute SMD 를 나타낸 것으로 빨간색 범례가 보정 전 특성을 나타내고, 파란색 범례가 보정 후 특성을 나타냅니다. 가중치 적용 후 absolute SMD 값이 0.2 이하로 조정되어 보정 후 치료군과 대조군이 적절한 balance 를 이루고 있는 것을 확인할 수 있습니다.</p>
+<div id="cell-fig-SMD" class="cell">
+<div class="cell-output-display">
+<div id="fig-SMD" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-SMD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-SMD-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="index_files/figure-html/fig-SMD-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-SMD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Absolute SMD, Balance at original cohort &amp; weighted cohort
+</figcaption>
+</figure>
+</div>
+</div>
+<a class="quarto-notebook-link" id="nblink-4" href="index-preview.html#cell-fig-SMD">Source: Article Notebook</a></div>
+<div class="cell">
+<div id="tbl-unweighted_SMD" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-unweighted_SMD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Unweighted SMD
+</figcaption>
+<div aria-describedby="tbl-unweighted_SMD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">0</th>
+<th style="text-align: left;">1</th>
+<th style="text-align: left;">SMD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">n</td>
+<td style="text-align: left;">77</td>
+<td style="text-align: left;">61</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Male = 1 (%)</td>
+<td style="text-align: left;">55 (71.4)</td>
+<td style="text-align: left;">42 (68.9)</td>
+<td style="text-align: left;">0.056</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">AGE60 = 1 (%)</td>
+<td style="text-align: left;">37 (48.1)</td>
+<td style="text-align: left;">30 (49.2)</td>
+<td style="text-align: left;">0.023</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ASA3 = 1 (%)</td>
+<td style="text-align: left;">17 (22.1)</td>
+<td style="text-align: left;">9 (14.8)</td>
+<td style="text-align: left;">0.190</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RTCOL = 1 (%)</td>
+<td style="text-align: left;">14 (18.2)</td>
+<td style="text-align: left;">10 (16.4)</td>
+<td style="text-align: left;">0.047</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LNR (mean (SD))</td>
+<td style="text-align: left;">0.18 (0.20)</td>
+<td style="text-align: left;">0.17 (0.22)</td>
+<td style="text-align: left;">0.022</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pT4 = 1 (%)</td>
+<td style="text-align: left;">13 (16.9)</td>
+<td style="text-align: left;">5 ( 8.2)</td>
+<td style="text-align: left;">0.265</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pni1 = 1 (%)</td>
+<td style="text-align: left;">31 (40.3)</td>
+<td style="text-align: left;">21 (34.4)</td>
+<td style="text-align: left;">0.121</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lvi1 = 1 (%)</td>
+<td style="text-align: left;">35 (45.5)</td>
+<td style="text-align: left;">16 (26.2)</td>
+<td style="text-align: left;">0.409</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Vi1 = 1 (%)</td>
+<td style="text-align: left;">23 (29.9)</td>
+<td style="text-align: left;">15 (24.6)</td>
+<td style="text-align: left;">0.119</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PD = 1 (%)</td>
+<td style="text-align: left;">3 ( 3.9)</td>
+<td style="text-align: left;">3 ( 4.9)</td>
+<td style="text-align: left;">0.050</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BILOBE = 1 (%)</td>
+<td style="text-align: left;">31 (40.3)</td>
+<td style="text-align: left;">20 (32.8)</td>
+<td style="text-align: left;">0.156</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MULTI4 = 1 (%)</td>
+<td style="text-align: left;">12 (15.6)</td>
+<td style="text-align: left;">16 (26.2)</td>
+<td style="text-align: left;">0.264</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SIZE4 = 1 (%)</td>
+<td style="text-align: left;">11 (14.3)</td>
+<td style="text-align: left;">13 (21.3)</td>
+<td style="text-align: left;">0.184</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CEA73 = 1 (%)</td>
+<td style="text-align: left;">7 ( 9.1)</td>
+<td style="text-align: left;">9 (14.8)</td>
+<td style="text-align: left;">0.175</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M1_12m = M1 (%)</td>
+<td style="text-align: left;">70 (90.9)</td>
+<td style="text-align: left;">46 (75.4)</td>
+<td style="text-align: left;">0.423</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PreHR_TA = 1 (%)</td>
+<td style="text-align: left;">2 ( 2.6)</td>
+<td style="text-align: left;">21 (34.4)</td>
+<td style="text-align: left;">0.898</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+<a class="quarto-notebook-link" id="nblink-6" href="index-preview.html#tbl-unweighted_SMD">Source: Article Notebook</a></div>
+<a class="quarto-notebook-link" id="nblink-5" href="index-preview.html">Source: Article Notebook</a></div>
+<div class="cell">
+<div id="tbl-weighted_SMD" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-weighted_SMD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: weighted SMD
+</figcaption>
+<div aria-describedby="tbl-weighted_SMD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">0</th>
+<th style="text-align: left;">1</th>
+<th style="text-align: left;">SMD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">n</td>
+<td style="text-align: left;">132.9</td>
+<td style="text-align: left;">137.7</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Male = 1 (%)</td>
+<td style="text-align: left;">89.5 (67.4)</td>
+<td style="text-align: left;">88.8 (64.5)</td>
+<td style="text-align: left;">0.061</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">AGE60 = 1 (%)</td>
+<td style="text-align: left;">57.5 (43.3)</td>
+<td style="text-align: left;">63.4 (46.0)</td>
+<td style="text-align: left;">0.055</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ASA3 = 1 (%)</td>
+<td style="text-align: left;">39.6 (29.8)</td>
+<td style="text-align: left;">29.0 (21.1)</td>
+<td style="text-align: left;">0.201</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RTCOL = 1 (%)</td>
+<td style="text-align: left;">22.9 (17.3)</td>
+<td style="text-align: left;">23.1 (16.7)</td>
+<td style="text-align: left;">0.014</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LNR (mean (SD))</td>
+<td style="text-align: left;">0.17 (0.19)</td>
+<td style="text-align: left;">0.17 (0.21)</td>
+<td style="text-align: left;">0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pT4 = 1 (%)</td>
+<td style="text-align: left;">17.9 (13.5)</td>
+<td style="text-align: left;">18.4 (13.4)</td>
+<td style="text-align: left;">0.003</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pni1 = 1 (%)</td>
+<td style="text-align: left;">53.4 (40.2)</td>
+<td style="text-align: left;">55.7 (40.4)</td>
+<td style="text-align: left;">0.006</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lvi1 = 1 (%)</td>
+<td style="text-align: left;">47.0 (35.4)</td>
+<td style="text-align: left;">46.3 (33.6)</td>
+<td style="text-align: left;">0.037</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Vi1 = 1 (%)</td>
+<td style="text-align: left;">36.4 (27.4)</td>
+<td style="text-align: left;">39.2 (28.4)</td>
+<td style="text-align: left;">0.024</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PD = 1 (%)</td>
+<td style="text-align: left;">6.0 ( 4.5)</td>
+<td style="text-align: left;">5.1 ( 3.7)</td>
+<td style="text-align: left;">0.038</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BILOBE = 1 (%)</td>
+<td style="text-align: left;">42.9 (32.3)</td>
+<td style="text-align: left;">50.2 (36.4)</td>
+<td style="text-align: left;">0.087</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MULTI4 = 1 (%)</td>
+<td style="text-align: left;">19.9 (15.0)</td>
+<td style="text-align: left;">24.9 (18.1)</td>
+<td style="text-align: left;">0.084</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SIZE4 = 1 (%)</td>
+<td style="text-align: left;">29.4 (22.1)</td>
+<td style="text-align: left;">33.3 (24.2)</td>
+<td style="text-align: left;">0.049</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CEA73 = 1 (%)</td>
+<td style="text-align: left;">11.3 ( 8.5)</td>
+<td style="text-align: left;">13.9 (10.1)</td>
+<td style="text-align: left;">0.054</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M1_12m = M1 (%)</td>
+<td style="text-align: left;">116.2 (87.4)</td>
+<td style="text-align: left;">115.8 (84.1)</td>
+<td style="text-align: left;">0.096</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PreHR_TA = 1 (%)</td>
+<td style="text-align: left;">19.8 (14.9)</td>
+<td style="text-align: left;">23.2 (16.8)</td>
+<td style="text-align: left;">0.051</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+<a class="quarto-notebook-link" id="nblink-8" href="index-preview.html#tbl-weighted_SMD">Source: Article Notebook</a></div>
+<a class="quarto-notebook-link" id="nblink-7" href="index-preview.html">Source: Article Notebook</a></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/clipboard-2590844408.png" class="lightbox" data-glightbox="description: .lightbox-desc-8" data-gallery="quarto-lightbox-gallery-8" title="Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort"><img src="images/clipboard-2590844408.png" class="img-fluid figure-img" alt="Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort"></a></p>
+<p><a href="images/clipboard-2590844408.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4" title="Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort"><img src="images/clipboard-2590844408.png" class="img-fluid figure-img" alt="Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort"></a></p>
 <figcaption>Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort</figcaption>
 </figure>
 </div>
-<p>Figure 3은 연구에 포함된 환자 에 대한 Kaplan Meier 생존곡선입니다. 왼쪽은 metastases 에 대한 progression survival 을 나타내고 오른쪽은 overall survival 을 나타냅니다. f/u 기간의 중앙값은 45.5개월 이었으며, 관찰기간 중의 PFS event 는 85건, OS event 는 67건 이었습니다.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/clipboard-3783060595.png" class="lightbox" data-glightbox="description: .lightbox-desc-9" data-gallery="quarto-lightbox-gallery-9" title="Figure 3. Kaplan Meier Analysis, original cohort"><img src="images/clipboard-3783060595.png" class="img-fluid figure-img" alt="Figure 3. Kaplan Meier Analysis, original cohort"></a></p>
-<figcaption>Figure 3. Kaplan Meier Analysis, original cohort</figcaption>
+<p><a href="#fig-survival" class="quarto-xref">Figure&nbsp;3</a> 은 연구에 포함된 환자 에 대한 Kaplan Meier 생존곡선입니다. 왼쪽은 metastases 에 대한 progression survival 을 나타내고 오른쪽은 overall survival 을 나타냅니다. f/u 기간의 중앙값은 45.5개월 이었으며, 관찰기간 중의 PFS event 는 85건, OS event 는 67건 이었습니다.</p>
+<div id="cell-fig-survival" class="cell">
+<div class="cell-output-display">
+<div id="fig-survival" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-survival-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-survival-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="index_files/figure-html/fig-survival-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-survival-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Kaplan Meier survival curves for patients with targeted therapy after surgical resection of colorectal liver metastasis
+</figcaption>
 </figure>
 </div>
+</div>
+<a class="quarto-notebook-link" id="nblink-9" href="index-preview.html#cell-fig-survival">Source: Article Notebook</a></div>
 <p>테이블 2는 단변량 콕스 회귀 분석 결과입니다. 먼저 가중치를 적용하지 않은 original cohort 에서는 수술 전 CEA level 이 높은 경우, 수술 전 표적치료제 적용한 경우, vascular invasion 이 진행된 경우, 전이 병변이 간 양엽을 모두 침범한 경우, 간 전이 병변의 개수가 4개 이상일 경우에서 통계적으로 유의한 Poor prognostic factor 로 조사되었습니다.수술 후 표적치료제의 사용여부는 불량한 예후를 시사하는 경향을 보였으나 통계적으로 유의하지는 않았습니다.</p>
 <p>Weighted cohort 에서는 보정 전 그룹과 비교하여 vascular invasion 이 있는 경우에서 Hazard ratio 1.70 으로 통계적으로 유의한 Poor prognostic factor 로 조사되었습니다. 보정 후에도 수술 후 표적치료제의 사용에 대한 경우는 불량한 예후를 시사하는 경향을 보였으나 통계적으로 유의하지는 않았습니다.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/clipboard-3985066224.png" class="lightbox" data-glightbox="description: .lightbox-desc-10" data-gallery="quarto-lightbox-gallery-10" title="Table 2. Uni-variated Cox regression associated to PFS"><img src="images/clipboard-3985066224.png" class="img-fluid figure-img" alt="Table 2. Uni-variated Cox regression associated to PFS"></a></p>
+<p><a href="images/clipboard-3985066224.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6" title="Table 2. Uni-variated Cox regression associated to PFS"><img src="images/clipboard-3985066224.png" class="img-fluid figure-img" alt="Table 2. Uni-variated Cox regression associated to PFS"></a></p>
 <figcaption>Table 2. Uni-variated Cox regression associated to PFS</figcaption>
 </figure>
 </div>
 <p>Table 3 는 다변량 콕스 회귀 분석 결과입니다. original cohort 에서는 간 전이 절제술 전 표적치료제를 사용한 경우, Vascular invasion 이 있는 경우, 전이 병변이 간 양엽을 모두 침범한 경우에서 통계적으로 유의한 Poor prognostic factor 로 조사되었습니다. 반면 Weighted cohort 에서는 Perineural invasion 여부와 더불어 수술 후 표적치료제의 사용이 유의한 poor prognostic factor 로 조사되었습니다.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/clipboard-1312926093.png" class="lightbox" data-glightbox="description: .lightbox-desc-11" data-gallery="quarto-lightbox-gallery-11" title="Table 3. multi-variated Cox regression associated to PFS"><img src="images/clipboard-1312926093.png" class="img-fluid figure-img" alt="Table 3. multi-variated Cox regression associated to PFS"></a></p>
+<p><a href="images/clipboard-1312926093.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" data-glightbox="description: .lightbox-desc-7" title="Table 3. multi-variated Cox regression associated to PFS"><img src="images/clipboard-1312926093.png" class="img-fluid figure-img" alt="Table 3. multi-variated Cox regression associated to PFS"></a></p>
 <figcaption>Table 3. multi-variated Cox regression associated to PFS</figcaption>
 </figure>
 </div>
@@ -505,26 +893,27 @@ Figure&nbsp;1: Propensity score 에 따른 allocation probability 의 AUC
 </section>
 <section id="discussion" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="discussion"><span class="header-section-number">5</span> Discussion</h2>
-<p>이러한 표적치료제의 사용이 해로울 수 있는 가능성은, 2014년 LANCET oncology 에 게재된 New EPOC study에서 언급된 내용으로, 이 분석 결과를 통해 해당 내용을 데이터로 확인할 수 있었습니다 <span class="citation" data-cites="RN672">(<a href="#ref-RN672" role="doc-biblioref">Primrose et al. 2014</a>)</span>.</p>
+<p>이러한 표적치료제의 사용이 해로울 수 있는 가능성은, 2014년 LANCET oncology 에 게재된 New EPOC study에서 언급된 내용으로, 이 분석 결과를 통해 해당 내용을 데이터로 확인할 수 있었습니다<span class="citation" data-cites="RN672"><sup><a href="#ref-RN672" role="doc-biblioref">2</a></sup></span>.</p>
 <p>다만, 분석에 포함된 대상군의 크기가 제한적이었고, 실시된 표적치료제 별 분석이 이루어지지 않았습니다. 또한, 후향적 연구의 한계로서 unmeasured confounder 가 존재하여 분석의 한계가 있을 수 있겠습니다.</p>
 <p>따라서 절제 가능한 대장암 환자에 대해 수술 후 최적의 표적 치료제 적용에 대한 대규모 전향적 연구가 필요할 것으로 사료됩니다.</p>
 <div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-6">Figure&nbsp;1: Propensity score 에 따른 allocation probability 의 AUC</span>
-<span class="glightbox-desc lightbox-desc-7">Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis</span>
-<span class="glightbox-desc lightbox-desc-8">Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort</span>
-<span class="glightbox-desc lightbox-desc-9">Figure 3. Kaplan Meier Analysis, original cohort</span>
-<span class="glightbox-desc lightbox-desc-10">Table 2. Uni-variated Cox regression associated to PFS</span>
-<span class="glightbox-desc lightbox-desc-11">Table 3. multi-variated Cox regression associated to PFS</span>
+<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;1: Propensity score 에 따른 allocation probability 의 AUC</span>
+<span class="glightbox-desc lightbox-desc-2">Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis-저자가 별도로 편집한 table</span>
+<span class="glightbox-desc lightbox-desc-3">Figure&nbsp;2: Absolute SMD, Balance at original cohort &amp; weighted cohort</span>
+<span class="glightbox-desc lightbox-desc-4">Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort</span>
+<span class="glightbox-desc lightbox-desc-5">Figure&nbsp;3: Kaplan Meier survival curves for patients with targeted therapy after surgical resection of colorectal liver metastasis</span>
+<span class="glightbox-desc lightbox-desc-6">Table 2. Uni-variated Cox regression associated to PFS</span>
+<span class="glightbox-desc lightbox-desc-7">Table 3. multi-variated Cox regression associated to PFS</span>
 </div>
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" role="list">
 <div id="ref-RN671" class="csl-entry" role="listitem">
-Penna, C., and B. Nordlinger. 2002. <span>“Colorectal Metastasis (Liver and Lung).”</span> Journal Article. <em>Surg Clin North Am</em> 82 (5): 1075–90, x–xi. <a href="https://doi.org/10.1016/s0039-6109(02)00051-8">https://doi.org/10.1016/s0039-6109(02)00051-8</a>.
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Penna C, Nordlinger B. <a href="https://doi.org/10.1016/s0039-6109(02)00051-8">Colorectal metastasis (liver and lung)</a>. <em>Surg Clin North Am</em>. 2002;82:1075–90, x–xi.</div>
 </div>
 <div id="ref-RN672" class="csl-entry" role="listitem">
-Primrose, J., S. Falk, M. Finch-Jones, J. Valle, D. O’Reilly, A. Siriwardena, J. Hornbuckle, et al. 2014. <span>“Systemic Chemotherapy with or Without Cetuximab in Patients with Resectable Colorectal Liver Metastasis: The New EPOC Randomised Controlled Trial.”</span> Journal Article. <em>Lancet Oncol</em> 15 (6): 601–11. <a href="https://doi.org/10.1016/s1470-2045(14)70105-6">https://doi.org/10.1016/s1470-2045(14)70105-6</a>.
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">Primrose J, Falk S, Finch-Jones M, et al. <a href="https://doi.org/10.1016/s1470-2045(14)70105-6">Systemic chemotherapy with or without cetuximab in patients with resectable colorectal liver metastasis: The new EPOC randomised controlled trial</a>. <em>Lancet Oncol</em>. 2014;15:601–11.</div>
 </div>
 </div></section></div></main>
 <!-- /main column -->
@@ -938,7 +1327,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","loop":false,"selector":".lightbox","descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":false,"openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

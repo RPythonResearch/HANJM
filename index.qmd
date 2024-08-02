@@ -25,6 +25,7 @@ keywords:
   - survival
 abstract: |
 bibliography: references.bib
+csl: annals-of-surgery.csl
 number-sections: true
 # editor_options: 
 #   chunk_output_type: inline
@@ -155,7 +156,7 @@ table1
 ```
 
 ```{r}
-#| label: Univariate-PFS
+#| label: PFS-univariate-Cox-regression
 #| output: false
 
 out_u=mycph(TS_DFS~Adju_TA+Any_TA+Adju_target+SEX+AGE60+CCI7+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+CEA73+M1_12m+PreHR_chemo+PreHR_TA, data=HAN)
@@ -163,7 +164,7 @@ out_u
 ```
 
 ```{r}
-#| label: Multivariate-PFS
+#| label: PFS-multivariate-Cox-regression
 #| output: false
 
 out_m<-coxph(TS_DFS~Any_TA+SEX+AGE60+Vi1+BILOBE+MULTI4+CEA73, data=HAN)
@@ -176,7 +177,7 @@ write.csv(Cox_step_dfs, file="Cox_step_DFS.csv")
 ```
 
 ```{r}
-#| label: Univariate-OS
+#| label: OS-univariate-Cox-regression
 #| output: false
 
 HAN$TS_OS=Surv(HAN$FU_OS, HAN$DEATH==1) #time object
@@ -187,7 +188,7 @@ out_u_os
 ```
 
 ```{r}
-#| label: Multivariate-OS
+#| label: OS-multivariate-Cox-regression
 #| output: false
 
 out_m_os<-coxph(TS_OS~Adju_TA+SEX+AGE60+CCI7+RTCOL++LNR+pT4+Pni1+Lvi1+Vi1+PD, data=HAN)
@@ -195,7 +196,7 @@ extractHR(out_m_os)
 ```
 
 ```{r}
-#| label: PFS
+#| label: Periods-PFS-OS
 #| message: false
 #| output: false
 #| fig.show: 'hide'
@@ -233,7 +234,7 @@ summary(DFS_target_kind)
 ```
 
 ```{r}
-#| label: PFS-curve
+#| label: PFS-curves
 #| output: false
 #| fig.show: 'hide'
 
@@ -275,7 +276,7 @@ PFS
 ```
 
 ```{r}
-#| label: OS-curve
+#| label: OS-curves
 #| output: false
 #| fig.show: 'hide'
 
@@ -310,7 +311,7 @@ OS_TA
 ```
 
 ```{r}
-#| label: IPTW
+#| label: PSM-confounder-selection
 #| output: false
 library(dplyr)
 library(MatchIt)
@@ -346,11 +347,10 @@ table1_iptw
 ```
 
 ```{r}
-#| label: IPTW-analysis
+#| label: PSM-calculating
 #| output: false
-#| 
-## Calculating propensity score ###
 
+#로지스틱 회귀분석
 fit_IPTW<-glm(Adju_TA~Male+AGE60+ASA3+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+CEA73+M1_12m+PreHR_TA, family=binomial, data=HAN_IPTW)
 factor<-extractOR(fit_IPTW, digits=3)
 factor
@@ -365,19 +365,22 @@ HAN_IPTW$ate.weights <- ifelse(HAN_IPTW$Adju_TA=="1", 1/HAN_IPTW$pr.score, 1/(1-
 ## Goodness of Fit test, Hosmer Lemeshow test ####
 #install.packages("ResourceSelection")
 library(ResourceSelection)
-hoslem.test(HAN_IPTW$Adju_TA, fitted(fit_IPTW))
-```
-
-```{r ROC_curve, results='hide'}
-library(pROC)
-#install.packages("Epi")
-require(Epi)
-#install.packages("pROC")
-a1=ROC(form=Adju_TA~pr.score, data=HAN_IPTW, plot = "ROC") ## discrimination of TA NO vs. TA YES group by propensity score ##
+hoslem.test(HAN_IPTW$Adju_TA, fitted(fit_IPTW)) #p 높으면 적합
 ```
 
 ```{r}
-#| label: weightit
+#| label: PSM-ROC-curve 
+#| output: false
+library(pROC)
+require(Epi)
+
+## discrimination of TA NO vs. TA YES group by propensity score ##
+a1=ROC(form=Adju_TA~pr.score, data=HAN_IPTW, plot = "ROC")
+```
+
+```{r}
+#| label: PSM-Weighting
+#| output: false
 #| fig.show: 'hide'
 library (WeightIt)
 library(cobalt)
@@ -392,42 +395,55 @@ bal.tab(W.out_ate, un=TRUE, binary="std", thresholds=0.2)
 
 ```
 
-```{r Love_plots}
-#| results: 'hide'
+```{r}
+#| label: PSM-Validation-Graph
+#| output: false
+#| fig.show: 'hide'
 
-love.plot(W.out_ate, thresholds = c(m = .1), var.order = "unadjusted")
+# Define the variable names mapping
+v <- data.frame(
+  old = c("Male", "AGE60", "ASA3", "RTCOL", "LNR", "pT4", "Pni1", "Lvi1", "Vi1", "PD", "BILOBE", "MULTI4", "SIZE4", "CEA73", "M1_12m", "PreHR_TA", "ps"),
+  new = c("Male", "Age>60", "ASA >3", "Primary tumor at Rt colon", "Regional LN ratio", "pT4", "Perineural invasion of PT", "Lymphatic invasion of PT", "Vascular invasion of PT", "Poor differentiated", "Bilobar involvement of CRLM", "Number of CRLM>4", "Max size of CRLM>4cm", "Pre-hepatectomy CEA>73", "Synch or LM within 12mon", "Neoaduvant target agent", "propensity score")
+)
 
-## Love plot 2, # balance plot#, Figure 1##
-v<- data.frame(old=c("Male","AGE60","ASA3","RTCOL","LNR","pT4","Pni1","Lvi1","Vi1","PD","BILOBE","MULTI4","SIZE4","CEA73","M1_12m","PreHR_TA","ps"),
-               new=c("Male","Age>60","ASA >3","Primary tumor at Rt colon","Regional LN ratio","pT4", "Perineural invasion of PT",
-                    "Lymphatic invasion of PT","Vascular invasion of PT", "Poor differentiated", "Bilobar involvement of CRLM", 
-                    "Number of CRLM>4", "Max size of CRLM>4cm", "Pre-hepatectomy CEA>73", "Synch or LM within 12mon","Neoaduvant target agent", "propensity score"))
+# Generate the Love Plot and save it to a variable
+love_plot <- love.plot(
+  W.out_ate,
+  stats = c("mean.diffs"), 
+  threshold = c(m = .2), 
+  binary = "std", 
+  abs = TRUE,
+  var.order = "unadjusted",
+  var.names = v,
+  limits = c(0, 1), 
+  grid = TRUE, 
+  wrap = 20,
+  sample.names = c("Original", "Weighted"),
+  position = "top",
+  line = TRUE,
+  shapes = c("circle", "triangle"),
+  colors = c("red", "blue")
+) +
+  labs(x = "Absolute standardized mean difference") +
+  theme(
+    legend.position = c(.75, .3),
+    legend.box.background = element_rect(),
+    legend.box.margin = margin(0.5, 1, 1, 1),
+    legend.title = element_blank(),
+    plot.title = element_blank(),
+    axis.title = element_text(color = "black", size = 10)
+  )
 
-love.plot(W.out_ate, stats = c("mean.diffs"), 
-          threshold = c(m = .2), 
-          binary = "std", abs = TRUE,
-          var.order = "unadjusted",
-          var.names = v,
-          limits = c(0, 1), grid = TRUE, wrap = 20,
-          sample.names = c("Original", "Weighted"),
-          position = "top",
-          line= TRUE,
-          shapes = c("circle", "triangle"),
-          colors = c("red", "blue"))+
-  labs(x="Absolute standadized mean difference")+
-  theme(legend.position = c(.75, .3),
-        legend.box.background = element_rect(), 
-        legend.box.margin = margin(0.5, 1, 1, 1),
-        legend.title=element_blank(),
-        plot.title=element_blank(),
-        axis.title=element_text(color = "black", size=10))
+# Print the love_plot variable to display the plot
+print(love_plot)
+
 ```
 
-```{r TableOne_package}
-#| results: 'hide'
-
+```{r}
+#| label: PSM-Validation-Table
+#| output: false
+#| fig.show: 'hide'
 library(tableone)
-#install.packages("survey")
 library(survey)
 
 vars <- c("Male","AGE60","ASA3","RTCOL","LNR","pT4","Pni1","Lvi1","Vi1","PD","BILOBE","MULTI4","SIZE4","CEA73","M1_12m","PreHR_TA")
@@ -440,6 +456,12 @@ summary(Svy)
 Svy
 tab.wt <- svyCreateTableOne(vars=vars, strata="Adju_TA", data=Svy, test =FALSE)
 print(tab.wt, smd=TRUE)
+```
+
+```{r}
+#| label: weighted-surival-curves
+#| output: false
+#| fig.show: 'hide'
 
 library(jskm)   
 
@@ -469,7 +491,7 @@ b
 ```
 
 ```{r the_others}
-#| results: 'hide'
+#| output: false
 #| 
 #### Univarate Cox regression, unweighted, weighted ######################
 
@@ -542,10 +564,10 @@ Resectability가 있는 대장암의 간 전이에 대한 가장 효과적인 �
 
 최종적으로 original cohort 와 weighted cohort 에서 콕스 회귀 분석을 시행하였으며 다변량 회귀분석에서는 후향 제거법을 사용하여 수술 후 표적치료제가 갖는 예후에의 영향력을 평가하였습니다.
 
-Propensity score 를 구하기 위해 활용된 로지스틱 회귀분석에 적용된 변수는 다음과 같습니다. 환자 factor 로서 성별, 연령, ASA score 등 Primary tumor factor 로서 tumor location, lymph node ratio 등 Metastatic factor 로서 간엽 침범 정도, 전이 병변의 개수 등을 설정하였습니다. 이에 따라 Propensity score 에 따른 allocation probability 의 AUC 는 0.811, p-value 는 0.4906 로 나타났습니다 (@fig-ROC).
+Propensity score 를 구하기 위해 활용된 로지스틱 회귀분석에 적용된 변수는 다음과 같습니다. 환자 factor 로서 성별, 연령, ASA score 등 Primary tumor factor 로서 tumor location, lymph node ratio 등 Metastatic factor 로서 간엽 침범 정도, 전이 병변의 개수 등을 설정하였습니다. 이에 따라 Propensity score 에 따른 allocation probability 의 AUC 는 0.811, p-value 는 0.4906 로 나타났습니다 (@fig-AUC-allocation-probability-PSM).
 
 ```{r}
-#| label: fig-ROC
+#| label: fig-AUC-allocation-probability-PSM
 #| fig.cap: Propensity score 에 따른 allocation probability 의 AUC
 #| fig.height: 6
 #| fig.width: 6
@@ -556,31 +578,84 @@ All analyses were performed using R version 4.4.1 (R Core Team (2021). (R: A lan
 
 ## Results
 
-```{r patient_characteristics_table}
-table1
+
+```{r patient_characteristics_data}
 
 number_of_patients_included <- nrow(HAN)
 number_of_Adju_TA_no<-nrow(subset(HAN, Adju_TA==0))
 number_of_Adju_TA_yes<-nrow(subset(HAN, Adju_TA==1))
 ```
 
-Table 1은 연구에 포함된 환자 특성입니다. `r number_of_patients_included` 개의 케이스에서 대조군의 크기는 `r number_of_Adju_TA_no`, 치료군의 크기는 `r number_of_Adju_TA_yes` 명 이었습니다. 이 중, 표적치료제가 사용된 61명 중 베바시주맙이 42, 세툭시맙이 19명 이었습니다. 조사된 변수는 patient factor와 primary tumor factor, 그리고 metastases factor 로 구분하였습니다.
+
+@tbl-patient-characteristics-revised 은 연구에 포함된 환자 특성입니다. `r number_of_patients_included` 개의 케이스에서 대조군의 크기는 `r number_of_Adju_TA_no`, 치료군의 크기는 `r number_of_Adju_TA_yes` 명 이었습니다. 이 중, 표적치료제가 사용된 61명 중 베바시주맙이 42, 세툭시맙이 19명 이었습니다. 조사된 변수는 patient factor와 primary tumor factor, 그리고 metastases factor 로 구분하였습니다.
+
+```{r}
+#| label: tbl-patient-characteristics-revised
+#| tbl-cap: Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis
+
+table1_revised<-my_MarkdownTable(table1)
+table1_revised
+
+```
 
 연령은 치료군과 대조군 모두 59세 전후로 나타났으며 연령 및 성별에 있어 두 군 간의 통계적인 차이는 없었습니다. 진단 당시 간 전이를 동반하였거나 원발 부위 종양 절제술 후 12개월 이내에 간전이가 발견된 경우는 대조군에서 빈도가 유의하게 높았습니다. 또한 간 절제술 전 항암화학요법 혹은 표적치료제를 사용한 경우는 치료군에서 빈도가 유의하게 높았습니다.
 
-![Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis](images/clipboard-3145534320.png){width="700"}
+![Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis-저자가 별도로 편집한 table](images/clipboard-3145534320.png){width="700"}
 
 Primary tumor factor 에서는 pathology 소견 상 lymphatic invasion 을 보인 경우 대조군의 빈도가 유의하게 높았습니다. Metastases factor 에서는 병변의 양엽 침범 여부와 개수, 최대 직경에 대해 조사하였고 두 군 간의 유의한 차이는 없었습니다. 따라서 raw data에서는 치료군과 대조군 간의 불균형이 관찰됩니다.
 
 따라서 propensity score를 사용해 가중치를 적용하여 데이터셋을 보정하는 IPTW 기법을 적용하였습니다.
 
-Figure 2은, original cohort 와 weighted cohort 의 absolute SMD 를 나타낸 것으로 빨간색 범례가 보정 전 특성을 나타내고, 파란색 범례가 보정 후 특성을 나타냅니다. 가중치 적용 후 absolute SMD 값이 0.2 이하로 조정되어 보정 후 치료군과 대조군이 적절한 balance 를 이루고 있는 것을 확인할 수 있습니다.
+@fig-SMD 은 original cohort 와 weighted cohort 의 absolute SMD 를 나타낸 것으로 빨간색 범례가 보정 전 특성을 나타내고, 파란색 범례가 보정 후 특성을 나타냅니다. 가중치 적용 후 absolute SMD 값이 0.2 이하로 조정되어 보정 후 치료군과 대조군이 적절한 balance 를 이루고 있는 것을 확인할 수 있습니다.
 
-![Figure 2. Absolute SMD, Balance at original cohort & weighted cohort](images/clipboard-2590844408.png)
+```{r}
+#| label: fig-SMD
+#| fig.cap: Absolute SMD, Balance at original cohort & weighted cohort
 
-Figure 3은 연구에 포함된 환자 에 대한 Kaplan Meier 생존곡선입니다. 왼쪽은 metastases 에 대한 progression survival 을 나타내고 오른쪽은 overall survival 을 나타냅니다. f/u 기간의 중앙값은 45.5개월 이었으며, 관찰기간 중의 PFS event 는 85건, OS event 는 67건 이었습니다.
+plot(love_plot)
+```
+```{r}
+#| label: Tablizing-unweighted_SMD
+#| output: false
 
-![Figure 3. Kaplan Meier Analysis, original cohort](images/clipboard-3783060595.png)
+tab.unwt_MD<-as.data.frame(print(tab.unwt, smd = TRUE))
+
+```
+
+```{r}
+#| label: tbl-unweighted_SMD
+#| tab-cap: Unweighted SMD
+
+kable(tab.unwt_MD, format="markdown")
+```
+
+```{r}
+#| label: Tablizing-weighted_SMD
+#| output: false
+
+tab.wt_MD<-as.data.frame(print(tab.wt, smd = TRUE))
+
+```
+
+```{r}
+#| label: tbl-weighted_SMD
+#| tab-cap: weighted SMD
+
+kable(tab.wt_MD, format="markdown")
+```
+
+![Figure 2. Absolute SMD, Balance at original cohort & weighted cohort - 저자가 별도로 편집한 그래프와 테이블 병합](images/clipboard-2590844408.png)
+
+@fig-survival 은 연구에 포함된 환자 에 대한 Kaplan Meier 생존곡선입니다. 왼쪽은 metastases 에 대한 progression survival 을 나타내고 오른쪽은 overall survival 을 나타냅니다. f/u 기간의 중앙값은 45.5개월 이었으며, 관찰기간 중의 PFS event 는 85건, OS event 는 67건 이었습니다.
+
+```{r}
+#| label: fig-survival
+#| fig.cap: Kaplan Meier survival curves for patients with targeted therapy after surgical resection of colorectal liver metastasis
+library(gridExtra)
+
+grid.arrange(PFS$plot, OS_TA$plot, ncol=2)
+
+```
 
 테이블 2는 단변량 콕스 회귀 분석 결과입니다. 먼저 가중치를 적용하지 않은 original cohort 에서는 수술 전 CEA level 이 높은 경우, 수술 전 표적치료제 적용한 경우, vascular invasion 이 진행된 경우, 전이 병변이 간 양엽을 모두 침범한 경우, 간 전이 병변의 개수가 4개 이상일 경우에서 통계적으로 유의한 Poor prognostic factor 로 조사되었습니다.수술 후 표적치료제의 사용여부는 불량한 예후를 시사하는 경향을 보였으나 통계적으로 유의하지는 않았습니다.
 
