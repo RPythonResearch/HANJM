@@ -1,9 +1,6 @@
 getwd()
 setwd("/Users/uisupshin/Dropbox/HANJM")
-################################################################################
-## 개발자의 로컬 환경에 맞게 워킹폴더를 설정을 해야 함. 김병일 24.06.13
-################################################################################
-# setwd("C:/R/Projects/R-4.4.0-GS_HAN/manuscript")
+
 getwd()
 
 # Call the package
@@ -21,10 +18,8 @@ require(ggplot2)
 source("ggKM.R")
 source("mycphwt.R")
 
-################################################################################
-## deidentified 파일을 읽어 오도록 수정함. 김병일 24.07.22
-################################################################################
-HAN_raw <- read_excel("C:/R/Projects/R-4.4.1-RPythonStudy_HANJM/raw_data/deidentified_han20230213.xlsx")
+
+HAN_raw=read.csv("han20230213.csv", header=T, dec=".")
 
 # Select Rows by equal condition
 HAN <- subset(HAN_raw, Adjuvant_Doublet==1)

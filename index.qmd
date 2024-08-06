@@ -578,14 +578,12 @@ All analyses were performed using R version 4.4.1 (R Core Team (2021). (R: A lan
 
 ## Results
 
-
 ```{r patient_characteristics_data}
 
 number_of_patients_included <- nrow(HAN)
 number_of_Adju_TA_no<-nrow(subset(HAN, Adju_TA==0))
 number_of_Adju_TA_yes<-nrow(subset(HAN, Adju_TA==1))
 ```
-
 
 @tbl-patient-characteristics-revised 은 연구에 포함된 환자 특성입니다. `r number_of_patients_included` 개의 케이스에서 대조군의 크기는 `r number_of_Adju_TA_no`, 치료군의 크기는 `r number_of_Adju_TA_yes` 명 이었습니다. 이 중, 표적치료제가 사용된 61명 중 베바시주맙이 42, 세툭시맙이 19명 이었습니다. 조사된 변수는 patient factor와 primary tumor factor, 그리고 metastases factor 로 구분하였습니다.
 
@@ -614,6 +612,7 @@ Primary tumor factor 에서는 pathology 소견 상 lymphatic invasion 을 보�
 
 plot(love_plot)
 ```
+
 ```{r}
 #| label: Tablizing-unweighted_SMD
 #| output: false

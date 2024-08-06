@@ -1,10 +1,10 @@
-getwd()
-setwd("/Users/uisupshin/Dropbox/HANJM")
+# getwd()
+# setwd("/Users/uisupshin/Dropbox/HANJM")
 ################################################################################
 ## 개발자의 로컬 환경에 맞게 워킹폴더를 설정을 해야 함. 김병일 24.06.13
 ################################################################################
 # setwd("C:/R/Projects/R-4.4.0-GS_HAN/manuscript")
-getwd()
+# getwd()
 
 # Call the package
 #install moonBook from github
@@ -18,13 +18,14 @@ require(maxstat)
 require(grid)
 #install.packages("ggplot2")
 require(ggplot2)
-source("ggKM.R")
-source("mycphwt.R")
+require(readxl)
+source("C:/R/Projects/R-4.4.1-RPythonStudy_HANJM/source/ggKM.R")
+# source("C:/R/Projects/R-4.4.1-RPythonStudy_HANJM/source/mycphwt.R")
 
 ################################################################################
-## deidentified 파일을 읽어 오도록 수정함. 김병일 24.06.13
+## deidentified 파일을 읽어 오도록 수정함. 김병일 24.07.22
 ################################################################################
-HAN_raw=read.csv("deidentified_han20230213.csv", header=T, dec=".")
+HAN_raw <- read_excel("C:/R/Projects/R-4.4.1-RPythonStudy_HANJM/raw_data/deidentified_han20230213.xlsx")
 
 # Select Rows by equal condition
 HAN <- subset(HAN_raw, Adjuvant_Doublet==1)
@@ -46,7 +47,7 @@ HAN$Adju_target <-as.factor(HAN$Adju_target)
 
 # Time object, DFS
 HAN$TS_DFS=Surv(HAN$FU_DFS, HAN$RECUR=="1") #time object
-fit_DFS <-survfit(HAN$TS_DFS~., data=HAN)
+# fit_DFS <-survfit(HAN$TS_DFS~., data=HAN)
 
 
 
@@ -132,7 +133,7 @@ DFS<-survfit(Surv(FU_DFS, RECUR=="1")~Adju_TA, data=HAN)
 summary(DFS)
 DFS
 
-ç<-survfit(Surv(FU_DFS, RECUR=="1")~Adju_target, data=HAN)
+DFS_target_kind<-survfit(Surv(FU_DFS, RECUR=="1")~Adju_target, data=HAN)
 summary(DFS_target_kind)
 
 plot(DFS_target_kind, main="Progression free survival, Kind of target agent", xlab="Time", ylab="Survival Probability", col=c("blue", "red","green"), lty=c(1,2))
@@ -236,8 +237,9 @@ table1_iptw
 ## Calculating propensity score ###
 
 fit_IPTW<-glm(Adju_TA~Male+AGE60+ASA3+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+CEA73+M1_12m+PreHR_TA, family=binomial, data=HAN_IPTW)
-factor<-extractOR(fit_IPTW, digits=3)
-factor
+# 문맥상 factor_PTR이 맞다고 판단하여 아래 2줄을 수정함.
+factor_PTR<-extractOR(fit_IPTW, digits=3)
+factor_PTR
 summary(fit_IPTW)
 
 write.csv(factor_PTR, file="fit_PTR.csv")
@@ -341,7 +343,7 @@ a
 b<-svyjskm(iptwDFS, timeby = 12, ystratalabs=c('No',"Yes"),
            ystrataname = "Adjuvant Target therapy", table = TRUE, ci=FALSE, pval=FALSE,
            xlabs="Months after Surgery", main ="Weighted",
-           dashed=FALSE,marks=TRUE,xlims=c(0,60),legendposition=c(0.85,0.85), pval=TRUE)
+           dashed=FALSE,marks=TRUE,xlims=c(0,60),legendposition=c(0.85,0.85))
 
 b
 
@@ -356,9 +358,9 @@ write.csv(out, file="Cox_uni.csv")
 
 
 ## Uni, weighted
-uni_ate = mycphwt(TS_DFS~Adju_TA+Adju_target+Male+AGE60+ASA3+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+CEA73+M1_12m+PreHR_TA, digits=2, data=HAN_IPTW)
-uni_ate
-write.csv(uni_ate, file="Cox_uni_ate.csv")
+# uni_ate = mycphwt(TS_DFS~Adju_TA+Adju_target+Male+AGE60+ASA3+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+CEA73+M1_12m+PreHR_TA, digits=2, data=HAN_IPTW)
+# uni_ate
+# write.csv(uni_ate, file="Cox_uni_ate.csv")
 
 ##### Multivariate Cox regression, unweighted, weighted #################
 
@@ -377,13 +379,14 @@ multi_ate<-coxph(TS_DFS~Adju_TA+Male+LNR+Pni1+Vi1+BILOBE+MULTI4+CEA73, weights=a
 multi_ate<-coxph(TS_DFS~Adju_target+Male+LNR+Pni1+Vi1+BILOBE+MULTI4+CEA73, weights=ate.weights, data=HAN_IPTW)
 summary(multi_ate)
 
-extractHRwt(multi_ate)
+# extractHRwt(multi_ate)
 
-Wt_step<-step(multi_ate, direction="backward")
-summary(Wt_step)
-t.step<-extractHRwt(Wt_step, digit=2)
-t.step
-write.csv(t.step, file="multi_Cox_wt.csv")
+# Wt_step<-step(multi_ate, direction="backward")
+# summary(Wt_step)
+# t.step<-extractHRwt(Wt_step, digit=2)
+# t.step
+# write.csv(t.step, file="multi_Cox_wt.csv")
 
 
 ##Any_TA+Male+AGE60+CCI7+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+CEA73+M1_12m+PreHR_chemo+PreHR_TA
+## the end of code
