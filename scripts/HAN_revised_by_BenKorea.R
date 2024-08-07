@@ -20,7 +20,7 @@ require(grid)
 require(ggplot2)
 require(readxl)
 source("C:/R/Projects/R-4.4.1-RPythonStudy_HANJM/source/ggKM.R")
-# source("C:/R/Projects/R-4.4.1-RPythonStudy_HANJM/source/mycphwt.R")
+source("C:/R/Projects/R-4.4.1-RPythonStudy_HANJM/source/mycphwt.R")
 
 ################################################################################
 ## deidentified 파일을 읽어 오도록 수정함. 김병일 24.07.22
@@ -358,9 +358,9 @@ write.csv(out, file="Cox_uni.csv")
 
 
 ## Uni, weighted
-# uni_ate = mycphwt(TS_DFS~Adju_TA+Adju_target+Male+AGE60+ASA3+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+CEA73+M1_12m+PreHR_TA, digits=2, data=HAN_IPTW)
-# uni_ate
-# write.csv(uni_ate, file="Cox_uni_ate.csv")
+uni_ate = mycphwt(TS_DFS~Adju_TA+Adju_target+Male+AGE60+ASA3+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+CEA73+M1_12m+PreHR_TA, digits=2, data=HAN_IPTW)
+uni_ate
+write.csv(uni_ate, file="Cox_uni_ate.csv")
 
 ##### Multivariate Cox regression, unweighted, weighted #################
 
@@ -379,13 +379,13 @@ multi_ate<-coxph(TS_DFS~Adju_TA+Male+LNR+Pni1+Vi1+BILOBE+MULTI4+CEA73, weights=a
 multi_ate<-coxph(TS_DFS~Adju_target+Male+LNR+Pni1+Vi1+BILOBE+MULTI4+CEA73, weights=ate.weights, data=HAN_IPTW)
 summary(multi_ate)
 
-# extractHRwt(multi_ate)
+extractHRwt(multi_ate)
 
-# Wt_step<-step(multi_ate, direction="backward")
-# summary(Wt_step)
-# t.step<-extractHRwt(Wt_step, digit=2)
-# t.step
-# write.csv(t.step, file="multi_Cox_wt.csv")
+Wt_step<-step(multi_ate, direction="backward")
+summary(Wt_step)
+t.step<-extractHRwt(Wt_step, digit=2)
+t.step
+write.csv(t.step, file="multi_Cox_wt.csv")
 
 
 ##Any_TA+Male+AGE60+CCI7+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+CEA73+M1_12m+PreHR_chemo+PreHR_TA

@@ -42,9 +42,9 @@ source_path <<- file.path(project_path, source_directory)
 source_path_filename <- file.path(source_path, source_filename)
 source(source_path_filename)
 
-# source_filename<-"mycphwt.R"
-# source_path_filename <- file.path(source_path, source_filename)
-# source(source_path_filename)
+source_filename<-"mycphwt.R"
+source_path_filename <- file.path(source_path, source_filename)
+source(source_path_filename)
 
 rm(source_directory, source_filename, project_path, source_path, source_path_filename)
 ```
@@ -504,8 +504,7 @@ write.csv(out, file="Cox_uni.csv")
 
 
 ## Uni, weighted
-# uni_ate = mycphwt(TS_DFS~Adju_TA+Adju_target+Male+AGE60+ASA3+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+CEA73+M1_12m+PreHR_TA, digits=2, data=HAN_IPTW)
-uni_ate = mycph(TS_DFS~Adju_TA+Adju_target+Male+AGE60+ASA3+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+CEA73+M1_12m+PreHR_TA, digits=2, data=HAN_IPTW)
+uni_ate = mycphwt(TS_DFS~Adju_TA+Adju_target+Male+AGE60+ASA3+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+CEA73+M1_12m+PreHR_TA, digits=2, data=HAN_IPTW)
 uni_ate
 write.csv(uni_ate, file="Cox_uni_ate.csv")
 
@@ -525,15 +524,13 @@ extractHR(COX_step, digit=2)
 multi_ate<-coxph(TS_DFS~Adju_TA+Male+LNR+Pni1+Vi1+BILOBE+MULTI4+CEA73, weights=ate.weights, data=HAN_IPTW)
 multi_ate<-coxph(TS_DFS~Adju_target+Male+LNR+Pni1+Vi1+BILOBE+MULTI4+CEA73, weights=ate.weights, data=HAN_IPTW)
 summary(multi_ate)
-#원래코드에서는 extractHRwt 였으나 함수의 source 코드가 없어서 extractHR로 변경함 
-#extractHRwt(multi_ate)
-extractHR(multi_ate)
+
+extractHRwt(multi_ate)
 
 Wt_step<-step(multi_ate, direction="backward")
 summary(Wt_step)
 
-#t.step<-extractHRwt(Wt_step, digit=2)
-t.step<-extractHR(Wt_step, digit=2)
+t.step<-extractHRwt(Wt_step, digit=2)
 t.step
 write.csv(t.step, file="multi_Cox_wt.csv")
 ```
@@ -578,14 +575,12 @@ All analyses were performed using R version 4.4.1 (R Core Team (2021). (R: A lan
 
 ## Results
 
-
 ```{r patient_characteristics_data}
 
 number_of_patients_included <- nrow(HAN)
 number_of_Adju_TA_no<-nrow(subset(HAN, Adju_TA==0))
 number_of_Adju_TA_yes<-nrow(subset(HAN, Adju_TA==1))
 ```
-
 
 @tbl-patient-characteristics-revised 은 연구에 포함된 환자 특성입니다. `r number_of_patients_included` 개의 케이스에서 대조군의 크기는 `r number_of_Adju_TA_no`, 치료군의 크기는 `r number_of_Adju_TA_yes` 명 이었습니다. 이 중, 표적치료제가 사용된 61명 중 베바시주맙이 42, 세툭시맙이 19명 이었습니다. 조사된 변수는 patient factor와 primary tumor factor, 그리고 metastases factor 로 구분하였습니다.
 
@@ -614,6 +609,7 @@ Primary tumor factor 에서는 pathology 소견 상 lymphatic invasion 을 보�
 
 plot(love_plot)
 ```
+
 ```{r}
 #| label: Tablizing-unweighted_SMD
 #| output: false
@@ -644,7 +640,7 @@ tab.wt_MD<-as.data.frame(print(tab.wt, smd = TRUE))
 kable(tab.wt_MD, format="markdown")
 ```
 
-![Figure 2. Absolute SMD, Balance at original cohort & weighted cohort](images/clipboard-2590844408.png)
+![Figure 2. Absolute SMD, Balance at original cohort & weighted cohort - 저자가 별도로 편집한 그래프와 테이블 병합](images/clipboard-2590844408.png)
 
 @fig-survival 은 연구에 포함된 환자 에 대한 Kaplan Meier 생존곡선입니다. 왼쪽은 metastases 에 대한 progression survival 을 나타내고 오른쪽은 overall survival 을 나타냅니다. f/u 기간의 중앙값은 45.5개월 이었으며, 관찰기간 중의 PFS event 는 85건, OS event 는 67건 이었습니다.
 

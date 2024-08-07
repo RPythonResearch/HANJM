@@ -5,6 +5,8 @@
 .Rprofile
 *.Rproj
 renv/
+_freeze/
+index_files/
 raw_data/
 /.quarto/
 *.csv

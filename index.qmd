@@ -42,9 +42,9 @@ source_path <<- file.path(project_path, source_directory)
 source_path_filename <- file.path(source_path, source_filename)
 source(source_path_filename)
 
-# source_filename<-"mycphwt.R"
-# source_path_filename <- file.path(source_path, source_filename)
-# source(source_path_filename)
+source_filename<-"mycphwt.R"
+source_path_filename <- file.path(source_path, source_filename)
+source(source_path_filename)
 
 rm(source_directory, source_filename, project_path, source_path, source_path_filename)
 ```
@@ -504,8 +504,7 @@ write.csv(out, file="Cox_uni.csv")
 
 
 ## Uni, weighted
-# uni_ate = mycphwt(TS_DFS~Adju_TA+Adju_target+Male+AGE60+ASA3+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+CEA73+M1_12m+PreHR_TA, digits=2, data=HAN_IPTW)
-uni_ate = mycph(TS_DFS~Adju_TA+Adju_target+Male+AGE60+ASA3+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+CEA73+M1_12m+PreHR_TA, digits=2, data=HAN_IPTW)
+uni_ate = mycphwt(TS_DFS~Adju_TA+Adju_target+Male+AGE60+ASA3+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+CEA73+M1_12m+PreHR_TA, digits=2, data=HAN_IPTW)
 uni_ate
 write.csv(uni_ate, file="Cox_uni_ate.csv")
 
@@ -525,15 +524,13 @@ extractHR(COX_step, digit=2)
 multi_ate<-coxph(TS_DFS~Adju_TA+Male+LNR+Pni1+Vi1+BILOBE+MULTI4+CEA73, weights=ate.weights, data=HAN_IPTW)
 multi_ate<-coxph(TS_DFS~Adju_target+Male+LNR+Pni1+Vi1+BILOBE+MULTI4+CEA73, weights=ate.weights, data=HAN_IPTW)
 summary(multi_ate)
-#원래코드에서는 extractHRwt 였으나 함수의 source 코드가 없어서 extractHR로 변경함 
-#extractHRwt(multi_ate)
-extractHR(multi_ate)
+
+extractHRwt(multi_ate)
 
 Wt_step<-step(multi_ate, direction="backward")
 summary(Wt_step)
 
-#t.step<-extractHRwt(Wt_step, digit=2)
-t.step<-extractHR(Wt_step, digit=2)
+t.step<-extractHRwt(Wt_step, digit=2)
 t.step
 write.csv(t.step, file="multi_Cox_wt.csv")
 ```
