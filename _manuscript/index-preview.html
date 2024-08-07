@@ -291,9 +291,9 @@
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>source_path_filename <span class="ot">&lt;-</span> <span class="fu">file.path</span>(source_path, source_filename)</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(source_path_filename)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># source_filename&lt;-"mycphwt.R"</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># source_path_filename &lt;- file.path(source_path, source_filename)</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># source(source_path_filename)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>source_filename<span class="ot">&lt;-</span><span class="st">"mycphwt.R"</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>source_path_filename <span class="ot">&lt;-</span> <span class="fu">file.path</span>(source_path, source_filename)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(source_path_filename)</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(source_directory, source_filename, project_path, source_path, source_path_filename)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
@@ -370,7 +370,7 @@ Attaching package: 'dplyr'</code></pre>
 Maximally selected LogRank statistics using condMC
 
 data:  TS_DFS by preHR_CEA
-M = 2.6206, p-value = 0.1141
+M = 2.6206, p-value = 0.1101
 sample estimates:
 estimated cutpoint 
              73.97 </code></pre>
@@ -381,7 +381,7 @@ estimated cutpoint
 Maximally selected LogRank statistics using condMC
 
 data:  TS_DFS by CCI
-M = 0.92138, p-value = 0.7107
+M = 0.92138, p-value = 0.7157
 sample estimates:
 estimated cutpoint 
                  7 </code></pre>
@@ -392,7 +392,7 @@ estimated cutpoint
 Maximally selected LogRank statistics using condMC
 
 data:  TS_DFS by ASA
-M = 0.25305, p-value = 0.8028
+M = 0.25305, p-value = 0.8088
 sample estimates:
 estimated cutpoint 
                  2 </code></pre>
@@ -403,7 +403,7 @@ estimated cutpoint
 Maximally selected LogRank statistics using condMC
 
 data:  TS_DFS by NUM_HM
-M = 2.9713, p-value = 0.01201
+M = 2.9713, p-value = 0.005005
 sample estimates:
 estimated cutpoint 
                  4 </code></pre>
@@ -414,7 +414,7 @@ estimated cutpoint
 Maximally selected LogRank statistics using condMC
 
 data:  TS_DFS by HM_SIZE
-M = 1.2944, p-value = 0.8068
+M = 1.2944, p-value = 0.8008
 sample estimates:
 estimated cutpoint 
                  4 </code></pre>
@@ -425,7 +425,7 @@ estimated cutpoint
 Maximally selected LogRank statistics using condMC
 
 data:  TS_DFS by LNR
-M = 1.3978, p-value = 0.6617
+M = 1.3978, p-value = 0.6517
 sample estimates:
 estimated cutpoint 
          0.1818182 </code></pre>
@@ -1535,36 +1535,35 @@ PreHR_TA1    1.87 1.10 3.21 0.022</code></pre>
 <span id="cb131-2"><a href="#cb131-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb131-3"><a href="#cb131-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb131-4"><a href="#cb131-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Uni, weighted</span></span>
-<span id="cb131-5"><a href="#cb131-5" aria-hidden="true" tabindex="-1"></a><span class="co"># uni_ate = mycphwt(TS_DFS~Adju_TA+Adju_target+Male+AGE60+ASA3+RTCOL+LNR+pT4+Pni1+Lvi1+Vi1+PD+BILOBE+MULTI4+SIZE4+CEA73+M1_12m+PreHR_TA, digits=2, data=HAN_IPTW)</span></span>
-<span id="cb131-6"><a href="#cb131-6" aria-hidden="true" tabindex="-1"></a>uni_ate <span class="ot">=</span> <span class="fu">mycph</span>(TS_DFS<span class="sc">~</span>Adju_TA<span class="sc">+</span>Adju_target<span class="sc">+</span>Male<span class="sc">+</span>AGE60<span class="sc">+</span>ASA3<span class="sc">+</span>RTCOL<span class="sc">+</span>LNR<span class="sc">+</span>pT4<span class="sc">+</span>Pni1<span class="sc">+</span>Lvi1<span class="sc">+</span>Vi1<span class="sc">+</span>PD<span class="sc">+</span>BILOBE<span class="sc">+</span>MULTI4<span class="sc">+</span>SIZE4<span class="sc">+</span>CEA73<span class="sc">+</span>M1_12m<span class="sc">+</span>PreHR_TA, <span class="at">digits=</span><span class="dv">2</span>, <span class="at">data=</span>HAN_IPTW)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb131-5"><a href="#cb131-5" aria-hidden="true" tabindex="-1"></a>uni_ate <span class="ot">=</span> <span class="fu">mycphwt</span>(TS_DFS<span class="sc">~</span>Adju_TA<span class="sc">+</span>Adju_target<span class="sc">+</span>Male<span class="sc">+</span>AGE60<span class="sc">+</span>ASA3<span class="sc">+</span>RTCOL<span class="sc">+</span>LNR<span class="sc">+</span>pT4<span class="sc">+</span>Pni1<span class="sc">+</span>Lvi1<span class="sc">+</span>Vi1<span class="sc">+</span>PD<span class="sc">+</span>BILOBE<span class="sc">+</span>MULTI4<span class="sc">+</span>SIZE4<span class="sc">+</span>CEA73<span class="sc">+</span>M1_12m<span class="sc">+</span>PreHR_TA, <span class="at">digits=</span><span class="dv">2</span>, <span class="at">data=</span>HAN_IPTW)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
  mycph : perform coxph of individual expecting variables
 
- Call: TS_DFS ~ Adju_TA + Adju_target + Male + AGE60 + ASA3 + RTCOL +     LNR + pT4 + Pni1 + Lvi1 + Vi1 + PD + BILOBE + MULTI4 + SIZE4 +     CEA73 + M1_12m + PreHR_TA, data= HAN_IPTW </code></pre>
+ Call: TS_DFS ~ Adju_TA + Adju_target + Male + AGE60 + ASA3 + RTCOL + , data= HAN_IPTW     LNR + pT4 + Pni1 + Lvi1 + Vi1 + PD + BILOBE + MULTI4 + SIZE4 + , data= HAN_IPTW     CEA73 + M1_12m + PreHR_TA, data= HAN_IPTW </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a>uni_ate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               HR  lcl  ucl     p
-Adju_TA      1.48 0.96 2.28 0.074
-Adju_target1 1.36 0.84 2.18 0.208
-Adju_target2 1.89 1.00 3.56 0.049
-Male1        0.89 0.57 1.40 0.620
-AGE601       0.92 0.60 1.41 0.704
-ASA31        0.93 0.54 1.61 0.794
-RTCOL1       1.08 0.63 1.87 0.773
-LNR          1.62 0.56 4.67 0.375
-pT41         1.19 0.63 2.25 0.582
-Pni11        1.23 0.80 1.89 0.347
-Lvi11        1.07 0.69 1.64 0.774
-Vi11         1.72 1.09 2.70 0.019
-PD1          0.79 0.25 2.50 0.688
-BILOBE1      1.57 1.02 2.43 0.040
-MULTI41      2.18 1.32 3.59 0.002
-SIZE41       1.30 0.76 2.21 0.333
-CEA731       2.00 1.13 3.56 0.018
-M1_12mM1     1.43 0.76 2.69 0.270
-PreHR_TA1    1.87 1.10 3.21 0.022</code></pre>
+Adju_TA      1.47 0.93 2.34 0.100
+Adju_target1 1.29 0.77 2.15 0.328
+Adju_target2 2.36 1.14 4.86 0.020
+Male1        0.73 0.46 1.15 0.172
+AGE601       1.10 0.69 1.75 0.700
+ASA31        1.15 0.69 1.94 0.592
+RTCOL1       0.92 0.53 1.61 0.774
+LNR          1.91 0.60 6.07 0.272
+pT41         1.10 0.41 2.93 0.847
+Pni11        1.42 0.90 2.25 0.132
+Lvi11        1.11 0.70 1.76 0.647
+Vi11         1.66 1.00 2.76 0.052
+PD1          0.46 0.10 2.06 0.308
+BILOBE1      1.84 1.12 3.02 0.016
+MULTI41      2.14 1.30 3.51 0.003
+SIZE41       1.18 0.65 2.13 0.585
+CEA731       1.59 0.76 3.31 0.216
+M1_12mM1     1.47 0.69 3.13 0.323
+PreHR_TA1    1.25 0.80 1.96 0.326</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb135"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(uni_ate, <span class="at">file=</span><span class="st">"Cox_uni_ate.csv"</span>)</span>
 <span id="cb135-2"><a href="#cb135-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1712,20 +1711,18 @@ Score (logrank) test = 59  on 9 df,   p=2e-09,   Robust = 21.71  p=0.01
   (Note: the likelihood ratio and score tests assume independence of
      observations within a cluster, the Wald and robust score tests do not).</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb145"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="co">#원래코드에서는 extractHRwt 였으나 함수의 source 코드가 없어서 extractHR로 변경함 </span></span>
-<span id="cb145-2"><a href="#cb145-2" aria-hidden="true" tabindex="-1"></a><span class="co">#extractHRwt(multi_ate)</span></span>
-<span id="cb145-3"><a href="#cb145-3" aria-hidden="true" tabindex="-1"></a><span class="fu">extractHR</span>(multi_ate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb145"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">extractHRwt</span>(multi_ate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>               HR  lcl  ucl     p
-Adju_target1 1.43 0.87 2.35 0.159
-Adju_target2 2.81 1.21 6.54 0.017
-Male1        0.64 0.38 1.10 0.106
-LNR          0.87 0.19 3.95 0.852
-Pni11        1.67 0.96 2.90 0.072
-Vi11         1.33 0.77 2.31 0.306
-BILOBE1      1.74 0.85 3.56 0.129
-MULTI41      1.50 0.69 3.29 0.310
-CEA731       1.06 0.48 2.33 0.883</code></pre>
+<pre><code>                HR   lcl   ucl     p
+Adju_target1 1.430 0.870 2.352 0.159
+Adju_target2 2.808 1.205 6.542 0.017
+Male1        0.645 0.378 1.099 0.106
+LNR          0.866 0.190 3.950 0.852
+Pni11        1.665 0.956 2.899 0.072
+Vi11         1.334 0.769 2.314 0.306
+BILOBE1      1.740 0.851 3.560 0.129
+MULTI41      1.501 0.686 3.285 0.310
+CEA731       1.061 0.483 2.332 0.883</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb147"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a>Wt_step<span class="ot">&lt;-</span><span class="fu">step</span>(multi_ate, <span class="at">direction=</span><span class="st">"backward"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1805,18 +1802,17 @@ Score (logrank) test = 58.42  on 7 df,   p=3e-10,   Robust = 20.86  p=0.004
   (Note: the likelihood ratio and score tests assume independence of
      observations within a cluster, the Wald and robust score tests do not).</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb151"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="co">#t.step&lt;-extractHRwt(Wt_step, digit=2)</span></span>
-<span id="cb151-2"><a href="#cb151-2" aria-hidden="true" tabindex="-1"></a>t.step<span class="ot">&lt;-</span><span class="fu">extractHR</span>(Wt_step, <span class="at">digit=</span><span class="dv">2</span>)</span>
-<span id="cb151-3"><a href="#cb151-3" aria-hidden="true" tabindex="-1"></a>t.step</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb151"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a>t.step<span class="ot">&lt;-</span><span class="fu">extractHRwt</span>(Wt_step, <span class="at">digit=</span><span class="dv">2</span>)</span>
+<span id="cb151-2"><a href="#cb151-2" aria-hidden="true" tabindex="-1"></a>t.step</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>               HR  lcl  ucl     p
-Adju_target1 1.44 0.88 2.35 0.148
-Adju_target2 2.75 1.33 5.70 0.006
-Male1        0.64 0.39 1.07 0.088
-Pni11        1.66 0.97 2.83 0.064
-Vi11         1.32 0.78 2.23 0.309
-BILOBE1      1.73 0.87 3.42 0.118
-MULTI41      1.54 0.75 3.19 0.242</code></pre>
+<pre><code>                HR   lcl   ucl     p
+Adju_target1 1.436 0.880 2.345 0.148
+Adju_target2 2.755 1.332 5.696 0.006
+Male1        0.642 0.386 1.068 0.088
+Pni11        1.656 0.971 2.825 0.064
+Vi11         1.316 0.776 2.231 0.309
+BILOBE1      1.726 0.871 3.422 0.118
+MULTI41      1.542 0.746 3.188 0.242</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb153"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(t.step, <span class="at">file=</span><span class="st">"multi_Cox_wt.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
@@ -2572,8 +2568,8 @@ Table&nbsp;3: weighted SMD
 </div></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/clipboard-2590844408.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5" title="Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort"><img src="images/clipboard-2590844408.png" class="img-fluid figure-img" alt="Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort"></a></p>
-<figcaption>Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort</figcaption>
+<p><a href="images/clipboard-2590844408.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5" title="Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort - 저자가 별도로 편집한 그래프와 테이블 병합"><img src="images/clipboard-2590844408.png" class="img-fluid figure-img" alt="Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort - 저자가 별도로 편집한 그래프와 테이블 병합"></a></p>
+<figcaption>Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort - 저자가 별도로 편집한 그래프와 테이블 병합</figcaption>
 </figure>
 </div>
 <p><a href="#fig-survival" class="quarto-xref">Figure&nbsp;3</a> 은 연구에 포함된 환자 에 대한 Kaplan Meier 생존곡선입니다. 왼쪽은 metastases 에 대한 progression survival 을 나타내고 오른쪽은 overall survival 을 나타냅니다. f/u 기간의 중앙값은 45.5개월 이었으며, 관찰기간 중의 PFS event 는 85건, OS event 는 67건 이었습니다.</p>
@@ -2631,7 +2627,7 @@ Figure&nbsp;3: Kaplan Meier survival curves for patients with targeted therapy a
 <span class="glightbox-desc lightbox-desc-2">Figure&nbsp;1: Propensity score 에 따른 allocation probability 의 AUC</span>
 <span class="glightbox-desc lightbox-desc-3">Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis-저자가 별도로 편집한 table</span>
 <span class="glightbox-desc lightbox-desc-4">Figure&nbsp;2: Absolute SMD, Balance at original cohort &amp; weighted cohort</span>
-<span class="glightbox-desc lightbox-desc-5">Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort</span>
+<span class="glightbox-desc lightbox-desc-5">Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort - 저자가 별도로 편집한 그래프와 테이블 병합</span>
 <span class="glightbox-desc lightbox-desc-6">Figure&nbsp;3: Kaplan Meier survival curves for patients with targeted therapy after surgical resection of colorectal liver metastasis</span>
 <span class="glightbox-desc lightbox-desc-7">Table 2. Uni-variated Cox regression associated to PFS</span>
 <span class="glightbox-desc lightbox-desc-8">Table 3. multi-variated Cox regression associated to PFS</span>
@@ -3054,7 +3050,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>  </div> <!-- /content -->  <script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom","loop":false,"selector":".lightbox"});
+</script>  </div> <!-- /content -->  <script>var lightboxQuarto = GLightbox({"loop":false,"closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom","selector":".lightbox"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
