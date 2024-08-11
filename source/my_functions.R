@@ -46,7 +46,6 @@ my_eliminate_NA_columns <- function(df, cut_off) {
 
 
 ################################################################################
-## 함수명: my_NA_row_clean 
 ## 제작일: 2024-07-17
 ## 인  자: 데이터프레임
 ## 반환값: NA가 포함된 열을 제거한 데이터프레임
@@ -77,26 +76,39 @@ my_eliminate_NA_rows <- function(data) {
 }
 
 ################################################################################
-## 제작일: 2024-07-29
+## 제작일: 2024-08-11
 ## 인  자: 데이터프레임
-## 출  력: 연속적변수에 대한 히스토그램수
+## 출  력: 각 컬럼별 히스토그램 또는 막대그래프
 ################################################################################
-my_MarkdownTable <- function(myTable) {
+my_plot_columns <- function(df) {
   
-  library(knitr)
-  # library(kableExtra)
-  
-  df<-as.data.frame(myTable$res)
-  df<-df[,1:4]
-  
-  return (kable(df, format = "markdown"))
+  col_names <- names(df)
+  for (col in col_names) {
+    if (is.numeric(df[[col]])) {
+      hist(df[[col]], main = col, xlab = col)
+      
+      col_mean <- mean(df[[col]], na.rm = TRUE)
+      col_sd <- sd(df[[col]], na.rm = TRUE)
+      
+      # 평균을 나타내는 세로선 추가
+      abline(v = col_mean, col = "red", lwd = 2, lty = 2)
+      
+      # -3 표준편차 및 3 표준편차를 나타내는 세로선 추가
+      abline(v = col_mean - 3 * col_sd, col = "blue", lwd = 2, lty = 2)
+      abline(v = col_mean + 3 * col_sd, col = "blue", lwd = 2, lty = 2)
+      
+      # 평균 값 텍스트 추가
+      text(x = col_mean, y = par("usr")[4] * 0.9, 
+           labels = paste("Mean:", round(col_mean, 2)), 
+           col = "red", cex = 0.8, pos = 4)
+      
+      # Shapiro-Wilk 정규성 검정 수행 및 결과 추가
+      shapiro_result <- shapiro.test(df[[col]])
+      mtext(paste("Shapiro-Wilk p-value:", format(shapiro_result$p.value, digits = 4)), 
+            side = 3, line = -1, adj = 0.95, cex = 0.8, col = "blue")
+    } else {
+      barplot(table(df[[col]]), main = col, xlab = col)
+    }
+  }
 }
 
-my_MarkdownTable2 <- function(myTable) {
-  
-  library(knitr)
-  # library(kableExtra)
-  
-  df<-as.data.frame(myTable$ContTable)
-  return (kable(df, format = "markdown"))
-}

@@ -46,7 +46,7 @@ source_filename<-"mycphwt.R"
 source_path_filename <- file.path(source_path, source_filename)
 source(source_path_filename)
 
-rm(source_directory, source_filename, project_path, source_path, source_path_filename)
+# rm(source_directory, source_filename, project_path, source_path, source_path_filename)
 ```
 
 ```{r}
@@ -81,11 +81,22 @@ cleaned_data<-my_eliminate_NA_columns(raw_data, 5)
 ```{r}
 #| label: Clean-NA-rows
 #| output: false
-#| eval: FALSE  # 실행되지 않는 옵션. 이 chunk만 실행시키면 결과 가능
+#| eval: TRUE  # 실행되지 않는 옵션. 이 chunk만 실행시키면 결과 가능
 
 cleaned_data <- my_eliminate_NA_rows(cleaned_data)
-raw_data <- cleaned_data
 ```
+
+
+```{r}
+#| label: Check-distribution
+#| output: false
+#| eval: True  # 실행되지 않는 옵션. 이 chunk만 실행시키면 결과 가능
+library(dplyr)
+
+raw_data <- cleaned_data
+my_plot_columns(raw_data)
+```
+
 
 ```{r}
 #| label: Select-variables
@@ -146,7 +157,7 @@ HAN$Adju_target <-as.factor(HAN$Adju_target)
 ```
 
 ```{r}
-#| label: Patient-Characteristics
+#| label: Patient-characteristics
 #| output: false
 library(moonBook)
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
     <meta charset="utf-8">
-    <meta name="generator" content="quarto-1.4.553">
+    <meta name="generator" content="quarto-1.5.55">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -35,7 +35,7 @@
       }
       @media print {
       pre > code.sourceCode { white-space: pre-wrap; }
-      pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+      pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
       }
       pre.numberSource code
         { counter-reset: source-line 0; }
@@ -278,7 +278,7 @@
   </ul>
 </nav>
 </div>
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
 </div>
 <main class="content quarto-banner-title-block" id="quarto-document-content">      
 
@@ -370,7 +370,7 @@ Attaching package: 'dplyr'</code></pre>
 Maximally selected LogRank statistics using condMC
 
 data:  TS_DFS by preHR_CEA
-M = 2.6206, p-value = 0.1101
+M = 2.6206, p-value = 0.1221
 sample estimates:
 estimated cutpoint 
              73.97 </code></pre>
@@ -381,7 +381,7 @@ estimated cutpoint
 Maximally selected LogRank statistics using condMC
 
 data:  TS_DFS by CCI
-M = 0.92138, p-value = 0.7157
+M = 0.92138, p-value = 0.6847
 sample estimates:
 estimated cutpoint 
                  7 </code></pre>
@@ -403,7 +403,7 @@ estimated cutpoint
 Maximally selected LogRank statistics using condMC
 
 data:  TS_DFS by NUM_HM
-M = 2.9713, p-value = 0.005005
+M = 2.9713, p-value = 0.009009
 sample estimates:
 estimated cutpoint 
                  4 </code></pre>
@@ -414,7 +414,7 @@ estimated cutpoint
 Maximally selected LogRank statistics using condMC
 
 data:  TS_DFS by HM_SIZE
-M = 1.2944, p-value = 0.8008
+M = 1.2944, p-value = 0.7828
 sample estimates:
 estimated cutpoint 
                  4 </code></pre>
@@ -425,7 +425,7 @@ estimated cutpoint
 Maximally selected LogRank statistics using condMC
 
 data:  TS_DFS by LNR
-M = 1.3978, p-value = 0.6517
+M = 1.3978, p-value = 0.6587
 sample estimates:
 estimated cutpoint 
          0.1818182 </code></pre>
@@ -1839,10 +1839,10 @@ MULTI41      1.542 0.746 3.188 0.242</code></pre>
 <div class="cell-container"><div class="cell-decorator"><pre>In [26]:</pre></div><div id="cell-fig-AUC-allocation-probability-PSM" class="cell">
 <div class="sourceCode cell-code" id="cb154"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb154-1"><a href="#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ROC</span>(<span class="at">form=</span>Adju_TA<span class="sc">~</span>pr.score, <span class="at">data=</span>HAN_IPTW, <span class="at">plot =</span> <span class="st">"ROC"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-AUC-allocation-probability-PSM" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-AUC-allocation-probability-PSM" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-AUC-allocation-probability-PSM-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="index_files/figure-html/fig-AUC-allocation-probability-PSM-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="index_files/figure-html/fig-AUC-allocation-probability-PSM-1.png" class="img-fluid figure-img" width="576"></a>
+<a href="index_files/figure-html/fig-AUC-allocation-probability-PSM-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;1: Propensity score 에 따른 allocation probability 의 AUC"><img src="index_files/figure-html/fig-AUC-allocation-probability-PSM-1.png" class="img-fluid figure-img" width="576"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-AUC-allocation-probability-PSM-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Propensity score 에 따른 allocation probability 의 AUC
@@ -1865,14 +1865,14 @@ Figure&nbsp;1: Propensity score 에 따른 allocation probability 의 AUC
 <div class="cell-container"><div class="cell-decorator"><pre>In [28]:</pre></div><div class="cell">
 
 <div class="cell-container"><div class="cell-decorator"><pre>In [29]:</pre></div><div><div class="sourceCode cell-code" id="cb156"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb156-1"><a href="#cb156-1" aria-hidden="true" tabindex="-1"></a>table1_revised<span class="ot">&lt;-</span><span class="fu">my_MarkdownTable</span>(table1)</span>
-<span id="cb156-2"><a href="#cb156-2" aria-hidden="true" tabindex="-1"></a>table1_revised</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div><div id="tbl-patient-characteristics-revised" class="cell quarto-float anchored">
+<span id="cb156-2"><a href="#cb156-2" aria-hidden="true" tabindex="-1"></a>table1_revised</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div><div id="tbl-patient-characteristics-revised" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-patient-characteristics-revised-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1: Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis
 </figcaption>
 <div aria-describedby="tbl-patient-characteristics-revised-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell table table-sm table-striped small">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">Adju_TA</th>
@@ -2240,7 +2240,7 @@ Table&nbsp;1: Baseline characteristics for patients with targeted therapy after 
 <p>연령은 치료군과 대조군 모두 59세 전후로 나타났으며 연령 및 성별에 있어 두 군 간의 통계적인 차이는 없었습니다. 진단 당시 간 전이를 동반하였거나 원발 부위 종양 절제술 후 12개월 이내에 간전이가 발견된 경우는 대조군에서 빈도가 유의하게 높았습니다. 또한 간 절제술 전 항암화학요법 혹은 표적치료제를 사용한 경우는 치료군에서 빈도가 유의하게 높았습니다.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/clipboard-3145534320.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3" title="Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis-저자가 별도로 편집한 table"><img src="images/clipboard-3145534320.png" class="img-fluid figure-img" width="700" alt="Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis-저자가 별도로 편집한 table"></a></p>
+<p><a href="images/clipboard-3145534320.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis-저자가 별도로 편집한 table"><img src="images/clipboard-3145534320.png" class="img-fluid figure-img" width="700" alt="Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis-저자가 별도로 편집한 table"></a></p>
 <figcaption>Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis-저자가 별도로 편집한 table</figcaption>
 </figure>
 </div>
@@ -2250,10 +2250,10 @@ Table&nbsp;1: Baseline characteristics for patients with targeted therapy after 
 <div class="cell-container"><div class="cell-decorator"><pre>In [30]:</pre></div><div id="cell-fig-SMD" class="cell">
 <div class="sourceCode cell-code" id="cb157"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb157-1"><a href="#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(love_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-SMD" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-SMD" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-SMD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="index_files/figure-html/fig-SMD-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="index_files/figure-html/fig-SMD-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="index_files/figure-html/fig-SMD-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;2: Absolute SMD, Balance at original cohort &amp; weighted cohort"><img src="index_files/figure-html/fig-SMD-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-SMD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Absolute SMD, Balance at original cohort &amp; weighted cohort
@@ -2288,14 +2288,14 @@ Figure&nbsp;2: Absolute SMD, Balance at original cohort &amp; weighted cohort
 </div></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [32]:</pre></div><div class="cell">
 
-<div class="cell-container"><div class="cell-decorator"><pre>In [33]:</pre></div><div><div class="sourceCode cell-code" id="cb160"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb160-1"><a href="#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab.unwt_MD, <span class="at">format=</span><span class="st">"markdown"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div><div id="tbl-unweighted_SMD" class="cell quarto-float anchored">
+<div class="cell-container"><div class="cell-decorator"><pre>In [33]:</pre></div><div><div class="sourceCode cell-code" id="cb160"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb160-1"><a href="#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab.unwt_MD, <span class="at">format=</span><span class="st">"markdown"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div><div id="tbl-unweighted_SMD" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-unweighted_SMD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2: Unweighted SMD
 </figcaption>
 <div aria-describedby="tbl-unweighted_SMD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell table table-sm table-striped small">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
@@ -2440,14 +2440,14 @@ Table&nbsp;2: Unweighted SMD
 </div></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [35]:</pre></div><div class="cell">
 
-<div class="cell-container"><div class="cell-decorator"><pre>In [36]:</pre></div><div><div class="sourceCode cell-code" id="cb163"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb163-1"><a href="#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab.wt_MD, <span class="at">format=</span><span class="st">"markdown"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div><div id="tbl-weighted_SMD" class="cell quarto-float anchored">
+<div class="cell-container"><div class="cell-decorator"><pre>In [36]:</pre></div><div><div class="sourceCode cell-code" id="cb163"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb163-1"><a href="#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab.wt_MD, <span class="at">format=</span><span class="st">"markdown"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div><div id="tbl-weighted_SMD" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-weighted_SMD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;3: weighted SMD
 </figcaption>
 <div aria-describedby="tbl-weighted_SMD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell table table-sm table-striped small">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
@@ -2568,7 +2568,7 @@ Table&nbsp;3: weighted SMD
 </div></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/clipboard-2590844408.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5" title="Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort - 저자가 별도로 편집한 그래프와 테이블 병합"><img src="images/clipboard-2590844408.png" class="img-fluid figure-img" alt="Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort - 저자가 별도로 편집한 그래프와 테이블 병합"></a></p>
+<p><a href="images/clipboard-2590844408.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort - 저자가 별도로 편집한 그래프와 테이블 병합"><img src="images/clipboard-2590844408.png" class="img-fluid figure-img" alt="Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort - 저자가 별도로 편집한 그래프와 테이블 병합"></a></p>
 <figcaption>Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort - 저자가 별도로 편집한 그래프와 테이블 병합</figcaption>
 </figure>
 </div>
@@ -2586,10 +2586,10 @@ Attaching package: 'gridExtra'</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb167"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb167-1"><a href="#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(PFS<span class="sc">$</span>plot, OS_TA<span class="sc">$</span>plot, <span class="at">ncol=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-survival" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-survival" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-survival-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="index_files/figure-html/fig-survival-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="index_files/figure-html/fig-survival-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="index_files/figure-html/fig-survival-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;3: Kaplan Meier survival curves for patients with targeted therapy after surgical resection of colorectal liver metastasis"><img src="index_files/figure-html/fig-survival-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-survival-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: Kaplan Meier survival curves for patients with targeted therapy after surgical resection of colorectal liver metastasis
@@ -2602,14 +2602,14 @@ Figure&nbsp;3: Kaplan Meier survival curves for patients with targeted therapy a
 <p>Weighted cohort 에서는 보정 전 그룹과 비교하여 vascular invasion 이 있는 경우에서 Hazard ratio 1.70 으로 통계적으로 유의한 Poor prognostic factor 로 조사되었습니다. 보정 후에도 수술 후 표적치료제의 사용에 대한 경우는 불량한 예후를 시사하는 경향을 보였으나 통계적으로 유의하지는 않았습니다.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/clipboard-3985066224.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" data-glightbox="description: .lightbox-desc-7" title="Table 2. Uni-variated Cox regression associated to PFS"><img src="images/clipboard-3985066224.png" class="img-fluid figure-img" alt="Table 2. Uni-variated Cox regression associated to PFS"></a></p>
+<p><a href="images/clipboard-3985066224.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Table 2. Uni-variated Cox regression associated to PFS"><img src="images/clipboard-3985066224.png" class="img-fluid figure-img" alt="Table 2. Uni-variated Cox regression associated to PFS"></a></p>
 <figcaption>Table 2. Uni-variated Cox regression associated to PFS</figcaption>
 </figure>
 </div>
 <p>Table 3 는 다변량 콕스 회귀 분석 결과입니다. original cohort 에서는 간 전이 절제술 전 표적치료제를 사용한 경우, Vascular invasion 이 있는 경우, 전이 병변이 간 양엽을 모두 침범한 경우에서 통계적으로 유의한 Poor prognostic factor 로 조사되었습니다. 반면 Weighted cohort 에서는 Perineural invasion 여부와 더불어 수술 후 표적치료제의 사용이 유의한 poor prognostic factor 로 조사되었습니다.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/clipboard-1312926093.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" data-glightbox="description: .lightbox-desc-8" title="Table 3. multi-variated Cox regression associated to PFS"><img src="images/clipboard-1312926093.png" class="img-fluid figure-img" alt="Table 3. multi-variated Cox regression associated to PFS"></a></p>
+<p><a href="images/clipboard-1312926093.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Table 3. multi-variated Cox regression associated to PFS"><img src="images/clipboard-1312926093.png" class="img-fluid figure-img" alt="Table 3. multi-variated Cox regression associated to PFS"></a></p>
 <figcaption>Table 3. multi-variated Cox regression associated to PFS</figcaption>
 </figure>
 </div>
@@ -2623,15 +2623,6 @@ Figure&nbsp;3: Kaplan Meier survival curves for patients with targeted therapy a
 <p>이러한 표적치료제의 사용이 해로울 수 있는 가능성은, 2014년 LANCET oncology 에 게재된 New EPOC study에서 언급된 내용으로, 이 분석 결과를 통해 해당 내용을 데이터로 확인할 수 있었습니다<span class="citation" data-cites="RN672"><sup><a href="#ref-RN672" role="doc-biblioref">2</a></sup></span>.</p>
 <p>다만, 분석에 포함된 대상군의 크기가 제한적이었고, 실시된 표적치료제 별 분석이 이루어지지 않았습니다. 또한, 후향적 연구의 한계로서 unmeasured confounder 가 존재하여 분석의 한계가 있을 수 있겠습니다.</p>
 <p>따라서 절제 가능한 대장암 환자에 대해 수술 후 최적의 표적 치료제 적용에 대한 대규모 전향적 연구가 필요할 것으로 사료됩니다.</p>
-<div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-2">Figure&nbsp;1: Propensity score 에 따른 allocation probability 의 AUC</span>
-<span class="glightbox-desc lightbox-desc-3">Table 1. Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis-저자가 별도로 편집한 table</span>
-<span class="glightbox-desc lightbox-desc-4">Figure&nbsp;2: Absolute SMD, Balance at original cohort &amp; weighted cohort</span>
-<span class="glightbox-desc lightbox-desc-5">Figure 2. Absolute SMD, Balance at original cohort &amp; weighted cohort - 저자가 별도로 편집한 그래프와 테이블 병합</span>
-<span class="glightbox-desc lightbox-desc-6">Figure&nbsp;3: Kaplan Meier survival curves for patients with targeted therapy after surgical resection of colorectal liver metastasis</span>
-<span class="glightbox-desc lightbox-desc-7">Table 2. Uni-variated Cox regression associated to PFS</span>
-<span class="glightbox-desc lightbox-desc-8">Table 3. multi-variated Cox regression associated to PFS</span>
-</div>
 <div id="refs" class="references csl-bib-body" role="list">
 <div id="ref-RN671" class="csl-entry" role="listitem">
 <div class="csl-left-margin">1. </div><div class="csl-right-inline">Penna C, Nordlinger B. <a href="https://doi.org/10.1016/s0039-6109(02)00051-8">Colorectal metastasis (liver and lung)</a>. <em>Surg Clin North Am</em>. 2002;82:1075–90, x–xi.</div>
@@ -2677,18 +2668,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -2720,7 +2700,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -2728,7 +2730,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -3050,30 +3052,37 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>  </div> <!-- /content -->  <script>var lightboxQuarto = GLightbox({"loop":false,"closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom","selector":".lightbox"});
-window.onload = () => {
-  lightboxQuarto.on('slide_before_load', (data) => {
-    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-    const href = trigger.getAttribute('href');
-    if (href !== null) {
-      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-      if (imgEl !== null) {
-        const srcAttr = imgEl.getAttribute("src");
-        if (srcAttr && srcAttr.startsWith("data:")) {
-          slideConfig.href = srcAttr;
-        }
-      }
-    } 
-  });
-
-  lightboxQuarto.on('slide_after_load', (data) => {
-    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-    if (window.Quarto?.typesetMath) {
-      window.Quarto.typesetMath(slideNode);
+</script>  </div> <!-- /content -->  <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
     }
-  });
-
-};
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
           </script> 
   
 </body></html>
