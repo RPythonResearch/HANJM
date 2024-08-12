@@ -81,28 +81,40 @@ cleaned_data<-my_eliminate_NA_columns(raw_data, 5)
 ```{r}
 #| label: Clean-NA-rows
 #| output: false
-#| eval: TRUE  # 실행되지 않는 옵션. 이 chunk만 실행시키면 결과 가능
+#| eval: false  # 실행되지 않는 옵션. 이 chunk만 실행시키면 결과 가능
 
 cleaned_data <- my_eliminate_NA_rows(cleaned_data)
 ```
 
-
 ```{r}
-#| label: Check-distribution
+#| label: Type-casting
 #| output: false
-#| eval: True  # 실행되지 않는 옵션. 이 chunk만 실행시키면 결과 가능
-library(dplyr)
+#| eval: false 
 
-raw_data <- cleaned_data
-my_plot_columns(raw_data)
+typecasted_data <- cleaned_data
+typecasted_data$SEX <- factor(typecasted_data$SEX, levels = c(0, 1), labels = c("Female", "Male"))
+typecasted_data$ASA <- as.factor(typecasted_data$ASA)
+typecasted_data$ECOG <- as.factor(typecasted_data$ECOG)
+typecasted_data<-my_typecasting(typecasted_data)
+
+
 ```
 
+```{r}
+#| label: Check-outliers
+#| output: false
+#| eval: false  # 실행되지 않는 옵션. 이 chunk만 실행시키면 결과 가능
+suppressMessages(library(dplyr))
+
+my_plot_columns(typecasted_data)
+```
 
 ```{r}
 #| label: Select-variables
 #| message: false
-library(dplyr)
+suppressMessages(library(dplyr))
 
+raw_data<-cleaned_data
 raw_data <- raw_data %>% 
   select(MRN, PreHR_chemo,  PreHR_TA, Adjuvant_Doublet, Adju_TA, Any_TA, AGE, SEX, ASA, CCI, SIDENESS, pT4, pT, pN, tN, L, N, V, Diff, Synch_M1, M1_12m, BILOBE, NUM_HM, MULTI4, HM_SIZE, SIZE4, preHR_CEA, Post_HR_target_all, FU_DFS, DEATH, FU_OS, RECUR)
 ```
@@ -110,7 +122,7 @@ raw_data <- raw_data %>%
 ```{r}
 #| label: Select-cases
 
-selected_data <- subset(raw_data, Adjuvant_Doublet==1)
+selected_data <- subset(raw_data, Adjuvant_Doublet=="1")
 HAN<-selected_data
 ```
 
@@ -598,8 +610,9 @@ number_of_Adju_TA_yes<-nrow(subset(HAN, Adju_TA==1))
 ```{r}
 #| label: tbl-patient-characteristics-revised
 #| tbl-cap: Baseline characteristics for patients with targeted therapy after surgical resection of colorectal liver metastasis
+library(knitr)
 
-table1_revised<-my_MarkdownTable(table1)
+table1_revised<-table1$res %>% select(1,2,3,4,5) %>% kable(format="markdown")
 table1_revised
 
 ```

@@ -82,33 +82,67 @@ my_eliminate_NA_rows <- function(data) {
 ################################################################################
 my_plot_columns <- function(df) {
   
+  results <- list()
+  
   col_names <- names(df)
   for (col in col_names) {
     if (is.numeric(df[[col]])) {
-      hist(df[[col]], main = col, xlab = col)
-      
       col_mean <- mean(df[[col]], na.rm = TRUE)
       col_sd <- sd(df[[col]], na.rm = TRUE)
       
-      # 평균을 나타내는 세로선 추가
-      abline(v = col_mean, col = "red", lwd = 2, lty = 2)
+      lower_bound <- col_mean - 3 * col_sd
+      upper_bound <- col_mean + 3 * col_sd
       
-      # -3 표준편차 및 3 표준편차를 나타내는 세로선 추가
-      abline(v = col_mean - 3 * col_sd, col = "blue", lwd = 2, lty = 2)
-      abline(v = col_mean + 3 * col_sd, col = "blue", lwd = 2, lty = 2)
+      outliers <- df[[col]][df[[col]] < lower_bound | df[[col]] > upper_bound]
       
-      # 평균 값 텍스트 추가
-      text(x = col_mean, y = par("usr")[4] * 0.9, 
-           labels = paste("Mean:", round(col_mean, 2)), 
-           col = "red", cex = 0.8, pos = 4)
-      
-      # Shapiro-Wilk 정규성 검정 수행 및 결과 추가
-      shapiro_result <- shapiro.test(df[[col]])
-      mtext(paste("Shapiro-Wilk p-value:", format(shapiro_result$p.value, digits = 4)), 
-            side = 3, line = -1, adj = 0.95, cex = 0.8, col = "blue")
+      # If there are outliers, store the result
+      if (length(outliers) > 0) {
+        outliers <- sort(outliers)  # Sort outliers in increasing order
+        
+        # Store results in the list
+        results[[col]] <- list(
+          mean = col_mean,
+          lower_bound = lower_bound,
+          upper_bound = upper_bound,
+          outliers = outliers
+        )
+        
+        # Plot histogram with custom coloring
+        breaks <- pretty(df[[col]], n = 30)
+        bins <- cut(df[[col]], breaks = breaks, include.lowest = TRUE)
+        bin_colors <- ifelse(as.numeric(breaks[-length(breaks)]) < lower_bound |
+                               as.numeric(breaks[-1]) > upper_bound, "red", "gray")
+        
+        hist(df[[col]], main = col, xlab = col, col = bin_colors, breaks = breaks)
+        
+        abline(v = col_mean, col = "red", lwd = 2, lty = 2)
+        abline(v = lower_bound, col = "red", lwd = 2, lty = 2)
+        abline(v = upper_bound, col = "red", lwd = 2, lty = 2)
+        text(x = col_mean, y = par("usr")[4] * 0.9, 
+             labels = paste("Mean:", round(col_mean, 2)), 
+             col = "red", cex = 0.8, pos = 4)
+        shapiro_result <- shapiro.test(df[[col]])
+        mtext(paste("Shapiro-Wilk p-value:", format(shapiro_result$p.value, digits = 4)), 
+              side = 3, line = -1, adj = 0.95, cex = 0.8, col = "blue")
+      }
     } else {
       barplot(table(df[[col]]), main = col, xlab = col)
     }
   }
+  
+  return(results)
 }
 
+my_typecasting <- function(df) {
+  # data.frame의 각 열에 대해 반복
+  df[] <- lapply(df, function(col) {
+    if (is.numeric(col) && all(col %in% c(0, 1))) {
+      # 0과 1로만 구성된 열을 factor로 변환
+      return(factor(col, levels = c(0, 1), labels = c("No", "Yes")))
+    } else {
+      # 나머지 열은 그대로 유지
+      return(col)
+    }
+  })
+  return(df)
+}
