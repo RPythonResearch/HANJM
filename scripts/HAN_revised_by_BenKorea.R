@@ -19,8 +19,17 @@ require(grid)
 #install.packages("ggplot2")
 require(ggplot2)
 require(readxl)
-source("C:/R/Projects/R-4.4.1-RPythonStudy_HANJM/source/ggKM.R")
-source("C:/R/Projects/R-4.4.1-RPythonStudy_HANJM/source/mycphwt.R")
+
+source_directory<-"source"
+source_filename<-"ggkm.R"
+project_path <<- getwd()
+source_path <<- file.path(project_path, source_directory)
+source_path_filename <- file.path(source_path, source_filename)
+source(source_path_filename)
+
+source_filename<-"mycphwt.R"
+source_path_filename <- file.path(source_path, source_filename)
+source(source_path_filename)
 
 ################################################################################
 ## deidentified 파일을 읽어 오도록 수정함. 김병일 24.07.22
